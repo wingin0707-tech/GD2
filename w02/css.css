@@ -15,16 +15,20 @@ body {
     height: 100%;
     background-color: yellow;
 } */
+
 .q_and_a {
-    width: 500%;
+    text-align: center;
+    width: 100%;
     margin: auto;
+    font-family: 'Courier New', Courier, monospace;
 }
 .question {
     font-weight: bold;
-    text-transform: uppercase;
-    text-indent: -30px;
-    letter-spacing: 0.05em;
+    text-transform: auto;
+    text-indent: 20px;
+    letter-spacing: 0.02em;
 }
 .answer {
-    margin-left: 20px;
+    margin-left: 13px;
+
 }
