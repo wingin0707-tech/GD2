@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sound Map</title>
+<link rel="stylesheet" href="css.css">
+</head>
+
+<body class="home">
+
+    <body>
+
+        <div class="map-background">
+          <iframe
+            src="https://www.google.com/maps?q=Markham,Ontario&output=embed"
+            allowfullscreen>
+          </iframe>
+        </div>
+        
+        <div class="content">
+          <h1>Sound Map</h1>
+        </div>
+        
+        </body>
+
+<header class="top-leftbar">
+    <nav>
+        <a href="#" onclick="showHome()">Home</a>
+        <a href="#" onclick="showAbout()">About</a>
+    </nav>
+</header>
+
+<section id="home-section">
+    <h2>Archives of Sounds</h2>
+    <canvas id="canvas"></canvas>
+</section>
+
+<section id="about-section" style="display:none;">
+    <h2>About This Project</h2>
+    <p>This sound map archives and explores environments through audio.</p>
+</section>
+
+<div class="sound-point" onclick="playSound1()"></div>
+
+<audio id="sound1" src="/Users/winginchan/Downloads/426 University Ave 2.m4a"></audio>
+
+<script>
+function playSound1() {
+    document.getElementById("sound1").play();
+}
+
+function showAbout() {
+    document.getElementById("home-section").style.display = "none";
+    document.getElementById("about-section").style.display = "block";
+    document.body.className = "about";
+}
+
+function showHome() {
+    document.getElementById("home-section").style.display = "block";
+    document.getElementById("about-section").style.display = "none";
+    document.body.className = "home";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "GD2",
+			"path": "."
+		},
+		{
+			"name": "sctm2005",
+			"path": "../../../Desktop/year2workflie/COM-SCI/sctm2005"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501
+	}
+}
