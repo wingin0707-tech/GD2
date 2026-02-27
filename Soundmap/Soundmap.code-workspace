@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "Soundmap",
+			"path": "."
+		},
+		{
+			"name": "dist",
+			"path": "../../../Downloads/dist"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Soundmap"
+	}
+}

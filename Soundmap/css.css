@@ -1,0 +1,84 @@
+.root {
+    --primary: blue;
+    --secondary: grey;
+}
+
+section,
+.top-bar {
+    position: relative;
+    z-index: 2; 
+    font-size: 12px;
+}
+
+.heading{
+    font-size: 40px;
+}
+
+.menu-panel {
+    position: fixed;
+    top: 70px;
+    left: 30px;
+    background: white;
+    padding: 20px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 5;
+}
+
+button {
+    font-family: "Courier New";
+    font-size: 85px;
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    padding: px 10px;
+    cursor: pointer;
+}
+
+body {
+    margin: 30px;
+    font-family: "Courier New";
+    text-align: center;
+    font-style: light;
+    background: var(--primary);
+    font-size: 12px;
+}
+
+section#home-section {
+    height: 100vh;
+    font-size: 12px;
+}
+
+
+
+#about-button{
+    font-size: 12px;
+
+}
+#about-section {
+    background-color: black;
+    color: white;
+    padding: 100px 20px;
+    position: relative;
+    z-index: 2;
+    font-size: 12px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    z-index: 3; /* higher than sections */
+    
+}
+
+.map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* behind content but interactive */
+}
