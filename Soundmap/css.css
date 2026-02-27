@@ -14,16 +14,39 @@ section,
     font-size: 40px;
 }
 
-.menu-panel {
-    position: fixed;
-    top: 70px;
-    left: 30px;
-    background: white;
-    padding: 20px;
+.menu-button {
+    font-size: 2rem;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.5s ease;
+    user-select: none;
+}
+
+.menu-button.spin {
+    transform: rotate(360deg);
+}
+
+/* Menu container */
+.menu-container {
     display: none;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 5;
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.menu-container a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    margin: 8px 0;
+}
+
+.menu-container a:hover {
+    text-decoration: underline;
 }
 
 button {
