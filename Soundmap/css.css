@@ -9,32 +9,60 @@
     display: block;
 }
 
-section,
+
 .top-bar {
-    position: relative;
-    z-index: 2; 
-    font-size: 20px;
-    font-weight: 20;
-    margin: -20px;
-    right: -50px;
+    display: flex;
+    flex-direction: column; /* stack title/subtitle above menu button inside square */
+    justify-content: center; /* center content vertically */
+    align-items: center; /* center content horizontally */
+    width: 200px;  /* square width */
+    height: 200px; /* square height */
+    background: rgb(21, 21, 255); /* semi-transparent */
+    position: fixed;
+    top: 20px;  /* some space from top */
+    right: 20px; /* some space from right edge */
+    z-index: 100;
+    border-radius: 10px; /* optional: rounded corners */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
 }
+
+section,
+.top-bar .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center text inside square */
+    margin-bottom: 10px; /* spacing before menu button */
+}
+
+
+
+
+
+/* Subtitle */
 .subtitle {
-    margin-top: 100px;
-    font-size: 14px;
-    letter-spacing: 2px;
+    margin: 5px 0 0 0;
+    font-size: 16px;
+    letter-spacing: 1px;
     opacity: 0.8;
-}    
-
-
-.menu-button {
-    font-size: 20rem;
-    cursor: pointer;
-    display: inline-block;
-    transition: transform 0.5s ease;
-    user-select: none;    
-    margin: 10px;
-    color: rgba(238, 93, 236, 0.948);
+    display: flex;
+    display: flex;
+    flex-direction: column; /* stack title above subtitle */
+    align-items: flex-end; /* right-align text inside container */
+    margin-right: 20px; /* space between text and menu button */
 }
+
+
+
+    .menu-button {
+        font-size: 2.5rem;
+        cursor: pointer;
+        color: rgba(238, 93, 236, 0.95);
+        user-select: none;
+        transition: transform 0.5s ease;
+    }
+    
 
 .menu-button.spin {
     transform: rotate(460deg);
@@ -52,7 +80,7 @@ section,
 }
 
 .menu-container a {
-    color: #000000;
+    color: hsl(312, 100%, 50%);
     display: block;
     text-decoration: none;
     margin: 8px 0;
@@ -91,16 +119,15 @@ body {
     background-color: black;
     color: white;
     padding: 80px 40px;
-    position: relative;
-    z-index: 2;
-    font-size: 10px;
+    font-size: 14px;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
-
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     position: absolute;
     z-index: 3; 
     
