@@ -15,9 +15,15 @@ section,
     z-index: 2; 
     font-size: 20px;
     font-weight: 20;
-    margin: -10px;
+    margin: -20px;
     right: -50px;
 }
+.subtitle {
+    margin-top: 100px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}    
 
 
 .menu-button {
@@ -26,6 +32,7 @@ section,
     display: inline-block;
     transition: transform 0.5s ease;
     user-select: none;    
+    margin: 10px;
     color: rgba(238, 93, 236, 0.948);
 }
 
@@ -60,9 +67,9 @@ section,
 button {
     font-family: "Courier New";
     font-size: 20px;
+    color:rgb(255, 255, 255);
     background: none;
-    border: 1px solid rgba(0, 0, 0, 0);
-    padding: px 10px;
+    margin:0;
     cursor: pointer;
 }
 /* <!-- button -->  */
@@ -83,7 +90,7 @@ body {
 #about-section {
     background-color: black;
     color: white;
-    padding: 100px 20px;
+    padding: 80px 40px;
     position: relative;
     z-index: 2;
     font-size: 12px;

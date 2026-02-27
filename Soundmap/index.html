@@ -13,8 +13,17 @@
      
     
         <header>
+               <!-- Home -->
+        <section id="home-section"> 
+            <iframe class="map" allowfullscreen allow="geolocation"
+             src="//umap.openstreetmap.fr/en/map/sound-map_1363754?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true"></iframe>
+        </section>
             <header class="top-bar">
                 <h1> Markham Sound Map</h1>
+                <p class="subtitle">Archives of Sounds</p>
+
+             
+                <!-- menu -->
                 <span class="menu-button" id="menuButton">*</span>
                 <div class="menu-container" id="menuContainer">
               <a href="#" onclick="showHome()">Home</a>
@@ -23,35 +32,29 @@
             </header>
         </header>
 
+                <body> <h1>Archives of Sounds</h2></body>
+
         <!-- About -->
         <section id="about-section" style="display:none;"> 
             <h1>About This Project</h1>
             <p>This sound map archives and explores environments through audio.</p>
-            <div id="about-page">
-
-                <button id="close-about">X</button>
-            
-                <h1>Markham Sound Map — Recordings</h1>
-                </div>
+        
+            <h2>Submit a Recording</h2>
+            <form>
+                <input type="text" placeholder="Location Name" required>
+                <input type="text" placeholder="Description">
+                <input type="text" placeholder="Time">
+                <input type="file" accept="audio/*">
+                <button type="submit">Submit</button>
+            </form>
+        </section>
           
-                    <h2>Submit a Recording</h2>
-                    <form>
-                        <input type="text" placeholder="Location Name" required>
-                        <input type="text" placeholder="Description">
-                        <input type="file" accept="audio/*">
-                        <button type="submit">Submit</button>
-                    </form>
                 </div>
             
             </div>
         </section>
 
-        <!-- Home -->
-        <section id="home-section"> 
-            <h2>Archives of Sounds</h2>
-            <iframe class="map" allowfullscreen allow="geolocation"
-             src="//umap.openstreetmap.fr/en/map/sound-map_1363754?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true"></iframe>
-        </section>
+     
         <script src="soundmap.js"></script>
     </body>
 </html>
