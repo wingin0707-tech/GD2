@@ -9,6 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+const aboutMenuButton = document.getElementById("aboutMenuButton");
+const aboutMenuContainer = document.getElementById("aboutMenuContainer");
+
+aboutMenuButton.addEventListener("click", () => {
+    aboutMenuContainer.classList.toggle("show");
+});
+
 function showAbout() {
     document.getElementById("home-section").style.display = "none";
     document.getElementById("about-section").style.display = "block";

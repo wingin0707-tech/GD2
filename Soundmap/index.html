@@ -33,40 +33,31 @@
     </iframe>
 
 </section>
-        <!-- About -->
-        <section id="about-section" style="display:none;"> 
-            <h1>About This Project</h1>
-            <p>This sound map archives and explores environments through audio.</p>
-            <div id="about-page">
+        <!-- ABOUT -->
+<section id="about-section" style="display:none;">
 
-            </div>
+    <h1>About This Project</h1>
+    <p>This sound map archives and explores environments through audio.</p>
 
-            <span class="menu-button" id="menuButton">*</span>
-            <div class="menu-container" id="menuContainer">
-                <a href="#" onclick="showHome()">Home</a>
-                <a href="#" onclick="showAbout()">About</a>
-            </div>
-                <h1>Markham Sound Map — Recordings</h1>
-                    
-                <iframe 
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSPbm0gtPWa5UHsVOb_TJf_rc4i6rsZSGNAHdXhn0qCiPMe4egMO-MmvHattgwpJmc6gKrsIb6y2RBO/pubhtml?widget=true&headers=false">
-                    </iframe>
-                </div>
-          
-                    <h2>Submit a Recording</h2>
-                    <form>
-                        <input type="text" placeholder="Location Name" required>
-                        <input type="text" placeholder="Description">
-                        <input type="text" placeholder="time">
-                        <input type="file" accept="audio/*">
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            
-            </div>
-        </section>
+    <button onclick="showHome()">*</button>
+    
+    <div class="menu-container" id="aboutMenuContainer">
+        <a href="#" onclick="showHome()">Home</a>
+        <a href="#" onclick="showAbout()">About</a>
+    </div>
 
-     
-        <script src="soundmap.js"></script>
-    </body>
-</html>
+    <h2>Submit a Recording</h2>
+    <form>
+        <input type="text" placeholder="Location Name" required>
+        <input type="text" placeholder="Description">
+        <input type="text" placeholder="Time">
+        <input type="file" accept="audio/*">
+        <button type="submit">Submit</button>
+    </form>
+
+</section>
+
+<script src="soundmap.js"></script>
+        </body>
+
+            </html>
