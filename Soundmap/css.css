@@ -47,6 +47,7 @@ section,
     display: block;
     text-decoration: none;
     margin: 8px 0;
+    font-size: 20;
 }
 
 .menu-container a:hover {
