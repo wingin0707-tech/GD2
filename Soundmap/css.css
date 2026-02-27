@@ -4,12 +4,6 @@
 }
 
 
-/* <!-- menu -->  */
-.menu-container.show {
-    display: block;
-}
-
-
 .top-bar {
     display: flex;
     flex-direction: column; /* stack title/subtitle above menu button inside square */
@@ -34,11 +28,9 @@ section,
     flex-direction: column;
     align-items: center; /* center text inside square */
     margin-bottom: 10px; /* spacing before menu button */
+    color: white;
+
 }
-
-
-
-
 
 /* Subtitle */
 .subtitle {
@@ -47,12 +39,12 @@ section,
     letter-spacing: 1px;
     opacity: 0.8;
     display: flex;
+    color: white;
     display: flex;
     flex-direction: column; /* stack title above subtitle */
     align-items: flex-end; /* right-align text inside container */
     margin-right: 20px; /* space between text and menu button */
 }
-
 
 
     .menu-button {
@@ -68,23 +60,19 @@ section,
     transform: rotate(460deg);
 }
 
+
 .menu-container {
     display: none;
     position: absolute;
-    top: 60px;
-    left: 280px;
-    background-color: rgba(238, 93, 236, 0.948);
-    padding: 10px 50px;
-    border-radius: 20px;
-    z-index: 1000;
+    top: 180px;     /* just below the square */
+    right: 20px;    /* align with right side of square */
+    background-color: rgba(238, 93, 236, 0.95);
+    padding: 10px 30px;
+    border-radius: 15px;
+    z-index: 2000;  /* above top-bar */
 }
-
-.menu-container a {
-    color: hsl(312, 100%, 50%);
+.menu-container.show {
     display: block;
-    text-decoration: none;
-    margin: 8px 0;
-    font-size: 20;
 }
 
 .menu-container a:hover {
