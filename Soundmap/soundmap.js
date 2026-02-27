@@ -19,18 +19,3 @@ function showHome() {
     document.getElementById("about-section").style.display = "none";
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const cursor = document.createElement("div");
-    cursor.className = "sound-cursor";
-    cursor.innerHTML = "*";
-    document.body.appendChild(cursor);
-
-    document.body.style.cursor = "none"; // hide normal cursor
-
-    document.addEventListener("mousemove", (e) => {
-        cursor.style.left = e.clientX + "px";
-        cursor.style.top = e.clientY + "px";
-    });
-
-});
