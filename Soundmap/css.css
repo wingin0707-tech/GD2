@@ -3,12 +3,19 @@
     --secondary: grey;
 }
 
+
 .sound-cursor {
     position: fixed;
     pointer-events: none;
-    font-size: 24px;
+    font-size: 28px;
+    z-index: 9999;
     transform: translate(-50%, -50%);
-    z-index: 2000;
+    animation: pulse 0.6s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: translate(-50%, -50%) scale(1); }
+    to { transform: translate(-50%, -50%) scale(1.3); }
 }
 
 /* <!-- menu -->  */
@@ -113,4 +120,5 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: 1; 
+    pointer-events:all;
 }
