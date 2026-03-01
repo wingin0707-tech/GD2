@@ -79,7 +79,7 @@ section,
     text-decoration: underline;
     text-decoration-style:dotted
 }
-/* <!-- button for menu -->  */
+
 button {
     font-family: "Courier New";
     font-size: 20px;
@@ -88,7 +88,7 @@ button {
     margin:0;
     cursor: pointer;
 }
-/* <!-- button -->  */
+
 body {
     margin: 30px;
     font-family: "Courier New";
