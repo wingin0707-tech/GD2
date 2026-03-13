@@ -1,0 +1,86 @@
+/*
+ * demos/01 - structure/css/fonts.css
+ * Registers the "Standard" family fonts provided in css/font/ and css/font/webfonts/
+ * Provides a small set of typography utilities.
+ */
+
+@font-face {
+  font-family: 'Standard';
+  src: url('font/webfonts/standard-book-webfont.eot'); /* IE9 Compat Modes */
+  src: url('font/webfonts/standard-book-webfont.eot?#iefix') format('embedded-opentype'),
+       url('font/webfonts/standard-book-webfont.woff2') format('woff2'),
+       url('font/webfonts/standard-book-webfont.woff') format('woff'),
+       url('font/webfonts/standard-book-webfont.ttf') format('truetype'),
+       url('font/standard-book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Standard';
+  src: url('font/webfonts/standard-book-italic-webfont.eot');
+  src: url('font/webfonts/standard-book-italic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('font/webfonts/standard-book-italic-webfont.woff2') format('woff2'),
+       url('font/webfonts/standard-book-italic-webfont.woff') format('woff'),
+       url('font/webfonts/standard-book-italic-webfont.ttf') format('truetype'),
+       url('font/standard-book-italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Standard';
+  src: url('font/webfonts/standard-bold-webfont.eot');
+  src: url('font/webfonts/standard-bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('font/webfonts/standard-bold-webfont.woff2') format('woff2'),
+       url('font/webfonts/standard-bold-webfont.woff') format('woff'),
+       url('font/webfonts/standard-bold-webfont.ttf') format('truetype'),
+       url('font/standard-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Standard';
+  src: url('font/webfonts/standard-bold-italic-webfont.eot');
+  src: url('font/webfonts/standard-bold-italic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('font/webfonts/standard-bold-italic-webfont.woff2') format('woff2'),
+       url('font/webfonts/standard-bold-italic-webfont.woff') format('woff'),
+       url('font/webfonts/standard-bold-italic-webfont.ttf') format('truetype'),
+       url('font/standard-bold-italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --font-primary: 'Standard', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Apply the font by default for this demo */
+body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.45;
+  color: #222;
+}
+
+/* Utility classes */
+.font-standard { font-family: var(--font-primary); }
+.weight-400 { font-weight: 400; }
+.weight-700 { font-weight: 700; }
+.italic { font-style: italic; }
+.muted { color: #666; }
+
+/* Heading helpers */
+.h1 { font-size: 2rem; font-weight: 700; }
+.h2 { font-size: 1.5rem; font-weight: 700; }
+.lead { font-size: 1.125rem; font-weight: 400; }
+
+/* small accessibility helper */
+.no-select { user-select: none; }
+
+/* End of fonts.css */
