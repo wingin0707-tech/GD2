@@ -1,4 +1,4 @@
-//leaflet
-//map libre
-//add custom marker
-//add cusgtom popup
+$('.filter button').click(function(){
+    f = $(this).data("year");
+    $(f).fadeToggle(SLOW);
+})

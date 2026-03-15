@@ -67,7 +67,6 @@ body {
   line-height: 1.45;
   color: #000000;
   background: #b3b1b1;
-  margin: 100px;
 
 }
 
@@ -91,12 +90,35 @@ main{
     max-width: 1300px;
     margin: 10rem auto;
     
-
 }
 
 img{
     max-width: 100%;
 }
+
+.primary{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+
+
+.secondary{
+    grid-template-columns: repeat(6, 1fr);
+    display: grid;
+    gap: 10px;
+}
+
+.filter{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    margin-top: 10rem;
+}
+
+
+
 
 /* Utility classes */
 .font-standard { font-family: var(--font-primary); }
