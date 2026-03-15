@@ -1,61 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markham Sound Map</title>
-    <link rel="stylesheet" href="css.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Markham Sound Map</title>
+
+    <link rel="stylesheet" href="css.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 </head>
+
 <body>
 
-    <!-- Header (square top-right) -->
     <header class="top-bar">
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Markham Sound Map</title>
-            <link rel="stylesheet" href="css.css" />
-        </head>
-        <body>
-        
-            <!-- Header (square top-right) -->
-            <header class="top-bar">
-                <div class="title-container">
-                    <h1>Markham Sound Map</h1>
-                    <p class="subtitle">Archives of Sounds</p>
-                </div>
-        
-                <span class="menu-button" id="menuButton">*</span>
-                <div class="menu-container" id="menuContainer">
-                    <a href="#" onclick="showHome()">Home</a>
-                    <a href="#" onclick="showAbout()">About</a>
-                </div>
-            </header>
-        
-            <!-- HOME SECTION -->
-            <section id="home-section">
-                <iframe class="map" allowfullscreen allow="geolocation"
-                    src="//umap.openstreetmap.fr/en/map/sound-map_1363754?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true">
-                </iframe>
-            </section>
-        
-            <!-- ABOUT SECTION -->
-            <section id="about-section" style="display:none;">
-                <h1>About This Project</h1>
-                <p>This sound map archives and explores environments through audio.</p>
-        
-                <h2>Submit a Recording</h2>
-                <form>
-                    <input type="text" placeholder="Location Name" required>
-                    <input type="text" placeholder="Description">
-                    <input type="text" placeholder="Time">
-                    <input type="file" accept="audio/*">
-                    <button type="submit">Submit</button>
-                </form>
-            </section>
-        
-            <script src="soundmap.js"></script>
-        </body>
-        </html>
+
+    <div class="title-container">
+    <h1>Markham Sound Map</h1>
+        <p class="subtitle">Archives of Sounds</p>
+        </div>
+
+    <span class="menu-button" id="menuButton">*</span>
+        <div class="menu-container" id="menuContainer">
+        <a href="#" onclick="showHome()">Home</a>
+    <a href="#" onclick="showAbout()">About</a>
+</div>
+
+        </header>
+
+        <!-- HOME SECTION -->
+<section id="home-section">
+    <div id="map" class="map"></div>
+</section>
+
+<!-- ABOUT SECTION -->
+    <section id="about-section" style="display:none;">
+    <h1>About This Project</h1>
+
+    <p>This sound map archives and explores environments through audio.</p>
+
+    <h2>Submit a Recording</h2>
+
+<form>
+    <input type="text" placeholder="Location Name" required>
+        <input type="text" placeholder="Description">
+    <input type="text" placeholder="Time">
+    <input type="file" accept="audio/*">
+    <button type="submit">Submit</button>
+    </form>
+
+</section>
+
+<script src="soundmap.js"></script>
+
+</body>
+</html>
