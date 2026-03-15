@@ -1,59 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Markham Sound Map</title>
 
+<!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="css.css">
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 </head>
 
-<body>
+<body>  
 
-    <header class="top-bar">
+    <header class="top-bar">    
 
     <div class="title-container">
-    <h1>Markham Sound Map</h1>
+        <h1>Markham Sound Map</h1>
         <p class="subtitle">Archives of Sounds</p>
-        </div>
+    </div>
 
     <span class="menu-button" id="menuButton">*</span>
-        <div class="menu-container" id="menuContainer">
-        <a href="#" onclick="showHome()">Home</a>
-    <a href="#" onclick="showAbout()">About</a>
-</div>
 
-        </header>
+    <div class="menu-container" id="menuContainer">
+        <a href="#" onclick="showHome()">Home</a><br>
+        <a href="#" onclick="showAbout()">About</a>
+    </div>
 
-        <!-- HOME SECTION -->
-<section id="home-section">
-    <div id="map" class="map"></div>
-</section>
+    </header>
 
-<!-- ABOUT SECTION -->
+        <section id="home-section">
+        <div id="map" class="map"></div>
+    </section>
+
     <section id="about-section" style="display:none;">
-    <h1>About This Project</h1>
+        <h1>About This Project</h1>
+        <p>This sound map archives and explores environments through audio.</p>
 
-    <p>This sound map archives and explores environments through audio.</p>
+        <h2>Submit a Recording</h2>
+        <form>
+        <input type="text" placeholder="Location Name" required><br>
+        <input type="text" placeholder="Description"><br>
+        <input type="text" placeholder="Time"><br>
+        <input type="file" accept="audio/*"><br>
+        <button type="submit">Submit</button>
+        </form>
+    </section>
 
-    <h2>Submit a Recording</h2>
-
-<form>
-    <input type="text" placeholder="Location Name" required>
-        <input type="text" placeholder="Description">
-    <input type="text" placeholder="Time">
-    <input type="file" accept="audio/*">
-    <button type="submit">Submit</button>
-    </form>
-
-</section>
-
-<script src="soundmap.js"></script>
+<!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="soundmap.js"></script>
 
 </body>
 </html>

@@ -1,71 +1,35 @@
-document.addEventListener("DOMContentLoaded", () => {
+// MENU
+const menuButton = document.getElementById("menuButton");
+const menuContainer = document.getElementById("menuContainer");
 
-    const menuButton = document.getElementById("menuButton");
-    const menuContainer = document.getElementById("menuContainer");
-
-    menuButton.addEventListener("click", () => {
-        menuContainer.classList.toggle("show");
-        menuButton.classList.toggle("spin");
-    });
-
+menuButton.addEventListener("click", () => {
+    menuButton.classList.toggle("spin");
+    menuContainer.classList.toggle("show");
 });
 
-    function showAbout() {
-    document.getElementById("home-section").style.display = "none";
-    document.getElementById("about-section").style.display = "block";
-}
-
-        function showHome() {
+function showHome() {
     document.getElementById("home-section").style.display = "block";
     document.getElementById("about-section").style.display = "none";
 }
 
-    function initMap() {
-
-const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 43.8561, lng: -79.3370 },
-    zoom: 12,
-
-    styles: [
-        {
-            featureType: "all",
-            elementType: "all",
-            stylers: [
-                { visibility: "on" },
-                { color: "#ede6d2" },
-                { saturation: -33 },
-                { lightness: 14 }
-            ]
-        },
-        {
-            featureType: "administrative",
-            elementType: "geometry",
-            stylers: [{ visibility: "off" }]
-        },
-        {
-            featureType: "poi",
-            elementType: "all",
-            stylers: [{ visibility: "off" }]
-        },
-        {
-            featureType: "transit",
-            elementType: "all",
-            stylers: [{ visibility: "off" }]
-        },
-        {
-            featureType: "water",
-            elementType: "all",
-            stylers: [{ visibility: "off" }]
-        },
-        {
-            featureType: "road.highway",
-            elementType: "geometry.stroke",
-            stylers: [
-                { visibility: "on" },
-                { color: "#0d1f4e" }
-            ]
-        }
-    ]
-});
-
+function showAbout() {
+    document.getElementById("home-section").style.display = "none";
+    document.getElementById("about-section").style.display = "block";
 }
+
+// LEAFLET MAP
+const map = L.map('map').setView([43.8561, -79.3370], 13);
+
+// OpenStreetMap tiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+// Example marker with audio
+const marker = L.marker([43.8561, -79.3370]).addTo(map);
+marker.bindPopup(`
+<b>Example Sound</b><br>
+<audio controls>
+<source src="sound/example.mp3" type="audio/mpeg">
+</audio>
+`);
