@@ -19,7 +19,7 @@ body {
   align-items: center;
   width: 200px;
   height: 200px;
-  background: rgb(21,21,255);
+  background: #0d1f4e;
   position: fixed;
   top: 20px;
   right: 20px;
@@ -42,7 +42,7 @@ body {
 .menu-button {
   font-size: 2.5rem;
   cursor: pointer;
-  color: rgba(238,93,236,0.95);
+  color: #e8e4dc;
   user-select: none;
   transition: transform 0.5s ease;
 }
@@ -99,4 +99,80 @@ button {
   font-size: 14px;
   min-height: 100vh;
   box-sizing: border-box;
+}
+
+
+/* INTRO POPUP OVERLAY */
+
+.intro-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(13,31,78,0.95);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 5000;
+}
+
+.intro-box {
+  background: #e8e4dc;
+  color: #0d1f4e;
+
+  padding: 40px;
+  max-width: 500px;
+  border-radius: 12px;
+
+  font-family: "Courier New";
+  text-align: center;
+}
+
+.intro-box h1 {
+  margin-top: 0;
+}
+
+.intro-box button {
+  margin-top: 20px;
+  padding: 10px 20px;
+
+  background: #0d1f4e;
+  color: white;
+
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.intro-box button:hover {
+  background: #162a63;
+}
+
+
+.leaflet-tile {
+  filter: brightness(45);
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  pointer-events: none; /* let clicks pass through */
+  background: rgba(11, 19, 126, 0.7); /* red color */
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  z-index: 9999;
+}
+.custom-cursor.click {
+  width: 50px;
+  height: 50px;
+  background: #e8e4dc; /* blue on click */
+  transition: width 0.1s ease, height 0.1s ease, background 0.1s ease;
 }

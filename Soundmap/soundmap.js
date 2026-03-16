@@ -19,45 +19,47 @@ function showAbout() {
   document.getElementById("about-section").style.display = "block";
 }
 
+// INTRO POPUP
+
+const startButton = document.getElementById("start-map");
+const introPopup = document.getElementById("intro-popup");
+
+startButton.addEventListener("click", () => {
+  introPopup.style.display = "none";
+});
+
+// =======================
+// MAP
+// =======================
 
 const map = L.map('map').setView([43.8561, -79.3370], 13);
 
-map.fitBounds(markhamBounds);
- map.setMaxBounds(markhamBounds);
-
-      L.geoJSON(markhamGeoJSON, {
-    style: {
-    color: "#000",
-    weight: 2,
-    fillOpacity: 0
-  }
+// Dark monochrome tiles
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap &copy; CARTO',
+  subdomains: 'abcd',
+  maxZoom: 20
 }).addTo(map);
 
-// Base tiles (Carto Light)
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
-          subdomains: 'abcd',
-        maxZoom: 20
-    }).addTo(map);
-
-
+// Example highway line
 const highwaysGeoJSON = {
   "type": "FeatureCollection",
   "features": [
     {
       "type": "Feature",
-      "properties": { "name": "Highway 1" },
+      "properties": { "name": "Highway Example" },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [43.89411, -79.27344],
-          [43.86, -79.33],
-          [43.87, -79.32]
+          [-79.27344, 43.89411],
+          [-79.33, 43.86],
+          [-79.32, 43.87]
         ]
       }
     }
   ]
 };
+
 
 // Sound locations data
 const soundLocations = [
@@ -147,7 +149,7 @@ const soundLocations = [
     lat: 43.874527,
     lng: -79.286243,
     time: "18 Feb, 2026 8:30pm",
-    audio: "https://image2url.com/r2/default/audio/1772144461963-b6596e1b-7a63-40de-9dc0-771281e02950.m4a"
+    audio: "https://image2url.com/r2/default/audio/1772144461963-b6596e1b-7a63-40de-9dc0-771281e02950.m4a",
   },
   {
     title: "Mercedes-Benz Markham",
@@ -175,6 +177,7 @@ const soundLocations = [
   }
 ];
 
+
 // Add markers to map
 soundLocations.forEach(location => {
  const marker = L.circleMarker([location.lat, location.lng], {
@@ -196,4 +199,90 @@ soundLocations.forEach(location => {
       Your browser does not support the audio element.
     </audio>
   `);
+});
+
+// create cursor element
+const cursor = document.createElement("div");
+cursor.classList.add("custom-cursor");
+document.body.appendChild(cursor);
+
+// move cursor
+document.addEventListener("mousemove", (e) => {
+  cursor.style.top = e.clientY + "px";
+  cursor.style.left = e.clientX + "px";
+});
+
+// click effect
+document.addEventListener("mousedown", () => {
+  cursor.classList.add("click");
+});
+document.addEventListener("mouseup", () => {
+  cursor.classList.remove("click");
+});
+soundLocations.forEach((location, index) => {
+  const marker = L.circleMarker([location.lat, location.lng], {
+    radius: 8,
+    fillColor: "#ff3b3b",
+    color: "#ffffff",
+    weight: 1,
+    fillOpacity: 0.9
+  }).addTo(map);
+
+  const transcriptId = `transcript-${index}`;
+  const audioId = `audio-${index}`;
+
+  // Pre-written transcript
+  const transcriptText = `This is a sample transcript for ${location.title}. Replace with your own text.`;
+
+  marker.bindPopup(`
+    <b>${location.title}</b><br>
+    ${location.description}<br>
+    <i>${location.time}</i><br><br>
+
+    <audio controls id="${audioId}">
+      <source src="${location.audio}" type="audio/mp4">
+    </audio>
+
+    <div id="${transcriptId}" style="
+      max-height:100px;
+      overflow:hidden;
+      margin-top:10px;
+      font-size:13px;
+      line-height:1.4;
+      background:#f4f4f4;
+      padding:8px;
+      border-radius:6px;
+      white-space: pre-wrap;
+      font-family: monospace;
+    "></div>
+  `);
+
+  marker.on('popupopen', () => {
+    const popupEl = marker.getPopup().getElement();
+    const audio = popupEl.querySelector(`#${audioId}`);
+    const transcript = popupEl.querySelector(`#${transcriptId}`);
+
+    let typingInterval;
+
+    audio.addEventListener('play', () => {
+      transcript.textContent = '';
+      let i = 0;
+      typingInterval = setInterval(() => {
+        if (i < transcriptText.length) {
+          transcript.textContent += transcriptText[i];
+          i++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 40); // speed of typing
+    });
+
+    audio.addEventListener('pause', () => {
+      clearInterval(typingInterval);
+    });
+
+    audio.addEventListener('ended', () => {
+      clearInterval(typingInterval);
+    });
+  });
 });
