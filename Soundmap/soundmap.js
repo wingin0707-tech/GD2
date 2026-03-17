@@ -166,16 +166,18 @@ document.addEventListener("mouseup", () => {
 const markerGroup = L.layerGroup().addTo(map);
 
 soundLocations.forEach((location, index) => {
-  const marker = L.circleMarker([location.lat, location.lng], {
-    radius: 9,
-    fillColor: "#ff0011",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8,
-    zIndexOffset: 1000 
-  }).addTo(markerGroup);
 
+  const crossIcon = L.divIcon({
+  className: 'custom-cross-icon', 
+  html: '<div class="cross-marker"></div>',
+  iconSize: [20, 20],
+  iconAnchor: [10, 10]
+});
+
+  const marker = L.marker([location.lat, location.lng], {
+  icon: crossIcon,
+  zIndexOffset: 1000
+}).addTo(markerGroup);
   const transcriptId = `transcript-${index}`;
   const audioId = `audio-${index}`;
   const transcriptText = `This is a sample transcript for ${location.title}. Replace with your own text.`;
@@ -256,3 +258,38 @@ function connectAllLocations() {
 }
 
 connectAllLocations();
+
+// 1. Define the Icon
+const crossIcon = L.divIcon({
+  className: 'custom-cross-icon',
+  html: '<div class="cross-marker"></div>',
+  iconSize: [20, 20],
+  iconAnchor: [10, 10]
+});
+
+// 2. Add Markers and collect coordinates for the line
+const pathCoordinates = [];
+
+soundLocations.forEach((location, index) => {
+  // Push coords to our path array
+  pathCoordinates.push([location.lat, location.lng]);
+
+  // Create the Marker
+  const marker = L.marker([location.lat, location.lng], {
+    icon: crossIcon,
+    zIndexOffset: 1000
+  }).addTo(map);
+
+  // ... (Your bindPopup and typing interval logic goes here)
+});
+
+// 3. Draw the Dotted Line using the collected coordinates
+if (pathCoordinates.length > 1) {
+  L.polyline(pathCoordinates, {
+    color: '#000000',      // Black ink
+    weight: 2,             // Thin line
+    opacity: 0.5,          // Faded scan look
+    dashArray: '10, 10',   // 10px dash, 10px gap
+    lineJoin: 'round'
+  }).addTo(map);
+}

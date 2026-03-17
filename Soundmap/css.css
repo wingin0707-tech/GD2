@@ -1,6 +1,6 @@
 .root {
-  --primary: #0d1f4e;
-  --secondary: #e8e4dc;
+  --primary: #c8c6fb;
+  --secondary: #fff3f9;
 }
 
 body {
@@ -18,10 +18,9 @@ body {
   align-items: center;
   width: 200px;
   height: 200px;
-  background-color: #e8e4dc;
-  color: var(--primary);
-  border: 2px solid;
-  border-color: var(--primary);
+  background-color: #fff3f9;
+  color: #333;
+  border: 2px solid #fff3f9;
   position: fixed;
   top: 20px;
   right: 20px;
@@ -58,7 +57,7 @@ body {
   position: fixed;
   top: 230px;
   right: 20px;
-  background-color: #e8e4dc; 
+  background-color: #fff3f9; 
   border: 2px solid;
   border-color:  var(--primary);
   padding: 15px 30px;
@@ -272,3 +271,55 @@ button {
   text-align: center;
   white-space: nowrap;
 }
+
+
+.custom-cross-icon {
+  background: none;
+  border: none;
+}
+
+.cross-marker {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.cross-marker::before,
+.cross-marker::after {
+  content: '';
+  position: absolute;
+  background-color: #ff0000; 
+}
+
+.cross-marker::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  transform: translateY(-50%) rotate(45deg); 
+}
+
+.cross-marker::after {
+  left: 50%;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  transform: translateX(-50%) rotate(45deg); 
+}
+
+.custom-cross-icon:hover .cross-marker::before,
+.custom-cross-icon:hover .cross-marker::after {
+  background-color: #b30000; /* Darker red on hover */
+  transform: translateX(-50%) rotate(45deg) scale(1.2); 
+}
+
+.custom-cross-icon { background: none; border: none; }
+.cross-marker { position: relative; width: 20px; height: 20px; }
+.cross-marker::before, .cross-marker::after {
+  content: '';
+  position: absolute;
+  background-color: #ff0000;
+  border: 1px solid #000;
+}
+.cross-marker::before { top: 50%; left: 0; width: 100%; height: 3px; transform: translateY(-50%) rotate(45deg); }
+.cross-marker::after { left: 50%; top: 0; width: 3px; height: 100%; transform: translateX(-50%) rotate(45deg); }
