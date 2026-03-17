@@ -458,7 +458,6 @@ L.maplibreGL({
 
 
 
-
 const menuButton = document.getElementById("menuButton");
 const menuContainer = document.getElementById("menuContainer");
 
