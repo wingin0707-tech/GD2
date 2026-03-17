@@ -1,3 +1,32 @@
+
+const menuButton = document.getElementById("menuButton");
+const menuContainer = document.getElementById("menuContainer");
+
+menuButton.addEventListener("click", () => {
+  menuButton.classList.toggle("spin");
+  menuContainer.classList.toggle("show");
+});
+
+function showHome() {
+  document.getElementById("home-section").style.display = "block";
+  document.getElementById("about-section").style.display = "none";
+}
+
+function showAbout() {
+  document.getElementById("home-section").style.display = "none";
+  document.getElementById("about-section").style.display = "block";
+}
+
+const startButton = document.getElementById("start-map");
+const introPopup = document.getElementById("intro-popup");
+
+startButton.addEventListener("click", () => {
+  introPopup.style.display = "none";
+});
+
+
+
+
 const map = L.map('map').setView([43.8561, -79.3370], 13);
 
 
@@ -456,32 +485,6 @@ L.maplibreGL({
 }
 }).addTo(map);
 
-
-
-const menuButton = document.getElementById("menuButton");
-const menuContainer = document.getElementById("menuContainer");
-
-menuButton.addEventListener("click", () => {
-  menuButton.classList.toggle("spin");
-  menuContainer.classList.toggle("show");
-});
-
-function showHome() {
-  document.getElementById("home-section").style.display = "block";
-  document.getElementById("about-section").style.display = "none";
-}
-
-function showAbout() {
-  document.getElementById("home-section").style.display = "none";
-  document.getElementById("about-section").style.display = "block";
-}
-
-const startButton = document.getElementById("start-map");
-const introPopup = document.getElementById("intro-popup");
-
-startButton.addEventListener("click", () => {
-  introPopup.style.display = "none";
-});
 
 
 

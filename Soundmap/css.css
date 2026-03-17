@@ -258,12 +258,7 @@ button {
   background: #f0f0f0;
 }
 
-#map {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
+
 
 .distance-label {
   pointer-events: none;
@@ -279,41 +274,34 @@ button {
   border: none;
 }
 
-.cross-marker {
-  position: relative;
-  width: 20px;
-  height: 20px;
+.custom-cross-icon {
+  background: transparent;
+  border: none;
 }
 
-/* Creating the two bars of the cross */
+.cross-marker {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
 .cross-marker::before,
 .cross-marker::after {
   content: '';
   position: absolute;
-  background-color: #ff0000; /* Red fill */
-}
-
-/* Horizontal bar */
-.cross-marker::before {
+  background: rgb(255, 1, 1); /* or whatever color */
   top: 50%;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  transform: translateY(-50%) rotate(45deg); /* Rotating 45 deg for an X shape */
-}
-
-/* Vertical bar */
-.cross-marker::after {
   left: 50%;
-  top: 0;
-  width: 4px;
-  height: 100%;
-  transform: translateX(-50%) rotate(45deg); /* Rotating 45 deg for an X shape */
+  transform: translate(-50%, -50%);
 }
 
-/* Optional: Add a slight hover effect to make it feel interactive */
-.custom-cross-icon:hover .cross-marker::before,
-.custom-cross-icon:hover .cross-marker::after {
-  background-color: #b30000; /* Darker red on hover */
-  transform: translateX(-50%) rotate(45deg) scale(1.2); 
+.cross-marker::before {
+  width: 23px;
+  height: 20px;
+}
+
+.cross-marker::after {
+  width: 20px;
+  height: 2px;
 }
