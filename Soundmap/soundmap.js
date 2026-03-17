@@ -1,6 +1,3 @@
-// =======================
-// MENU TOGGLE
-// =======================
 const menuButton = document.getElementById("menuButton");
 const menuContainer = document.getElementById("menuContainer");
 
@@ -19,8 +16,6 @@ function showAbout() {
   document.getElementById("about-section").style.display = "block";
 }
 
-// INTRO POPUP
-
 const startButton = document.getElementById("start-map");
 const introPopup = document.getElementById("intro-popup");
 
@@ -28,100 +23,74 @@ startButton.addEventListener("click", () => {
   introPopup.style.display = "none";
 });
 
-// =======================
-// MAP
-// =======================
-
 const map = L.map('map').setView([43.8561, -79.3370], 13);
 
-// Dark monochrome tiles
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap &copy; CARTO',
   subdomains: 'abcd',
   maxZoom: 20
 }).addTo(map);
 
-// Example highway line
-const highwaysGeoJSON = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": { "name": "Highway Example" },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [-79.27344, 43.89411],
-          [-79.33, 43.86],
-          [-79.32, 43.87]
-        ]
-      }
-    }
-  ]
-};
-
-
-// Sound locations data
 const soundLocations = [
   {
-      title: "Edward Jeffreys Ave2",
-        description: "Edward Jeffreys avenue GO train station",
-        lat: 43.89411,
-        lng: -79.27344,
-        time: "16 Feb, 2026 02:55pm",
-        audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a"
+    title: "Edward Jeffreys Ave",
+    description: "Edward Jeffreys avenue GO train station",
+    lat: 43.89411,
+    lng: -79.27344,
+    time: "16 Feb, 2026 02:55pm",
+    audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a"
   },
   {
-     title: "Scott Brown St",
-        description: "25 Scott Brown St",
-       lat: 43.89945,
-       lng: -79.27401,
-       time: "17 Feb, 2026 5:30pm",
-        audio: "https://image2url.com/r2/default/audio/1771617515406-ea055bbd-6cb8-460f-b1be-d6a683aae14a.m4a"
+    title: "Scott Brown St",
+    description: "25 Scott Brown St",
+    lat: 43.89945,
+    lng: -79.27401,
+    time: "17 Feb, 2026 5:30pm",
+    audio: "https://image2url.com/r2/default/audio/1771617515406-ea055bbd-6cb8-460f-b1be-d6a683aae14a.m4a"
   },
   {
-      title: "Edward Jeffreys GO Bus Station",
-          description: "Markham Rd at Edward Jeffreys Ave",
-        lat: 43.896358,
-        lng: -79.265278,
-       time: "16 Feb, 2026 10:20pm",
-        audio: "https://image2url.com/r2/default/audio/1771617711520-42b4daf9-bea6-409f-98a2-931ec4d6aa53.m4a"
+    title: "Edward Jeffreys GO Bus Station",
+    description: "Markham Rd at Edward Jeffreys Ave",
+    lat: 43.896358,
+    lng: -79.265278,
+    time: "16 Feb, 2026 10:20pm",
+    audio: "https://image2url.com/r2/default/audio/1771617711520-42b4daf9-bea6-409f-98a2-931ec4d6aa53.m4a"
   },
   {
-        title: "Bur Oak Ave",
-          description: "Bur Oak Ave",
-         lat: 43.8929,
-         lng: -79.3022,
-        time: "17 Feb, 2026 4:00pm",
-        audio: "https://image2url.com/r2/default/audio/1771617858226-0335278e-1a9a-4509-86d6-d80ff5f8aca6.m4a"
+    title: "Bur Oak Ave",
+    description: "Bur Oak Ave",
+    lat: 43.8929,
+    lng: -79.3022,
+    time: "17 Feb, 2026 4:00pm",
+    audio: "https://image2url.com/r2/default/audio/1771617858226-0335278e-1a9a-4509-86d6-d80ff5f8aca6.m4a"
   },
   {
-       title: "South Unionville Ave",
-        description: "Highway 407",
-        lat: 43.8605,
-        lng: -79.2833,
-        time: "16 Feb, 2026 12:00pm",
-        audio: "https://image2url.com/r2/default/audio/1771618112948-02075d34-09c1-4200-8bc5-6e1b130472f2.m4a"
+    title: "South Unionville Ave",
+    description: "Highway 407",
+    lat: 43.8605,
+    lng: -79.2833,
+    time: "16 Feb, 2026 12:00pm",
+    audio: "https://image2url.com/r2/default/audio/1771618112948-02075d34-09c1-4200-8bc5-6e1b130472f2.m4a"
   },
   {
-        title: "Markham Auto Spa",
-        description: "New Kennedy Mall",
-         lat: 43.85934,
-         lng: -79.3047,
-        time: "17 Feb, 2026 5:47pm",
-        audio: "https://image2url.com/r2/default/audio/1771618383533-1b1844c7-6186-4d66-a64e-d8fb2e0b8eff.m4a"
+    title: "Markham Auto Spa",
+    description: "New Kennedy Mall",
+    lat: 43.85934,
+    lng: -79.3047,
+    time: "17 Feb, 2026 5:47pm",
+    audio: "https://image2url.com/r2/default/audio/1771618383533-1b1844c7-6186-4d66-a64e-d8fb2e0b8eff.m4a"
   },
   {
-         title: "Edward Jeffreys Ave",
-          description: "Inside GO Train",
-            lat: 43.89412,
-       lng: -79.27343,
-       time: "16 Feb, 2026 02:45pm",
-        audio: "https://image2url.com/r2/default/audio/1771618633399-02792719-3ee0-4572-b59a-75379656f70b.m4a"
+    title: "Edward Jeffreys Ave",
+    description: "Inside GO Train",
+    lat: 43.89412,
+    lng: -79.27343,
+    time: "16 Feb, 2026 02:45pm",
+    audio: "https://image2url.com/r2/default/audio/1771618633399-02792719-3ee0-4572-b59a-75379656f70b.m4a"
   },
   {
-       title: "Kennedy Rd",
-       description: "T&T Meat Market",
+    title: "Kennedy Rd",
+    description: "T&T Meat Market",
     lat: 43.85934,
     lng: -79.3047,
     time: "16 Feb, 2026 4:32pm",
@@ -177,61 +146,38 @@ const soundLocations = [
   }
 ];
 
-
-// Add markers to map
-soundLocations.forEach(location => {
- const marker = L.circleMarker([location.lat, location.lng], {
-          radius: 9,
-          fillColor: "#ff0011ff",
-         color: "#000",
-          weight: 1,
-          opacity: 1,
-          fillOpacity: 0.8
-      }).addTo(map);
-
-
-  marker.bindPopup(`
-    <b>${location.title}</b><br>
-    ${location.description}<br>
-    <i>${location.time}</i><br><br>
-    <audio controls>
-      <source src="${location.audio}" type="audio/mp4">
-      Your browser does not support the audio element.
-    </audio>
-  `);
-});
-
-// create cursor element
 const cursor = document.createElement("div");
 cursor.classList.add("custom-cursor");
 document.body.appendChild(cursor);
 
-// move cursor
 document.addEventListener("mousemove", (e) => {
   cursor.style.top = e.clientY + "px";
   cursor.style.left = e.clientX + "px";
 });
 
-// click effect
 document.addEventListener("mousedown", () => {
   cursor.classList.add("click");
 });
+
 document.addEventListener("mouseup", () => {
   cursor.classList.remove("click");
 });
+
+const markerGroup = L.layerGroup().addTo(map);
+
 soundLocations.forEach((location, index) => {
   const marker = L.circleMarker([location.lat, location.lng], {
-    radius: 8,
-    fillColor: "#ff3b3b",
-    color: "#ffffff",
+    radius: 9,
+    fillColor: "#ff0011",
+    color: "#000",
     weight: 1,
-    fillOpacity: 0.9
-  }).addTo(map);
+    opacity: 1,
+    fillOpacity: 0.8,
+    zIndexOffset: 1000 
+  }).addTo(markerGroup);
 
   const transcriptId = `transcript-${index}`;
   const audioId = `audio-${index}`;
-
-  // Pre-written transcript
   const transcriptText = `This is a sample transcript for ${location.title}. Replace with your own text.`;
 
   marker.bindPopup(`
@@ -274,7 +220,7 @@ soundLocations.forEach((location, index) => {
         } else {
           clearInterval(typingInterval);
         }
-      }, 40); // speed of typing
+      }, 40); 
     });
 
     audio.addEventListener('pause', () => {
@@ -286,3 +232,27 @@ soundLocations.forEach((location, index) => {
     });
   });
 });
+
+function connectAllLocations() {
+  for (let i = 0; i < soundLocations.length - 1; i++) {
+    const from = L.latLng(soundLocations[i].lat, soundLocations[i].lng);
+    const to = L.latLng(soundLocations[i + 1].lat, soundLocations[i + 1].lng);
+
+    L.Routing.control({
+      waypoints: [from, to],
+      createMarker: () => null, 
+      addWaypoints: false,
+      draggableWaypoints: false,
+      routeWhileDragging: false,
+      show: false,
+      lineOptions: {
+        styles: [
+          { color: '#f8f8f2', weight: 6, opacity: 0.6 }, 
+          { color: '#0074D9', weight: 3, opacity: 1 }    
+        ]
+      }
+    }).addTo(map);
+  }
+}
+
+connectAllLocations();

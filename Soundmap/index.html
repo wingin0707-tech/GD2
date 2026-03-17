@@ -1,75 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markham Sound Map</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markham Sound Map</title>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+  <link rel="stylesheet" href="css.css">
+</head>
+<body>
 
-<!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <header class="top-bar">
+    <div class="title-container">
+      <h1>Markham Sound Map</h1>
+      <p class="subtitle">Archives of Sounds</p>
+    </div>
+    <span class="menu-button" id="menuButton">*</span>
+    <div class="menu-container" id="menuContainer">
+      <a href="#" onclick="showHome()">Home</a><br>
+      <a href="#" onclick="showAbout()">About</a>
+    </div>
+  </header>
 
-    <!-- Your custom CSS -->
-    <link rel="stylesheet" href="css.css">
-    </head>
-        <body>
-
-<!-- TOP BAR -->
-    <header class="top-bar">
-<div class="title-container">
-    <h1>Markham Sound Map</h1>
-     <p class="subtitle">Archives of Sounds</p>
-</div>
-  <span class="menu-button" id="menuButton">*</span>
-  <div class="menu-container" id="menuContainer">
-    <a href="#" onclick="showHome()">Home</a><br>
-    <a href="#" onclick="showAbout()">About</a>
+  <div id="intro-popup" class="intro-popup">
+    <div class="intro-box">
+      <h1>Markham Sound Map</h1>
+      <p>This project explores the acoustic environments of Markham through field recordings collected across the city.</p>
+      <p>Each marker on the map represents a location where sound was recorded. Click a marker to listen and experience the sonic landscape.</p>
+      <button id="start-map">Explore the Map</button>
+    </div>
   </div>
-</header>
 
-<!-- INFO POPUP -->
+  <section id="home-section">
+    <div id="map" class="map"></div>
+  </section>
 
-    <div id="intro-popup" class="intro-popup">
-  <div class="intro-box">
-    <h1>Markham Sound Map</h1>
-
-    <p>
-      This project explores the acoustic environments of Markham through
-      field recordings collected across the city.
-    </p>
-
-    <p>
-      Each marker on the map represents a location where sound was recorded.
-      Click a marker to listen and experience the sonic landscape.
-    </p>
-
-    <button id="start-map">Explore the Map</button>
-  </div>
-</div>
-
-<!-- HOME SECTION -->
-    <section id="home-section">
-         <div id="map" class="map"></div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section id="about-section" style="display:none;">
+  <section id="about-section" style="display:none;">
     <h1>About This Project</h1>
     <p>This sound map archives and explores environments through audio.</p>
-
     <h2>Submit a Recording</h2>
     <form>
-    <input type="text" placeholder="Location Name" required><br>
-    <input type="text" placeholder="Description"><br>
-    <input type="text" placeholder="Time"><br>
-    <input type="file" accept="audio/*"><br>
-    <button type="submit">Submit</button>
-  </form>
-</section>
+      <input type="text" placeholder="Location Name" required><br>
+      <input type="text" placeholder="Description"><br>
+      <input type="text" placeholder="Time"><br>
+      <input type="file" accept="audio/*"><br>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
 
-<!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<!-- Your custom JS -->
-    <script src="soundmap.js"></script>
-
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="soundmap.js"></script>
 </body>
 </html>
