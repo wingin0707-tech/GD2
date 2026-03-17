@@ -153,6 +153,7 @@ button {
   filter: brightness(45);
 }
 
+
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -309,17 +310,18 @@ button {
 
 .custom-cross-icon:hover .cross-marker::before,
 .custom-cross-icon:hover .cross-marker::after {
-  background-color: #b30000; /* Darker red on hover */
+  background-color: #b30000; 
   transform: translateX(-50%) rotate(45deg) scale(1.2); 
 }
 
-.custom-cross-icon { background: none; border: none; }
-.cross-marker { position: relative; width: 20px; height: 20px; }
-.cross-marker::before, .cross-marker::after {
-  content: '';
-  position: absolute;
-  background-color: #ff0000;
-  border: 1px solid #000;
+
+.leaflet-tile {
+  /* 1. grayscale + contrast(100): Creates the "Threshold" (stark black and white)
+     2. invert(100): Flips it so the background is white and lines are black
+     3. sepia + hue-rotate: Tints the black lines to purple/pink
+  */
+  filter: 
+    brightness(45) 
+    
 }
-.cross-marker::before { top: 50%; left: 0; width: 100%; height: 3px; transform: translateY(-50%) rotate(45deg); }
-.cross-marker::after { left: 50%; top: 0; width: 3px; height: 100%; transform: translateX(-50%) rotate(45deg); }
+
