@@ -1,11 +1,12 @@
-
 const menuButton = document.getElementById("menuButton");
 const menuContainer = document.getElementById("menuContainer");
 
-menuButton.addEventListener("click", () => {
-  menuButton.classList.toggle("spin");
-  menuContainer.classList.toggle("show");
-});
+if (menuButton && menuContainer) {
+  menuButton.addEventListener("click", () => {
+    menuButton.classList.toggle("spin");
+    menuContainer.classList.toggle("show");
+  });
+}
 
 function showHome() {
   document.getElementById("home-section").style.display = "block";
@@ -18,6 +19,7 @@ function showAbout() {
 }
 
 const startButton = document.getElementById("start-map");
+
 const introPopup = document.getElementById("intro-popup");
 
 startButton.addEventListener("click", () => {
