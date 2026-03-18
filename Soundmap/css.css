@@ -190,7 +190,7 @@ section.active {
 }
 
 .cross-marker::before {
-  width: 2px;
+  width: 20px;
   height: 20px;
 }
 
