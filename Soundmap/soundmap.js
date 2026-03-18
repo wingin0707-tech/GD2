@@ -4,7 +4,6 @@
 const map = L.map('map').setView([43.8561, -79.3370], 13);
 
 
-// MapLibreGL layer using OpenStreetMap raster tiles
 
 L.maplibreGL({
   style: {
