@@ -1,3 +1,6 @@
+
+
+
 const map = L.map('map').setView([43.8561, -79.3370], 13);
 
 
@@ -456,38 +459,39 @@ L.maplibreGL({
 }
 }).addTo(map);
 
+const menuButton = document.getElementById('menuButton');
+const sidebar = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const startButton = document.getElementById('start-map');
+const introPopup = document.getElementById('intro-popup');
 
-// MENU TOGGLE
-const menuButton = document.getElementById("menuButton");
-const sidebar = document.getElementById("sidebar");
-const sidebarOverlay = document.getElementById("sidebarOverlay");
-menuButton.addEventListener('click', toggleSidebar);
-
+// ── SIDEBAR TOGGLE ──
 function toggleSidebar() {
   sidebar.classList.toggle('show');
   sidebarOverlay.classList.toggle('show');
-  menuButton.classList.toggle('open'); // ← add this
+  menuButton.classList.toggle('open');
 }
 
-sidebarOverlay.addEventListener("click", () => {
-  sidebar.classList.remove("show");
-  sidebarOverlay.classList.remove("show");
+
+menuButton.addEventListener('click', toggleSidebar);
+sidebarOverlay.addEventListener('click', toggleSidebar);
+
+// ── SECTION SWITCHING ──
+function showSection(sectionId) {
+  document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById(sectionId).classList.add('active');
+
+  // close sidebar after click
+  sidebar.classList.remove('show');
+  sidebarOverlay.classList.remove('show');
+  menuButton.classList.remove('open');
+}
+
+// ── INTRO POPUP ──
+startButton.addEventListener('click', () => {
+  introPopup.style.display = "none";
 });
 
-// SECTION SWITCHING
-function showSection(sectionId) {
-  document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-  const sec = document.getElementById(sectionId);
-  if (sec) sec.classList.add("active");
-
-  // Close sidebar after click
-  sidebar.classList.remove("show");
-  sidebarOverlay.classList.remove("show");
-}
-
-// INTRO POPUP
-const startButton = document.getElementById("start-map");
-const introPopup = document.getElementById("intro-popup");
 
 startButton.addEventListener("click", () => {
   introPopup.style.display = "none";
@@ -511,7 +515,6 @@ const soundLocations = [
   { title: "Day & Night King Crab", description: "Day and Night Crab Kitchen", lat: 43.82392, lng: -79.30074, time: "21 Feb, 2026 7:16pm", audio: "https://image2url.com/r2/default/audio/1772144653984-18449777-4c39-44e2-84f8-30ac16ffbf44.m4a" }
 ];
 
-// CURSOR LOGIC
 const cursor = document.createElement("div");
 cursor.classList.add("custom-cursor");
 document.body.appendChild(cursor);
@@ -521,7 +524,6 @@ document.addEventListener("mousemove", (e) => {
   cursor.style.left = e.clientX + "px";
 });
 
-// MARKERS AND PATH
 const markerGroup = L.layerGroup().addTo(map);
 const pathCoords = [];
 
@@ -576,6 +578,8 @@ soundLocations.forEach((location, index) => {
     audio.addEventListener('pause', () => clearInterval(typingInterval));
   });
 });
+
+
 
 // DRAW THE DOTTED LINE
 if (pathCoords.length > 1) {
