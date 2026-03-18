@@ -37,7 +37,7 @@ section.active {
 .sidebar-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(46, 42, 55, 0.546);
   opacity: 0;
   pointer-events: none;
   z-index: 9998;
@@ -45,7 +45,7 @@ section.active {
 }
 
 .sidebar-overlay.show {
-  opacity: 1;
+  opacity: 4;
   pointer-events: all;
 }
 
@@ -76,7 +76,7 @@ section.active {
   display: block;
   padding: 14px;
   border-radius: 10px;
-  background: #ffffff;
+  background: #9d4b4b;
   color: #fff;
   text-decoration: none;
   font-size: 14px;
@@ -99,8 +99,7 @@ section.active {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  background: #ffffff;
-  border: 1.5px solid #ffffff;
+  background: #c8dfff;
   border-radius: 8px;
   cursor: pointer;
   z-index: 11000; 
@@ -111,7 +110,6 @@ section.active {
   width: 22px;
   height: 3px;
   background: #ff0000;
-  border-radius: 2px;
   transition: all 0.3s ease;
 }
 
@@ -131,7 +129,7 @@ section.active {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(13,31,78,0.95);
+  background: rgba(170, 194, 255, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,7 +157,7 @@ section.active {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: rgba(255,0,0,0.5);
+  background: rgba(255, 0, 0, 0.5);
   pointer-events: none;
   transform: translate(-50%, -50%);
   transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;

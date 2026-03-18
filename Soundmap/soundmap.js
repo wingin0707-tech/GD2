@@ -580,11 +580,9 @@ soundLocations.forEach((location, index) => {
 
 
 
-// DRAW THE DOTTED LINE
 if (pathCoords.length > 1) {
   L.polyline(pathCoords, {
-    color: '#000',      // Will become pink/purple with the filter
-    weight: 2,
+    color: '#ff0000ff',      
     dashArray: '5, 10',
     opacity: 0.8
   }).addTo(map);
