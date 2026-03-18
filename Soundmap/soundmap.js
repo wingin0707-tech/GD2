@@ -1,34 +1,3 @@
-const menuButton = document.getElementById("menuButton");
-const menuContainer = document.getElementById("menuContainer");
-
-if (menuButton && menuContainer) {
-  menuButton.addEventListener("click", () => {
-    menuButton.classList.toggle("spin");
-    menuContainer.classList.toggle("show");
-  });
-}
-
-function showHome() {
-  document.getElementById("home-section").style.display = "block";
-  document.getElementById("about-section").style.display = "none";
-}
-
-function showAbout() {
-  document.getElementById("home-section").style.display = "none";
-  document.getElementById("about-section").style.display = "block";
-}
-
-const startButton = document.getElementById("start-map");
-
-const introPopup = document.getElementById("intro-popup");
-
-startButton.addEventListener("click", () => {
-  introPopup.style.display = "none";
-});
-
-
-
-
 const map = L.map('map').setView([43.8561, -79.3370], 13);
 
 
@@ -488,6 +457,41 @@ L.maplibreGL({
 }).addTo(map);
 
 
+// MENU TOGGLE
+const menuButton = document.getElementById("menuButton");
+const sidebar = document.getElementById("sidebar");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+menuButton.addEventListener('click', toggleSidebar);
+
+function toggleSidebar() {
+  sidebar.classList.toggle('show');
+  sidebarOverlay.classList.toggle('show');
+  menuButton.classList.toggle('open'); // ← add this
+}
+
+sidebarOverlay.addEventListener("click", () => {
+  sidebar.classList.remove("show");
+  sidebarOverlay.classList.remove("show");
+});
+
+// SECTION SWITCHING
+function showSection(sectionId) {
+  document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+  const sec = document.getElementById(sectionId);
+  if (sec) sec.classList.add("active");
+
+  // Close sidebar after click
+  sidebar.classList.remove("show");
+  sidebarOverlay.classList.remove("show");
+}
+
+// INTRO POPUP
+const startButton = document.getElementById("start-map");
+const introPopup = document.getElementById("intro-popup");
+
+startButton.addEventListener("click", () => {
+  introPopup.style.display = "none";
+});
 
 
 const soundLocations = [

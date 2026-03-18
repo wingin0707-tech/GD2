@@ -1,4 +1,5 @@
-.root {
+/* ── ROOT & BASE ── */
+:root {
   --primary: #c8c6fb;
   --secondary: #fff3f9;
 }
@@ -11,80 +12,21 @@ body {
   font-size: 12px;
 }
 
-.top-bar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  height: 800px;
-  background-color: #fff3f9;
-  color: #333;
-  border: 2px solid #fff3f9;
-  position: fixed;
-  top: 20px;
-  right: 10px;
-  padding: 20px;
-  box-sizing: border-box;
-  z-index: 100;
-  border-radius: 0;
-}
-
-
-
-.title-container { 
-  margin-bottom: 10px; 
-}
-
-.subtitle {
-  margin: 5px 0 0 0;
-  font-size: 16px;
-  letter-spacing: 1px;
-  opacity: 0.8;
-}
-
-.menu-button {
-  font-size: 2.5rem;
-  cursor: pointer;
-  color: var(--primary);
-  user-select: none;
-  transition: transform 0.5s ease;
-}
-.menu-container {
-  display: none;
-  position: absolute;
-  top: 50px;
-  left: 0;
-  background: white;
-  padding: 10px;
-  z-index: 9999;
-}
-
-.menu-container.show {
-  display: block;
-}
-
-.menu-button {
-  cursor: pointer;
-}
-.map {
+/* ── MAP ── */
+#map {
   width: 100vw;
-  height: 600px;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
 }
 
-#about-section {
-  background: black;
-  color: white;
-  padding: 80px 40px;
-  font-size: 14px;
-  min-height: 100vh;
-  box-sizing: border-box;
+.leaflet-tile {
+  filter: brightness(45);
 }
 
+/* ── INTRO POPUP ── */
 .intro-popup {
   position: fixed;
   top: 0;
@@ -123,13 +65,114 @@ body {
 }
 
 .intro-box button:hover {
-  background: #0d1f4e;
+  background: #162f6e;
 }
 
-.leaflet-tile {
-  filter: brightness(45);
+/* ── SIDEBAR OVERLAY ── */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 3999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
 }
 
+.sidebar-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -280px;
+  width: 260px;
+  height: 100vh;
+  background: #fff3f9;
+  color: #333;
+  padding: 80px 20px 20px 20px;
+  box-sizing: border-box;
+  z-index: 4000;
+  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: "Courier New", monospace;
+}
+
+.sidebar.show {
+  right: 0;
+}
+
+.sidebar a,
+.sidebar button,
+.sidebar-item {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.sidebar a:hover,
+.sidebar button:hover,
+.sidebar-item:hover {
+  background: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ── MENU BUTTON ── */
+.menu-button span {
+  display: block;
+  height: 4px;
+  background: #222;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+.menu-button.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-button.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-button.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ── SECTIONS ── */
+#home-section {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+}
+
+#submission-section {
+  background: black;
+  color: white;
+  padding: 80px 40px;
+  font-size: 14px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ── CUSTOM CURSOR ── */
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -137,8 +180,8 @@ body {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  pointer-events: none; 
-  background: rgba(11, 19, 126, 0.7); 
+  pointer-events: none;
+  background: rgba(11, 19, 126, 0.7);
   transform: translate(-50%, -50%);
   transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
   z-index: 9999;
@@ -147,112 +190,13 @@ body {
 .custom-cursor.click {
   width: 50px;
   height: 50px;
-  background: #e8e4dc; 
+  background: #e8e4dc;
   transition: width 0.1s ease, height 0.1s ease, background 0.1s ease;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 180px 1fr 180px;
-  grid-template-rows: 180px 1fr 180px;
-  height: 100vh;
-  width: 100vw;
-  gap: 12px;
-  box-sizing: border-box;
-  padding: 12px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: var(--primary);
-  z-index: 10;
-}
-
-#home-section {
-  grid-column: 2;
-  grid-row: 2;
-  position: relative;
-  z-index: 1;
-  height: 100%;
-}
-
-.info-panel.top {
-  grid-column: 1 / 4;
-  grid-row: 1;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  align-items: center;
-}
-
-.info-panel.left {
-  grid-column: 1;
-  grid-row: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
-  align-items: center;
-}
-
-.info-panel.right {
-  grid-column: 3;
-  grid-row: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
-  align-items: center;
-}
-
-.info-panel.bottom {
-  grid-column: 1 / 4;
-  grid-row: 3;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  align-items: center;
-}
-
-.info-square {
-  background: white;
-  border-radius: 10px;
-  padding: 10px 15px;
-  width: 140px;
-  min-height: 80px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  font-size: 12px;
-  font-family: "Courier New", monospace;
-  cursor: pointer;
-  user-select: none;
-  transition: box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.info-square:hover {
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  background: #f0f0f0;
-}
-
-
-
-.distance-label {
-  pointer-events: none;
-  font-family: "Courier New", monospace;
-  text-align: center;
-  white-space: nowrap;
-}
-
-
-/* THE CROSS MARKER */
+/* ── MARKERS ── */
 .custom-cross-icon {
   background: none;
-  border: none;
-}
-
-.custom-cross-icon {
-  background: transparent;
   border: none;
 }
 
@@ -267,14 +211,14 @@ body {
 .cross-marker::after {
   content: '';
   position: absolute;
-  background: rgb(255, 1, 1); /* or whatever color */
+  background: rgb(255, 1, 1);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .cross-marker::before {
-  width: 23px;
+  width: 2px;
   height: 20px;
 }
 
@@ -283,3 +227,65 @@ body {
   height: 2px;
 }
 
+/* ── DISTANCE LABEL ── */
+.distance-label {
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  text-align: center;
+  white-space: nowrap;
+}
+/* ── BUTTON ── */
+.menu-button {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 4100;          /* must be above the overlay */
+  width: 46px;
+  height: 46px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #fff3f9;
+  border: 1.5px solid #9b97f0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* the three bars */
+.mb-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #1a1520;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.25s ease, width 0.25s ease;
+  transform-origin: center;
+}
+
+/* when .open is added to the button, bars become an X */
+.menu-button.open .mb-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-button.open .mb-line:nth-child(2) { opacity: 0; width: 0; }
+.menu-button.open .mb-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* ── OVERLAY ── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;          /* below button, above everything else */
+  background: #ff0080;
+
+  /* closed: zero-size circle anchored at the button's corner */
+  clip-path: circle(0% at calc(100% - 39px) 39px);
+  transition: clip-path 0.55s cubic-bezier(0.77, 0, 0.18, 1);
+
+  pointer-events: none;   /* can't accidentally click through it when closed */
+}
+
+.nav-overlay.open {
+  /* open: circle expands to cover the whole screen */
+  clip-path: circle(150% at calc(100% - 39px) 39px);
+  pointer-events: all;
+}
