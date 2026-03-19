@@ -15,15 +15,18 @@
   <link rel="stylesheet" href="css.css">
 </head>
 <body>
-        <button class="menu-button" id="menuButton" aria-label="Open menu"></button>
 
 
-
-  <nav class="title" id="title">
-    <a href="#" onclick="showSection('home')">Home</a>
-    <a href="#" onclick="showSection('about')">About</a>
-    <a href="#" onclick="showSection('submission')">Submit Your Work!</a>
-  </nav>
+<header class="top-bar">
+  <div class="header-container">
+    <div class="title" onclick="showSection('home')">Markham Sound Map</div>
+    <nav class="top-nav">
+      <button onclick="showSection('home')">HOME</button>
+      <button onclick="showSection('about')">ABOUT</button>
+      <button onclick="showSection('submission')">SUBMIT</button>
+    </nav>
+  </div>
+</header>
 
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -36,11 +39,7 @@
     </div>
   </div>
 
-  <header class="top-bar">
-    <div class="left">
-      <div class="title">Markham Sound Map</div>
-    </div>
-  </header>
+  
 
   <main>
     
