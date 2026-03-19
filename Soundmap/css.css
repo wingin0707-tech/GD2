@@ -59,42 +59,7 @@ section.active {
   font-size: 50px;
   color: #090953;
   letter-spacing: 2px;
-}
-
-.menu-button {
-  position: fixed;
-  top: 40px;              /* vertically centered in top bar */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-
-  background: radial-gradient(circle, #cdb2fa, #9774f7);
-  box-shadow: 0 0 20px rgba(145, 99, 229, 0.6);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-
-  border: none;
-  z-index: 12000;
-  transition: all 0.3s ease;
-}
-
-.menu-button:hover {
-  transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 0 30px rgba(145, 99, 229, 1);
-}
-
-.menu-button span {
-  width: 26px;
-  height: 3px;
-  background: white;
-  border-radius: 10px;
+  left: auto;
 }
 
 
@@ -126,10 +91,9 @@ section.active {
 
 }.custom-cursor {
   position: fixed;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   background: rgba(145, 99, 229, 0.8);
-  border: 2px solid white; /* Adding a border helps it show up on dark maps */
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
@@ -161,7 +125,6 @@ section.active {
   width: 20px;
   height: 20px;
 }
-
 
 
 .distance-label {

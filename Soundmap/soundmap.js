@@ -458,8 +458,7 @@ L.maplibreGL({
 }
 }).addTo(map);
 
-const menuButton = document.getElementById('menuButton');
-const sidebar = document.getElementById('sidebar');
+
 const sidebarOverlay = document.getElementById('sidebarOverlay');
 const startButton = document.getElementById('start-map');
 const introPopup = document.getElementById('intro-popup');
@@ -468,31 +467,20 @@ const introPopup = document.getElementById('intro-popup');
 function toggleSidebar() {
   sidebar.classList.toggle('show');
   sidebarOverlay.classList.toggle('show');
-  menuButton.classList.toggle('open');
 }
 
 
-menuButton.addEventListener('click', toggleSidebar);
 sidebarOverlay.addEventListener('click', toggleSidebar);
 
-// ── SECTION SWITCHING ──
 function showSection(sectionId) {
   document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(sectionId).classList.add('active');
 
-  // close sidebar after click
   sidebar.classList.remove('show');
   sidebarOverlay.classList.remove('show');
-  menuButton.classList.remove('open');
 }
 
-// ── INTRO POPUP ──
 startButton.addEventListener('click', () => {
-  introPopup.style.display = "none";
-});
-
-
-startButton.addEventListener("click", () => {
   introPopup.style.display = "none";
 });
 
