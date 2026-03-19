@@ -1,22 +1,43 @@
 :root {
   --secondary: #fff3f9;
+  
 }
 
+* {
+  cursor: none !important;
+}
+
+@font-face {
+  font-family: 'F25 Bank Printer';
+  src: url('./fonts/f25-bank-printer.woff2') format('woff2');
+}
+
+.top-menu,
+button {
+  font-family: 'F25 Bank Printer';
+}
+* {
+  font-family: 'F25 Bank Printer', monospace !important;
+}
 body {
   margin: 0;
-  font-family: "Courier New", monospace;
+  font-family: "F25 Bank Printer";
   text-align: center;
   font-size: 12px;
   overflow-x: hidden;
+  background-color: #f6e0fc;
+  color: #ffffff;
 }
 
 #map {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 100px);
   position: fixed;
-  top: 0;
+  top: 100px;
   left: 0;
   z-index: 1; 
+  backdrop-filter: blur(9px); 
+
 }
 
 .leaflet-tile {
@@ -34,94 +55,48 @@ section.active {
   display: block;
 }
 
-.sidebar-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(46, 42, 55, 0.546);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 9998;
-  transition: opacity 0.25s ease;
-}
-
-.sidebar-overlay.show {
-  opacity: 4;
-  pointer-events: all;
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 260px;
-  height: 100vh;
-  background: #fff5f5;
-  color: #fff;
-  padding: 80px 20px 20px;
-  box-sizing: border-box;
-  z-index: 10000;
-  transform: translateX(100%); /* hide offscreen */
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  border-radius: 0 0 0 12px;
-}
-
-.sidebar.show {
-  transform: translateX(0);
-}
-
-.sidebar a {
-  display: block;
-  padding: 14px;
-  border-radius: 10px;
-  background: #9d4b4b;
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-.sidebar a:hover {
-  background: #110e4a;
-  color: #ffffff;
+.title {
+  font-size: 50px;
+  color: #090953;
+  letter-spacing: 2px;
 }
 
 .menu-button {
   position: fixed;
-  top: 16px;
-  right: 16px;
-  width: 46px;
-  height: 46px;
+  top: 40px;              /* vertically centered in top bar */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  background: radial-gradient(circle, #cdb2fa, #9774f7);
+  box-shadow: 0 0 20px rgba(145, 99, 229, 0.6);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  background: #c8dfff;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 11000; 
-}
+  gap: 6px;
 
-.menu-button span {
-  display: block;
-  width: 22px;
-  height: 3px;
-  background: #ff0000;
+  border: none;
+  z-index: 12000;
   transition: all 0.3s ease;
 }
 
-.menu-button.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px,5px);
+.menu-button:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 30px rgba(145, 99, 229, 1);
 }
-.menu-button.open span:nth-child(2) {
-  opacity: 0;
+
+.menu-button span {
+  width: 26px;
+  height: 3px;
+  background: white;
+  border-radius: 10px;
 }
-.menu-button.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px,-5px);
-}
+
 
 .intro-popup {
   position: fixed;
@@ -148,31 +123,24 @@ section.active {
   max-width: 500px;
   border-radius: 12px;
   text-align: center;
-}
 
-.custom-cursor {
+}.custom-cursor {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
+  background: rgba(145, 99, 229, 0.8);
+  border: 2px solid white; /* Adding a border helps it show up on dark maps */
   border-radius: 50%;
-  background: rgba(255, 0, 0, 0.5);
   pointer-events: none;
   transform: translate(-50%, -50%);
-  transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
-  z-index: 13000;
-}
-
-.custom-cursor.click {
-  width: 50px;
-  height: 50px;
-  background: #e8e4dc;
+  z-index: 999999; /* Higher than Leaflet and Sidebars */
+  display: block;
+  transition: transform 0.1s ease-out; /* Smoother follow */
 }
 
 .cross-marker {
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   position: relative;
   cursor: pointer;
 }
@@ -183,8 +151,10 @@ section.active {
   position: absolute;
   background: rgb(255,1,1);
   top: 50%;
-  left: 50%;
+  left: 20%;
   transform: translate(-50%, -50%);
+  border-radius: 10px;
+
 }
 
 .cross-marker::before {
@@ -192,10 +162,7 @@ section.active {
   height: 20px;
 }
 
-.cross-marker::after {
-  width: 20px;
-  height: 2px;
-}
+
 
 .distance-label {
   pointer-events: none;
@@ -203,3 +170,4 @@ section.active {
   text-align: center;
   white-space: nowrap;
 }
+

@@ -4,13 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Markham Sound Map</title>
+
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+
+
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" crossorigin=""/>
+
+
   <link rel="stylesheet" href="css.css">
 </head>
 <body>
 
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="custom-cursor"></div>
+
+  <button class="menu-button" id="menuButton" aria-label="Open menu"></button>
 
   <nav class="sidebar" id="sidebar">
     <a href="#" onclick="showSection('home')">Home</a>
@@ -18,11 +26,7 @@
     <a href="#" onclick="showSection('submission')">Submit Your Work!</a>
   </nav>
 
-  <button class="menu-button" id="menuButton" aria-label="Open menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <div id="intro-popup" class="intro-popup">
     <div class="intro-box">
@@ -33,7 +37,14 @@
     </div>
   </div>
 
+  <header class="top-bar">
+    <div class="left">
+      <div class="title">Markham Sound Map</div>
+    </div>
+  </header>
+
   <main>
+    
     <section id="home" class="active">
       <div id="map"></div>
     </section>
@@ -55,11 +66,10 @@
     </section>
   </main>
 
-  <div class="custom-cursor"></div>
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" crossorigin></script>
   <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.21/leaflet-maplibre-gl.js" crossorigin></script>
   <script src="soundmap.js"></script>
+
 </body>
 </html>
