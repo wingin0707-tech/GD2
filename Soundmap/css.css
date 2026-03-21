@@ -36,8 +36,8 @@ button {
 }
 
 .top-nav button {
-  background: #617ec8;
-  color: #ffffff;
+  background: #ececec;
+  color: #0c0808;
   border: none;
   border-radius: 100%;
   padding: 13px 10px;
@@ -64,7 +64,7 @@ body {
   text-align: center;
   font-size: 15px;
   overflow-x: hidden;
-  background-color: #d4cde7;
+  background-color: #d3d2d5;
   color: #090953;
 }
 
@@ -93,8 +93,6 @@ section {
 section.active {
   display: block;
 }
-
-
 
 
 .intro-popup {
