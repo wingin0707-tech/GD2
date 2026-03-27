@@ -22,11 +22,12 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px; /* Space between title and buttons */
+  gap: 15px; 
+  height: 100px
 }
 
 .title {
-  font-size: 40px;
+  font-size: 50px;
   letter-spacing: 2px;
   text-align: left;
   margin: 0;
@@ -135,15 +136,13 @@ section.active {
   transform: translate(-50%, -50%);
 }
 
-/* both lines */
 .custom-cursor::before,
 .custom-cursor::after {
   content: '';
   position: absolute;
-  background: #090953;
+  background: #ff0000;
 }
 
-/* vertical line */
 .custom-cursor::before {
   width: 3px;
   height: 24px;
@@ -152,7 +151,6 @@ section.active {
   transform: translateX(-50%);
 }
 
-/* horizontal line */
 .custom-cursor::after {
   height: 3px;
   width: 24px;
@@ -195,7 +193,6 @@ section.active {
   height: 20px;
   background: rgb(255, 0, 0);
   border-radius: 50%;
-  animation: sonar 1.5s infinite;
   z-index: -1;
 }
 

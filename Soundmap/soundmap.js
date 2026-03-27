@@ -463,7 +463,6 @@ const sidebarOverlay = document.getElementById('sidebarOverlay');
 const startButton = document.getElementById('start-map');
 const introPopup = document.getElementById('intro-popup');
 
-// ── SIDEBAR TOGGLE ──
 function toggleSidebar() {
   sidebar.classList.toggle('show');
   sidebarOverlay.classList.toggle('show');
@@ -506,61 +505,33 @@ const cursor = document.createElement("div");
 cursor.classList.add("custom-cursor");
 document.body.appendChild(cursor);
 
-document.addEventListener('mousedown', () => {
-  cursor.classList.add('click');
-});
+
+
+
 
 document.addEventListener('mouseup', () => {
   cursor.classList.remove('click');
-
-document.addEventListener("mousemove", (e) => {
-
 });
-});
+
 const markerGroup = L.layerGroup().addTo(map);
 const pathCoords = [];
-document.addEventListener("mousemove", (e) => {
-  const cursor = document.querySelector('.custom-cursor');
-  if (!cursor) return;
 
+document.addEventListener("mousemove", (e) => {
   const mouseX = e.clientX;
   const mouseY = e.clientY;
 
   cursor.style.left = mouseX + "px";
   cursor.style.top = mouseY + "px";
 
-  let closestMarker = null;
-  let minDistance = 150; 
-  let rotation = 0;
 
-  
-  markerGroup.eachLayer((marker) => {
-    const markerPos = map.latLngToContainerPoint(marker.getLatLng());
-    const dx = markerPos.x - mouseX;
-    const dy = markerPos.y - mouseY;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance < minDistance) {
-      minDistance = distance;
-      closestMarker = markerPos;
-    }
-  });
-
-  if (closestMarker) {
-    const dx = closestMarker.x - mouseX;
-    const dy = closestMarker.y - mouseY;
-    
-    const angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-    rotation = angle;
-  }
-
-  cursor.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
 });
+
+
 soundLocations.forEach((location, index) => {
   pathCoords.push([location.lat, location.lng]);
 
   const crossIcon = L.divIcon({
-    className: 'custom-cross-icon', 
+    className: 'custom-cross-icon',
     html: '<div class="cross-marker"></div>',
     iconSize: [20, 20],
     iconAnchor: [10, 10]
@@ -596,39 +567,29 @@ soundLocations.forEach((location, index) => {
     audio.addEventListener('play', () => {
       transcript.textContent = '';
       let i = 0;
+
       clearInterval(typingInterval);
       typingInterval = setInterval(() => {
         if (i < transcriptText.length) {
           transcript.textContent += transcriptText[i];
           i++;
-        } else { clearInterval(typingInterval); }
-      }, 30); 
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 30);
     });
+
     audio.addEventListener('pause', () => clearInterval(typingInterval));
   });
 });
 
 
-
+// ✅ DRAW PATH
 if (pathCoords.length > 1) {
   L.polyline(pathCoords, {
-    color: '#000',     
+    color: '#000',
     weight: 2,
     dashArray: '5, 10',
     opacity: 0.8
   }).addTo(map);
 }
-
-const markers = [
-  {
-    title: "Edward Jeffreys Ave",
-    description: "Edward Jeffreys avenue GO train station",
-    lat: 43.89411,
-    lng: -79.27344,
-    time: "16 Feb, 2026 02:55pm",
-    audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",
-    photo: "https://via.placeholder.com/200x150.png?text=Edward+Jeffreys"
-  },
-  // ... other locations
-];
-
