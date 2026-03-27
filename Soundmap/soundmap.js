@@ -506,11 +506,17 @@ const cursor = document.createElement("div");
 cursor.classList.add("custom-cursor");
 document.body.appendChild(cursor);
 
-document.addEventListener("mousemove", (e) => {
-  cursor.style.top = e.clientY + "px";
-  cursor.style.left = e.clientX + "px";
+document.addEventListener('mousedown', () => {
+  cursor.classList.add('click');
 });
 
+document.addEventListener('mouseup', () => {
+  cursor.classList.remove('click');
+
+document.addEventListener("mousemove", (e) => {
+
+});
+});
 const markerGroup = L.layerGroup().addTo(map);
 const pathCoords = [];
 document.addEventListener("mousemove", (e) => {
@@ -604,10 +610,9 @@ soundLocations.forEach((location, index) => {
 
 
 
-// DRAW THE DOTTED LINE
 if (pathCoords.length > 1) {
   L.polyline(pathCoords, {
-    color: '#000',      // Will become pink/purple with the filter
+    color: '#000',     
     weight: 2,
     dashArray: '5, 10',
     opacity: 0.8

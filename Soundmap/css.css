@@ -12,6 +12,7 @@
   src: url('./fonts/f25-bank-printer.woff2') format('woff2');
 }
 
+
 .top-menu,
 button {
   font-family: 'F25 Bank Printer';
@@ -58,6 +59,7 @@ button {
 * {
   font-family: 'F25 Bank Printer', monospace !important;
 }
+
 body {
   margin: 0;
   font-family: "F25 Bank Printer";
@@ -89,6 +91,7 @@ section {
   position: relative;
   z-index: 10;
 }
+
 
 section.active {
   display: block;
@@ -122,22 +125,40 @@ section.active {
   text-align: center;
 
 }
-
-  .custom-cursor {
+.custom-cursor {
   position: fixed;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 25px solid #090953; 
-  
+  width: 24px;
+  height: 24px;
   pointer-events: none;
   z-index: 999999;
-  display: block;
-  
-  transform-origin: center center;
-  transform: translate(-50%, -50%) rotate(0deg);
-  transition: transform 0.1s ease-out;
+
+  transform: translate(-50%, -50%);
+}
+
+/* both lines */
+.custom-cursor::before,
+.custom-cursor::after {
+  content: '';
+  position: absolute;
+  background: #090953;
+}
+
+/* vertical line */
+.custom-cursor::before {
+  width: 3px;
+  height: 24px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+/* horizontal line */
+.custom-cursor::after {
+  height: 3px;
+  width: 24px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .cross-marker {
@@ -152,6 +173,7 @@ section.active {
   width: 20px;
   height: 20px;
 }
+
 
 
 .distance-label {
