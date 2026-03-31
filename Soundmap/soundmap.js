@@ -1,7 +1,11 @@
 
 
 
-const map = L.map('map').setView([43.8561, -79.3370], 13);
+const map = L.map('map', {
+  maxZoom: 15,
+  minZoom: 13,          
+  maxBoundsViscosity: 1.0  
+}).setView([43.8561, -79.3370], 13);
 
 
 
@@ -22,6 +26,7 @@ L.maplibreGL({
     37.7977350127602
   ],
   "zoom": 10.426085190067841,
+  "zoom-max": 15,
   "bearing": 0,
   "pitch": 0,
   "sources": {
@@ -485,7 +490,7 @@ startButton.addEventListener('click', () => {
 
 
 const soundLocations = [
-  { title: "Edward Jeffreys Ave", description: "Edward Jeffreys avenue GO train station", lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a" },
+  { title: "Edward Jeffreys Ave", description: "Edward Jeffreys avenue GO train station", lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Markham_Village_Train_Station.jpg/800px-Markham_Village_Train_Station.jpg" },
   { title: "Scott Brown St", description: "25 Scott Brown St", lat: 43.89945, lng: -79.27401, time: "17 Feb, 2026 5:30pm", audio: "https://image2url.com/r2/default/audio/1771617515406-ea055bbd-6cb8-460f-b1be-d6a683aae14a.m4a" },
   { title: "Edward Jeffreys GO Bus Station", description: "Markham Rd at Edward Jeffreys Ave", lat: 43.896358, lng: -79.265278, time: "16 Feb, 2026 10:20pm", audio: "https://image2url.com/r2/default/audio/1771617711520-42b4daf9-bea6-409f-98a2-931ec4d6aa53.m4a" },
   { title: "Bur Oak Ave", description: "Bur Oak Ave", lat: 43.8929, lng: -79.3022, time: "17 Feb, 2026 4:00pm", audio: "https://image2url.com/r2/default/audio/1771617858226-0335278e-1a9a-4509-86d6-d80ff5f8aca6.m4a" },
@@ -506,9 +511,6 @@ cursor.classList.add("custom-cursor");
 document.body.appendChild(cursor);
 
 
-
-
-
 document.addEventListener('mouseup', () => {
   cursor.classList.remove('click');
 });
@@ -525,11 +527,14 @@ document.addEventListener("mousemove", (e) => {
 
 
 });
-
+const bg = document.getElementById("bg-image");
 
 soundLocations.forEach((location, index) => {
+
+  // path
   pathCoords.push([location.lat, location.lng]);
 
+  // icon
   const crossIcon = L.divIcon({
     className: 'custom-cross-icon',
     html: '<div class="cross-marker"></div>',
@@ -537,11 +542,13 @@ soundLocations.forEach((location, index) => {
     iconAnchor: [10, 10]
   });
 
+  // marker
   const marker = L.marker([location.lat, location.lng], {
     icon: crossIcon,
     zIndexOffset: 1000
   }).addTo(markerGroup);
 
+  // popup
   const transcriptId = `transcript-${index}`;
   const audioId = `audio-${index}`;
   const transcriptText = `Recording captured at ${location.title}. Duration: 30s. Ambient sound profile active.`;
@@ -558,6 +565,7 @@ soundLocations.forEach((location, index) => {
     </div>
   `);
 
+  // typing effect
   marker.on('popupopen', () => {
     const popupEl = marker.getPopup().getElement();
     const audio = popupEl.querySelector(`#${audioId}`);
@@ -581,15 +589,28 @@ soundLocations.forEach((location, index) => {
 
     audio.addEventListener('pause', () => clearInterval(typingInterval));
   });
+
+
+
+
+  marker.on('add', () => {
+  setTimeout(() => {
+    const el = marker.getElement();
+    if (!el) return;
+
+    el.addEventListener('mouseenter', () => {
+      if (location.image && bg) {
+        bg.style.backgroundImage = `url(${location.image})`;
+        bg.style.opacity = "0.6";
+      }
+    });
+
+    el.addEventListener('mouseleave', () => {
+      if (bg) {
+        bg.style.opacity = "0";
+      }
+    });
+
+  }, 0); 
 });
-
-
-// ✅ DRAW PATH
-if (pathCoords.length > 1) {
-  L.polyline(pathCoords, {
-    color: '#000',
-    weight: 2,
-    dashArray: '5, 10',
-    opacity: 0.8
-  }).addTo(map);
-}
+});
