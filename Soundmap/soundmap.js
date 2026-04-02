@@ -490,7 +490,7 @@ startButton.addEventListener('click', () => {
 
 
 const soundLocations = [
-  { title: "Edward Jeffreys Ave", description: "Edward Jeffreys avenue GO train station", lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Markham_Village_Train_Station.jpg/800px-Markham_Village_Train_Station.jpg" },
+  { title: "Edward Jeffreys Ave", description: "Edward Jeffreys avenue GO train station", lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",image:"Markham-Village-Train-Station-3.jpg"},
   { title: "Scott Brown St", description: "25 Scott Brown St", lat: 43.89945, lng: -79.27401, time: "17 Feb, 2026 5:30pm", audio: "https://image2url.com/r2/default/audio/1771617515406-ea055bbd-6cb8-460f-b1be-d6a683aae14a.m4a" },
   { title: "Edward Jeffreys GO Bus Station", description: "Markham Rd at Edward Jeffreys Ave", lat: 43.896358, lng: -79.265278, time: "16 Feb, 2026 10:20pm", audio: "https://image2url.com/r2/default/audio/1771617711520-42b4daf9-bea6-409f-98a2-931ec4d6aa53.m4a" },
   { title: "Bur Oak Ave", description: "Bur Oak Ave", lat: 43.8929, lng: -79.3022, time: "17 Feb, 2026 4:00pm", audio: "https://image2url.com/r2/default/audio/1771617858226-0335278e-1a9a-4509-86d6-d80ff5f8aca6.m4a" },
@@ -591,26 +591,16 @@ soundLocations.forEach((location, index) => {
   });
 
 
-
-
-  marker.on('add', () => {
-  setTimeout(() => {
-    const el = marker.getElement();
-    if (!el) return;
-
-    el.addEventListener('mouseenter', () => {
-      if (location.image && bg) {
-        bg.style.backgroundImage = `url(${location.image})`;
-        bg.style.opacity = "0.6";
-      }
-    });
-
-    el.addEventListener('mouseleave', () => {
-      if (bg) {
-        bg.style.opacity = "0";
-      }
-    });
-
-  }, 0); 
-});
+  marker.on('mouseover', () => {
+    if (location.image && bg) {
+      bg.style.backgroundImage = `url(${location.image})`;
+      bg.style.opacity = "70%";
+    }
+  });
+  
+  marker.on('mouseout', () => {
+    if (bg) {
+      bg.style.opacity = "0";
+    }
+  });
 });
