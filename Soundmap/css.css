@@ -8,14 +8,14 @@
 }
 
 @font-face {
-  font-family: 'F25 Bank Printer';
-  src: url('./fonts/f25-bank-printer.woff2') format('woff2');
+  font-family: 'Halenoir Font';
+  src: url('/Users/winginchan/Downloads/Halenoir Font/Halenoir.woff2') format('woff2'),
+       url('/Users/winginchan/Downloads/Halenoir Font/Halenoir.woff') format('woff');
 }
-
 
 .top-menu,
 button {
-  font-family: 'F25 Bank Printer';
+  font-family: 'Halenoir Font';
 }
 
 .header-container {
@@ -173,7 +173,6 @@ section.active {
 }
 
 
-
 .distance-label {
   pointer-events: none;
   font-family: "Courier New", monospace;
@@ -191,7 +190,7 @@ section.active {
   position: absolute;
   width: 20px;
   height: 20px;
-  background: rgb(0, 115, 255);
+  background: rgb(255, 25, 0);
   border-radius: 50%;
   opacity: 90%;
   z-index: -1;

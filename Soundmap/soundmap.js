@@ -565,7 +565,6 @@ soundLocations.forEach((location, index) => {
     </div>
   `);
 
-  // typing effect
   marker.on('popupopen', () => {
     const popupEl = marker.getPopup().getElement();
     const audio = popupEl.querySelector(`#${audioId}`);
