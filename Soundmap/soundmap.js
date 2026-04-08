@@ -589,6 +589,23 @@ soundLocations.forEach((location, index) => {
     audio.addEventListener('pause', () => clearInterval(typingInterval));
   });
 
+// section switcher
+function showSection(sectionId) {
+  document.querySelectorAll("main section").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  document.getElementById(sectionId).classList.add("active");
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("start-map").addEventListener("click", () => {
+    document.getElementById("intro-popup");
+    showSection("home");
+  });
+});
+
 
   marker.on('mouseover', () => {
     if (location.image && bg) {
