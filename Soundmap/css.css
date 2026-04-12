@@ -1,7 +1,7 @@
 :root {
-  --secondary: #fff3f9;
-  --accent-red: #ff0000;
-  --map-bg: #f8f8f8; 
+  --secondary: #dea5c2;
+  --accent-red: #c4a5a5;
+  --map-bg: #6bb3d4; 
 }
 
 @font-face {
@@ -30,46 +30,36 @@ body {
   top: 40px;
   left: 40px;
   z-index: 1000;
-  pointer-events: none; /* Let clicks pass through to the map */
-  display: block; /* Overriding your flex-center */
+  pointer-events: none; /* This makes the "sheet of glass" invisible to the mouse */
   height: auto;
 }
 
 .title {
-  font-family: 'Halenoir', sans-serif !important; /* Use your Halenoir for the big title */
-  font-size: clamp(4rem, 10vw, 7rem); /* Scales with screen size */
-  line-height: 0.85;
-  letter-spacing: -3px;
-  text-align: left;
-  margin: 0;
-  text-transform: none;
+  pointer-events: auto; /* This makes the TEXT itself clickable again */
+  cursor: none; 
 }
 
+.intro-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 10000; /* Higher than everything else */
+  pointer-events: auto; /* Ensure we can click the Enter button */
+  /* ... keep your other styles ... */
+}
 /* --- Bottom Left Navigation --- */
 .top-nav {
   position: fixed;
   bottom: 40px;
   left: 40px;
   display: flex;
-  gap: 10px;
-  z-index: 1000;
+  gap: 15px;
+  z-index: 10001; /* Must be higher than the map but lower than the cursor */
+  pointer-events: auto; /* Ensure buttons can be clicked */
 }
 
 .top-nav button {
-  background: transparent;
-  color: #000;
-  border: none;
-  font-size: 1.2rem;
-  padding: 5px 0;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-  cursor: none; /* Handled by custom cursor */
-}
-
-.top-nav button:hover {
-  opacity: 0.6;
-  background: transparent; /* Remove the circle background from old CSS */
-  transform: none;
+  pointer-events: auto;
+  cursor: none; /* Handled by your red crosshair */
 }
 
 /* --- The Map --- */
@@ -170,5 +160,105 @@ body {
   opacity: 0;
   filter: blur(20px);
   transition: opacity 1.5s ease, filter 1.5s ease;
+  pointer-events: none;
+}
+/* The Landing Page (Intro) */
+.intro-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #d3d2d5; /* Matches your body color */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000; /* Sits on top of everything */
+  transition: opacity 1.5s ease, filter 1.5s ease;
+}
+
+/* The "Dissolve" State */
+.dissolve {
+  opacity: 0;
+  filter: blur(30px);
+  pointer-events: none; /* Crucial: allows clicking the map once gone */
+}
+
+/* The Inside Content (Map & Header) */
+#main-header, .top-nav {
+  opacity: 0; /* Start hidden */
+  transition: opacity 1s ease 1s; /* Fade in slightly after the intro dissolves */
+}
+
+.inside-visible #main-header, 
+.inside-visible .top-nav {
+  opacity: 1;
+}
+
+/* Intro Popup Overlay */
+.intro-popup {
+  position: fixed;
+  inset: 0;
+  background-color: #d3d2d5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Left aligned like your mockup */
+  padding-left: 5vw;
+  z-index: 9999;
+  transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* Massive Hero Typography */
+.intro-title {
+  font-family: 'Halenoir', sans-serif;
+  font-size: 15vw; /* Extremely large font */
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  margin: 0;
+  color: #000;
+  text-transform: uppercase;
+}
+
+/* The Flowy Wave Effect on the Intro Title */
+.intro-title::after {
+  content: "MARKHAM\nSOUND\nMAP";
+  white-space: pre;
+  position: absolute;
+  left: 0; top: 0;
+  color: #9caeff;
+  clip-path: polygon(0 45%, 15% 42%, 31% 45%, 52% 55%, 71% 60%, 86% 55%, 100% 45%, 100% 100%, 0% 100%);
+  animation: wave 3s ease-in-out infinite alternate;
+}
+
+/* Stylish Enter Button */
+.enter-wrapper {
+  margin-top: 40px;
+}
+
+.intro-btn {
+  background: none;
+  border: none;
+  font-family: 'F25 Bank Printer', monospace;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  color: #000;
+  padding: 10px 0;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.intro-btn:hover {
+  color: #9caeff;
+  border-bottom: 2px solid #7b73da;
+  letter-spacing: 6px; /* Spreads out on hover */
+}
+
+/* Dissolve Animation */
+.intro-popup.dissolve {
+  opacity: 0;
+  filter: blur(40px) brightness(1.5); /* Blurs and "blows out" the white */
+  transform: scale(1.1);
   pointer-events: none;
 }

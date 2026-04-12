@@ -463,10 +463,10 @@ L.maplibreGL({
 }
 }).addTo(map);
 
-
 const sidebarOverlay = document.getElementById('sidebarOverlay');
 const startButton = document.getElementById('start-map');
 const introPopup = document.getElementById('intro-popup');
+const header = document.querySelector('.header-container');
 
 function toggleSidebar() {
   sidebar.classList.toggle('show');
@@ -487,7 +487,7 @@ function showSection(sectionId) {
 startButton.addEventListener('click', () => {
   introPopup.style.display = "none";
 });
-
+ma
 
 const soundLocations = [
   { title: "Edward Jeffreys Ave", description: "Edward Jeffreys avenue GO train station", lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",image:"Markham-Village-Train-Station-3.jpg"},
