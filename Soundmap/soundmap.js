@@ -477,35 +477,28 @@ document.addEventListener("mousedown", () => cursor.classList.add("click"));
 document.addEventListener("mouseup", () => cursor.classList.remove("click"));
 
 
-/* --- Navigation & Intro Logic --- */
 
-// 1. Navigation Function
 function showSection(sectionId) {
-  // Hide all sections
   document.querySelectorAll("main section").forEach(section => {
     section.classList.remove("active");
   });
 
-  // Show the target section
   const target = document.getElementById(sectionId);
   if (target) {
     target.classList.add("active");
     
-    // If we're going to the map, refresh its size
     if (sectionId === 'home' && typeof map !== 'undefined') {
       setTimeout(() => map.invalidateSize(), 100);
     }
   }
 }
+const startBtn = document.getElementById('start-map');
+const introPopup = document.getElementById('intro-popup');
 
-// 2. Intro Button Logic
-// Note: startButton and introPopup were already declared at the top of your script
-if (startButton) {
-  startButton.addEventListener('click', () => {
-    // Start the dissolve animation
+if (startBtn) {
+  startBtn.addEventListener('click', () => {
+    // 1. Add the dissolve class for the fade/blur effect
     introPopup.classList.add('dissolve');
-
-    // Wait for the CSS transition (1.2s) before cleaning up
     setTimeout(() => {
       introPopup.style.display = "none"; 
       showSection("home");
@@ -532,24 +525,34 @@ function showSection(sectionId) {
 document.addEventListener('mousedown', () => cursor.classList.add('click'));
 document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 
-// 3. Navigation Functions (MUST BE OUTSIDE THE LOOP)
 function showSection(sectionId) {
   document.querySelectorAll("main section").forEach(section => {
     section.classList.remove("active");
   });
-  const target = document.getElementById(sectionId);
-  if(target) target.classList.add("active");
-}
 
+  const target = document.getElementById(sectionId);
+  if (target) {
+    target.classList.add("active");
+    if (sectionId === 'home') {
+      setTimeout(() => map.invalidateSize(), 50);
+    }
+  }
+}
 // 4. Intro Button Logic
-if (startButton) {
-  startButton.addEventListener('click', () => {
-    // Add your dissolve class for the animation you have in CSS
-    introPopup.classList.add("dissolve"); 
-    // Wait for animation to finish before hiding and showing map
+if (startBtn) {
+  startBtn.addEventListener('click', () => {
+    // 1. Add the dissolve class for the fade/blur effect
+    introPopup.classList.add('dissolve');
+
+    // 2. Wait for the CSS transition (1.2s) to finish
     setTimeout(() => {
-      introPopup.style.display = "none";
+      introPopup.style.display = "none"; 
+      
+      // 3. Show the home section and refresh the map
       showSection("home");
+      
+      // This is vital for Leaflet to render correctly after being hidden
+      map.invalidateSize();
     }, 1200); 
   });
 }
@@ -571,11 +574,10 @@ const soundLocations = [
   { title: "Milliken Meadows Dr GO Train", description: "Milliken Meadows Dr GO Train", lat: 43.82319, lng: -79.30167, time: "20 Feb, 2026 4:33pm", audio: "https://image2url.com/r2/default/audio/1772144564808-71c77456-09c8-4500-814d-5019b67bffd2.m4a" },
   { title: "Day & Night King Crab", description: "Day and Night Crab Kitchen", lat: 43.82392, lng: -79.30074, time: "21 Feb, 2026 7:16pm", audio: "https://image2url.com/r2/default/audio/1772144653984-18449777-4c39-44e2-84f8-30ac16ffbf44.m4a" }
 ];
-/* --- Transitions & Button Logic --- */
 
 // Optimized Intro Button Logic
-if (startButton) {
-  startButton.addEventListener('click', () => {
+if (startBtn) {
+  startBtn.addEventListener('click', () => {
     // 1. Trigger the CSS animation
     introPopup.classList.add('dissolve');
 

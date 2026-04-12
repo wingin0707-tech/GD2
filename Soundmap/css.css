@@ -1,7 +1,6 @@
 :root {
   --secondary: #dea5c2;
   --accent-red: #c4a5a5;
-  --map-bg: #6bb3d4; 
 }
 
 @font-face {
@@ -236,29 +235,15 @@ section.active {
 /* Massive Hero Typography */
 .intro-title {
   font-family: 'Halenoir', sans-serif;
-  font-size: 15vw; /* Extremely large font */
+  font-size: 12vw; /* Extremely large font */
   line-height: 0.8;
+  font-style: normal;
   letter-spacing: -0.05em;
   margin: 0;
-  color: #000;
+  color: #354aa6;
   text-transform: uppercase;
 }
 
-/* The Flowy Wave Effect on the Intro Title */
-.intro-title::after {
-  content: "MARKHAM\nSOUND\nMAP";
-  white-space: pre;
-  position: absolute;
-  left: 0; top: 0;
-  color: #9caeff;
-  clip-path: polygon(0 45%, 15% 42%, 31% 45%, 52% 55%, 71% 60%, 86% 55%, 100% 45%, 100% 100%, 0% 100%);
-  animation: wave 3s ease-in-out infinite alternate;
-}
-
-/* Stylish Enter Button */
-.enter-wrapper {
-  margin-top: 40px;
-}
 
 .intro-btn {
   background: none;
@@ -266,7 +251,7 @@ section.active {
   font-family: 'F25 Bank Printer', monospace;
   font-size: 1.5rem;
   letter-spacing: 2px;
-  color: #000;
+  color: #ff0000;
   padding: 10px 0;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
