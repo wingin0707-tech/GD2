@@ -1,10 +1,7 @@
 :root {
   --secondary: #fff3f9;
-  
-}
-
-* {
-  cursor: none !important;
+  --accent-red: #ff0000;
+  --map-bg: #f8f8f8; 
 }
 
 @font-face {
@@ -12,125 +9,116 @@
   src: url('./fonts/Halenoir.woff');
 }
 
-.top-menu,
-button {
-  font-family: 'Halenoir Font', Arial, Helvetica, sans-serif;}
+* {
+  cursor: none !important; /* Keep your custom cursor logic */
+  box-sizing: border-box;
+}
 
+/* Use your requested monospace font for the specific 'retro' look */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'F25 Bank Printer', monospace !important;
+  background-color: var(--map-bg);
+  color: #000;
+  overflow: hidden;
+}
+
+/* --- Layout: Title Overlay --- */
 .header-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  height: 100px
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  z-index: 1000;
+  pointer-events: none; /* Let clicks pass through to the map */
+  display: block; /* Overriding your flex-center */
+  height: auto;
 }
 
 .title {
-  font-size: 50px;
-  letter-spacing: 2px;
+  font-family: 'Halenoir', sans-serif !important; /* Use your Halenoir for the big title */
+  font-size: clamp(4rem, 10vw, 7rem); /* Scales with screen size */
+  line-height: 0.85;
+  letter-spacing: -3px;
   text-align: left;
   margin: 0;
+  text-transform: none;
 }
+
+/* --- Bottom Left Navigation --- */
 .top-nav {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
   display: flex;
-  gap: 20px;
+  gap: 10px;
+  z-index: 1000;
 }
 
 .top-nav button {
-  background: #ececec;
-  color: #0c0808;
+  background: transparent;
+  color: #000;
   border: none;
-  border-radius: 100%;
-  padding: 13px 10px;
-  border: none;
-  font-size: 12px;
-  transition: all 1s ease;
+  font-size: 1.2rem;
+  padding: 5px 0;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  cursor: none; /* Handled by custom cursor */
 }
 
 .top-nav button:hover {
-  background: #ff0000;
-  transform: translateY(-2px);
+  opacity: 0.6;
+  background: transparent; /* Remove the circle background from old CSS */
+  transform: none;
 }
+
+/* --- The Map --- */
 #map {
-  top: 120px;
-  height: calc(100vh - 120px);
-}
-
-* {
-  font-family: 'F25 Bank Printer', monospace !important;
-}
-
-body {
-  margin: 0;
-  font-family: "helvatica ";
-  text-align: center;
-  font-size: 15px;
-  overflow-x: hidden;
-  background-color: #d3d2d5;
-  color: #090953;
-}
-
-#map {
-  width: 100%;
-  height: calc(100vh - 100px);
-  position: fixed;
-  top: 100px;
-  left: 0;
-  z-index: 1; 
-  backdrop-filter: blur(9px); 
-
-}
-
-.leaflet-tile {
-  filter: brightness(45%);
-}
-
-section {
-  display: none;
-  padding: 20px;
-  position: relative;
-  z-index: 10;
-}
-
-
-section.active {
-  display: block;
-}
-
-
-.intro-popup {
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(22, 37, 73, 0.95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 12000;
+  z-index: 1;
+  background-color: var(--map-bg);
 }
 
-.intro-popup.hidden {
-  display: none;
-  pointer-events: none;
+/* Grayscale/Contrast adjustment for the map tiles to match image */
+.leaflet-tile {
+  filter: saturate(0.2) brightness(1.1) contrast(0.9);
 }
 
-.intro-box {
-  background: #e8e4dc;
-  color: #0d1f4e;
-  padding: 40px;
-  max-width: 500px;
-  border-radius: 12px;
-  text-align: center;
-
+/* --- Red Markers (Sound Dots) --- */
+.cross-marker::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--accent-red);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: none; /* Removed sonar for a static look, or keep if you like */
 }
+
+/* If you want the sonar effect back: */
+.cross-marker.playing::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--accent-red);
+  border-radius: 50%;
+  animation: sonar 2s infinite;
+  transform: translate(-50%, -50%);
+}
+
+/* --- Custom Cursor --- */
 .custom-cursor {
   position: fixed;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   pointer-events: none;
   z-index: 999999;
-
   transform: translate(-50%, -50%);
 }
 
@@ -138,93 +126,49 @@ section.active {
 .custom-cursor::after {
   content: '';
   position: absolute;
-  background: #ff0000;
+  background: var(--accent-red);
 }
 
 .custom-cursor::before {
-  width: 3px;
-  height: 24px;
+  width: 2px;
+  height: 30px;
   left: 50%;
-  top: 0;
   transform: translateX(-50%);
 }
 
 .custom-cursor::after {
-  height: 3px;
-  width: 24px;
-  left: 0;
+  height: 2px;
+  width: 30px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.cross-marker {
-  width: 10px;
-  height: 10px;
-  position: relative;
-  cursor: pointer;
+.intro-popup {
+  background: rgba(255, 255, 255, 0.9); 
+  z-index: 12000;
 }
 
-
-.cross-marker::before {
-  width: 20px;
-  height: 20px;
+.intro-box {
+  border: 0.5px solid #000;
+  border-radius: 0; 
+  box-shadow: 10px 10px 0px #000;
 }
 
-
-.distance-label {
-  pointer-events: none;
-  font-family: "Courier New", monospace;
-  text-align: center;
-  white-space: nowrap;
+.fade-out {
+  opacity: 0;
+  pointer-events: none; 
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  transform: scale(1.05); 
 }
 
-@keyframes sonar {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(2.5); opacity: 0; }
+.header-container {
+  opacity: 1;
+  transition: opacity 1.5s ease-out;
 }
 
-.cross-marker::before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: rgb(255, 25, 0);
-  border-radius: 50%;
-  opacity: 90%;
-  z-index: -1;
-}
-
-#bg-image {
-  position: fixed;
-  top: 100;
-  left: 30;
-  width: 50%;
-  height: 50%;
-  background-position: center;
-  pointer-events: none;
-
-
-  z-index: 999; /* IMPORTANT: must be ABOVE map */
-}
-
-section {
-  display: none;
-}
-
-section.active {
-  display: block;
-}
-
-.hidden {
-  display: none;
-}
-
-.intro-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  filter: grayscale(100%) contrast(110%);
+.fade-out {
+  opacity: 0;
+  filter: blur(20px);
+  transition: opacity 1.5s ease, filter 1.5s ease;
   pointer-events: none;
 }
-
-

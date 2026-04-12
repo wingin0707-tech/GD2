@@ -589,8 +589,8 @@ soundLocations.forEach((location, index) => {
     audio.addEventListener('pause', () => clearInterval(typingInterval));
   });
 
-// section switcher
-function showSection(sectionId) {
+
+  function showSection(sectionId) {
   document.querySelectorAll("main section").forEach(section => {
     section.classList.remove("active");
   });

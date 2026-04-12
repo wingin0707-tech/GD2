@@ -5,57 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Markham Sound Map</title>
 
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
-
-
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" crossorigin=""/>
-
-
   <link rel="stylesheet" href="css.css">
 </head>
 <body>
 
+  <div class="custom-cursor"></div>
 
-<header class="top-bar">
-  <div class="header-container">
-    <div class="title" onclick="showSection('home')">Markham Sound Map</div>
-    <nav class="top-nav">
-      <button onclick="showSection('home')">HOME</button>
-      <button onclick="showSection('about')">ABOUT</button>
-      <button onclick="showSection('submission')">SUBMIT</button>
-      <div id="bg-image"></div></nav>
-  </div>
-</header>
+  <header class="header-container" id="main-header">
+    <h1 class="title" onclick="dissolveHeader()">Markham<br>Sounds<br>Map</h1>
+  </header>
 
-
-
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <nav class="top-nav">
+    <button onclick="showSection('about')">(about)</button>
+    <button onclick="showSection('home')">(Home)</button>
+    <button onclick="showSection('submission')">(submit)</button>
+  </nav>
 
   <div id="intro-popup" class="intro-popup">
     <div class="intro-bg"></div>
-  
     <div class="intro-content">
-      <h1 class="intro-title">
-        Markham<br>
-        Sound Map
-      </h1>
-  
-      <p class="intro-sub">
-        Acoustic archive in development
-      </p>
-  
-      <button id="start-map" class="intro-btn">
-        Enter
-      </button>
+      <h1 class="intro-title">Markham<br>Sound Map</h1>
+      <p class="intro-sub">Acoustic archive in development</p>
+      <button id="start-map" class="intro-btn">Enter</button>
     </div>
   </div>
 
   <main>
-    
-     <section id="home" class="active">
-
-            <div id="map"></div>
+    <section id="home" class="active">
+      <div id="map"></div>
     </section>
 
     <section id="about">
@@ -65,12 +44,13 @@
 
     <section id="submission">
       <h2>Submit a Recording</h2>
-      <form>
-        <input type="text" placeholder="Location Name" required><br>
-        <input type="text" placeholder="Description"><br>
-        <input type="text" placeholder="Time"><br>
-        <input type="file" accept="audio/*"><br>
-        <button type="submit">Submit</button>
+      <form action="https://formspree.io/f/your@email.com" method="POST" enctype="multipart/form-data">
+        <input type="text" name="location" placeholder="Location Name" required><br>
+        <input type="text" name="description" placeholder="Description"><br>
+        <input type="text" name="time" placeholder="Time"><br>
+        <label>Upload Audio:</label><br>
+        <input type="file" name="upload" accept="audio/*"><br>
+        <button type="submit">Send Submission</button>
       </form>
     </section>
   </main>
