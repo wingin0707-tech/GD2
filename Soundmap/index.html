@@ -13,49 +13,40 @@
 
   <div class="custom-cursor"></div>
 
-  <header class="header-container" id="main-header">
-    <h1 class="title">Markham<br>Sounds<br>Map</h1>
-  </header>
-
-  <nav class="top-nav">
-    <button onclick="showSection('about')">(about)</button>
-    <button onclick="showSection('home')">(home)</button>
-    <button onclick="showSection('submission')">(submit)</button>
-  </nav>
-
   <div id="intro-popup" class="intro-popup">
     <div class="intro-bg"></div>
+  
+    <nav class="top-nav">
+      <button onclick="showSection('about')">(about)</button>
+      <button onclick="showSection('home')">(home)</button>
+      <button onclick="showSection('submission')">(submit)</button>
+    </nav>
+  
     <div class="intro-content">
-      <h1 class="intro-title flowy-text">
-        MARKHAM<br>SOUND<br>MAP
-      </h1>
+      <h1 class="main-title">Markham</h1>
+  
+      <div class="dot-field">
+        <span class="dot s1">s</span><span class="dot s2">o</span><span class="dot s3">u</span><span class="dot s4">n</span><span class="dot s5">d</span>
+        <span class="dot m1">m</span><span class="dot m2">a</span><span class="dot m3">p</span>
+      </div>
+  
       <div class="enter-wrapper">
-        <button id="start-map" class="intro-btn">[enter map]</button>
+        <button id="start-map" class="intro-btn">(map)</button>
       </div>
     </div>
   </div>
 
   <main> 
     <section id="home" class="active">
-      <div id="map"></div>
+      <div id="map" style="height: 100vh; width: 100%;"></div>
     </section>
 
-    <section id="about">
+    <section id="about" style="display:none;">
       <h1>About This Project</h1>
       <p>This sound map archives and explores environments through audio recordings collected across Markham.</p>
     </section>
 
-    
-<svg style="visibility: hidden; position: absolute;" width="0" height="0">
-  <filter id="goo">
-    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-    <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-  </filter>
-</svg>
-
-
-    <section id="submission">
+    <section id="submission" style="display:none;">
       <h2>Submit a Recording</h2>
       <form action="https://formspree.io/f/your@email.com" method="POST" enctype="multipart/form-data">
         <input type="text" name="location" placeholder="Location Name" required><br>
@@ -68,10 +59,8 @@
     </section>
   </main>
   
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" crossorigin></script>
-  <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.21/leaflet-maplibre-gl.js" crossorigin></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.21/leaflet-maplibre-gl.js"></script>
   <script src="soundmap.js"></script>
-
 </body>
-</html>

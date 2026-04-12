@@ -103,43 +103,28 @@ section.active {
   background-color: var(--map-bg);
 }
 
-/* Grayscale/Contrast adjustment for the map tiles to match image */
 .leaflet-tile {
   filter: saturate(0.2) brightness(1.1) contrast(0.9);
 }
 
-/* --- Red Markers (Sound Dots) --- */
-.cross-marker::before {
-  content: '';
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: var(--accent-red);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: none; 
+.cross-marker {
+  width: 20px !important;
+  height: 20px !important;
+  background-color: #ff0000 ; 
+  border-radius: 50% ;
+  display: block ;
 }
 
-/* If you want the sonar effect back: */
-.cross-marker.playing::after {
-  content: '';
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border: 1px solid var(--accent-red);
-  border-radius: 50%;
-  animation: sonar 2s infinite;
-  transform: translate(-50%, -50%);
+.leaflet-marker-pane {
+  z-index: 999 !important;
 }
-/* css.css */
 
 .custom-cursor {
   width: 20px;
   height: 20px;
   border: 1px solid white;
   border-radius: 50%;
-  position: fixed; /* Use fixed for cursor to stay relative to viewport */
-  pointer-events: none; /* THIS IS CRITICAL: allows clicks to pass through to buttons */
+  position: fixed; 
   z-index: 9999;
   transform: translate(-50%, -50%);
   transition: transform 0.1s ease-out;
@@ -154,6 +139,23 @@ section.active {
   z-index: 1000;
 }
 
+
+.auto-transcript {
+  background: white;
+  color: #ff0000;
+  padding: 10px;
+  border: 1.5px solid #ff0000;
+  font-family: monospace;
+  font-size: 0.8rem;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  /* Add a little 'scanning' animation feel */
+  border-left: 5px solid #ff0000;
+}
 
 .top-nav button {
   cursor: pointer;
@@ -225,8 +227,8 @@ section.active {
 .intro-popup {
   position: fixed;
   inset: 0;
-  background-color: #d3d2d5;
-  display: flex;
+  background-color: rgba(155, 216, 195, 0.5);
+    display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start; /* Left aligned like your mockup */
@@ -266,3 +268,70 @@ section.active {
   letter-spacing: 6px; 
 }
 
+/* The Main Static Title */
+.main-title {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 450;
+  font-size: 8rem; /* Big, impactful title */
+  color: rgb(241, 0, 0);
+  letter-spacing: -4px;
+  margin: 50;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Individual Dot Styling */
+.dot {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  color: #ff0000; 
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 20;
+  font-size: 35pt;
+  text-transform: lowercase;
+  
+  animation: wander 15s ease-in-out infinite alternate;
+}
+
+
+.s1 { top: 60%; left: 35%; }
+.s2 { top: 65%; left: 42%; animation-delay: -10s; }
+.s3 { top: 62%; left: 50%; animation-delay: -5s; }
+.s4 { top: 68%; left: 58%; animation-delay: -1s; }
+.s5 { top: 63%; left: 65%; animation-delay: -3s; }
+
+/* Map (Further down) */
+.m1 { top: 80%; left: 45%; }
+.m2 { top: 82%; left: 52%; animation-delay: -5s; }
+.m3 { top: 78%; left: 59%; animation-delay: -2.5s; }
+
+@keyframes wander {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(15px, -25px); }
+  100% { transform: translate(-10px, 15px); }
+}
+
+/* The Enter Button */
+.intro-btn {
+  margin-top: 40px;
+  background: transparent;
+  color: rgb(255, 0, 0);
+  border: 1px solid white;
+  padding: 12px 30px;
+  font-family: monospace;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+
+.intro-btn:hover {
+  background: white;
+  color: #ff0000;
+}
