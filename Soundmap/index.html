@@ -8,47 +8,34 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" crossorigin=""/>
   <link rel="stylesheet" href="css.css">
-  
-  
 </head>
-
-<main> <section id="home" class="active">
-    <div id="map"></div>
-  </section>
-
-  <section id="about">
-    <h1>About This Project</h1>
-    </section>
-
-  <section id="submission">
-    </section>
-</main>
 <body>
 
   <div class="custom-cursor"></div>
 
   <header class="header-container" id="main-header">
-    <h1 class="title" onclick="dissolveHeader()">Markham<br>Sounds<br>Map</h1>
+    <h1 class="title">Markham<br>Sounds<br>Map</h1>
   </header>
 
   <nav class="top-nav">
     <button onclick="showSection('about')">(about)</button>
-    <button onclick="showSection('home')">(Home)</button>
+    <button onclick="showSection('home')">(home)</button>
     <button onclick="showSection('submission')">(submit)</button>
   </nav>
 
-<div id="intro-popup" class="intro-popup">
-  <div class="intro-bg"></div>
-  <div class="intro-content">
-    <h1 class="intro-title flowy-text">
-      MARKHAM<br>SOUND<br>MAP
-    </h1>
-    <div class="enter-wrapper">
-      <button id="start-map" class="intro-btn">[enter map]</button>
+  <div id="intro-popup" class="intro-popup">
+    <div class="intro-bg"></div>
+    <div class="intro-content">
+      <h1 class="intro-title flowy-text">
+        MARKHAM<br>SOUND<br>MAP
+      </h1>
+      <div class="enter-wrapper">
+        <button id="start-map" class="intro-btn">[enter map]</button>
+      </div>
     </div>
   </div>
-</div>
 
+  <main> 
     <section id="home" class="active">
       <div id="map"></div>
     </section>
@@ -57,6 +44,16 @@
       <h1>About This Project</h1>
       <p>This sound map archives and explores environments through audio recordings collected across Markham.</p>
     </section>
+
+    
+<svg style="visibility: hidden; position: absolute;" width="0" height="0">
+  <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+    <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+  </filter>
+</svg>
+
 
     <section id="submission">
       <h2>Submit a Recording</h2>

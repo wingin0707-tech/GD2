@@ -23,6 +23,13 @@ body {
   overflow: hidden;
 }
 
+main section.active {
+  display: block !important; 
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 5000; /* Sit on top of the map */
+}
+
 /* --- Layout: Title Overlay --- */
 .header-container {
   position: fixed;
@@ -110,7 +117,7 @@ section.active {
   background: var(--accent-red);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: none; /* Removed sonar for a static look, or keep if you like */
+  animation: none; 
 }
 
 /* If you want the sonar effect back: */
@@ -146,6 +153,7 @@ section.active {
   right: 20px;
   z-index: 1000;
 }
+
 
 .top-nav button {
   cursor: pointer;
@@ -200,18 +208,13 @@ section.active {
   transition: opacity 1.5s ease, filter 1.5s ease;
 }
 
-/* The "Dissolve" State */
 .dissolve {
   opacity: 0;
   filter: blur(30px);
-  pointer-events: none; /* Crucial: allows clicking the map once gone */
+  pointer-events: none; 
 }
 
-/* The Inside Content (Map & Header) */
-#main-header, .top-nav {
-  opacity: 0; /* Start hidden */
-  transition: opacity 1s ease 1s; /* Fade in slightly after the intro dissolves */
-}
+
 
 .inside-visible #main-header, 
 .inside-visible .top-nav {
@@ -260,13 +263,6 @@ section.active {
 .intro-btn:hover {
   color: #9caeff;
   border-bottom: 2px solid #7b73da;
-  letter-spacing: 6px; /* Spreads out on hover */
+  letter-spacing: 6px; 
 }
 
-/* Dissolve Animation */
-.intro-popup.dissolve {
-  opacity: 0;
-  filter: blur(40px) brightness(1.5); /* Blurs and "blows out" the white */
-  transform: scale(1.1);
-  pointer-events: none;
-}
