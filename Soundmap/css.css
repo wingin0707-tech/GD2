@@ -47,21 +47,45 @@ body {
   /* ... keep your other styles ... */
 }
 /* --- Bottom Left Navigation --- */
+.custom-cursor {
+  pointer-events: none !important;
+  z-index: 15000; /* Should be higher than everything */
+}
+
+/* 2. Fix the header blocking the screen */
+.header-container {
+  pointer-events: none; /* Mouse passes through the empty space */
+}
+
+.title {
+  pointer-events: auto; /* But the text itself can still be clicked */
+}
+
+/* 3. Ensure nav buttons are on top and clickable */
 .top-nav {
-  position: fixed;
-  bottom: 40px;
-  left: 40px;
-  display: flex;
-  gap: 15px;
-  z-index: 10001; /* Must be higher than the map but lower than the cursor */
-  pointer-events: auto; /* Ensure buttons can be clicked */
+  z-index: 11000;
+  pointer-events: auto;
 }
 
 .top-nav button {
   pointer-events: auto;
-  cursor: none; /* Handled by your red crosshair */
+  cursor: none; /* Hide real cursor so yours shows */
 }
 
+/* 4. Fix Section Visibility */
+section {
+  display: none;
+  opacity: 0;
+}
+
+section.active {
+  display: block;
+  opacity: 1;
+}
+
+#home.active {
+  display: block;
+}
 /* --- The Map --- */
 #map {
   width: 100vw;
@@ -101,36 +125,35 @@ body {
   animation: sonar 2s infinite;
   transform: translate(-50%, -50%);
 }
+/* css.css */
 
-/* --- Custom Cursor --- */
 .custom-cursor {
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  pointer-events: none;
-  z-index: 999999;
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: fixed; /* Use fixed for cursor to stay relative to viewport */
+  pointer-events: none; /* THIS IS CRITICAL: allows clicks to pass through to buttons */
+  z-index: 9999;
   transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  mix-blend-mode: difference; /* Makes it visible on light/dark backgrounds */
 }
 
-.custom-cursor::before,
-.custom-cursor::after {
-  content: '';
-  position: absolute;
-  background: var(--accent-red);
+/* Ensure buttons are above other layers and clickable */
+.top-nav {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
-.custom-cursor::before {
-  width: 2px;
-  height: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.custom-cursor::after {
-  height: 2px;
-  width: 30px;
-  top: 50%;
-  transform: translateY(-50%);
+.top-nav button {
+  cursor: pointer;
+  pointer-events: auto;
+  background: white;
+  border: 1px solid black;
+  padding: 5px 10px;
 }
 
 .intro-popup {

@@ -8,7 +8,6 @@ const map = L.map('map', {
 }).setView([43.8561, -79.3370], 13);
 
 
-
 L.maplibreGL({
   style: {
   "version": 8,
@@ -462,35 +461,102 @@ L.maplibreGL({
   "id": "c4268e48-fac9-4478-8120-201224fbd4d8"
 }
 }).addTo(map);
+/* --- Custom Cursor Logic --- */
+const cursor = document.createElement("div");
+cursor.classList.add("custom-cursor");
+cursor.id = "cursor"; // Ensure it matches your CSS ID if needed
+document.body.appendChild(cursor);
 
-const sidebarOverlay = document.getElementById('sidebarOverlay');
-const startButton = document.getElementById('start-map');
-const introPopup = document.getElementById('intro-popup');
-const header = document.querySelector('.header-container');
-
-function toggleSidebar() {
-  sidebar.classList.toggle('show');
-  sidebarOverlay.classList.toggle('show');
-}
-
-
-sidebarOverlay.addEventListener('click', toggleSidebar);
-
-function showSection(sectionId) {
-  document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-  document.getElementById(sectionId).classList.add('active');
-
-  sidebar.classList.remove('show');
-  sidebarOverlay.classList.remove('show');
-}
-
-startButton.addEventListener('click', () => {
-  introPopup.style.display = "none";
+document.addEventListener("mousemove", (e) => {
+  // Using translate3d is smoother than top/left for performance
+  cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
 });
-ma
 
+// Click feedback using a class (cleaner than modifying inline styles)
+document.addEventListener("mousedown", () => cursor.classList.add("click"));
+document.addEventListener("mouseup", () => cursor.classList.remove("click"));
+
+
+/* --- Navigation & Intro Logic --- */
+
+// 1. Navigation Function
+function showSection(sectionId) {
+  // Hide all sections
+  document.querySelectorAll("main section").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  // Show the target section
+  const target = document.getElementById(sectionId);
+  if (target) {
+    target.classList.add("active");
+    
+    // If we're going to the map, refresh its size
+    if (sectionId === 'home' && typeof map !== 'undefined') {
+      setTimeout(() => map.invalidateSize(), 100);
+    }
+  }
+}
+
+// 2. Intro Button Logic
+// Note: startButton and introPopup were already declared at the top of your script
+if (startButton) {
+  startButton.addEventListener('click', () => {
+    // Start the dissolve animation
+    introPopup.classList.add('dissolve');
+
+    // Wait for the CSS transition (1.2s) before cleaning up
+    setTimeout(() => {
+      introPopup.style.display = "none"; 
+      showSection("home");
+    }, 1200); 
+  });
+}
+// Optimized Navigation Function
+function showSection(sectionId) {
+  const sections = document.querySelectorAll("main section");
+  
+  sections.forEach(section => {
+    section.classList.remove("active");
+  });
+
+  const target = document.getElementById(sectionId);
+  if (target) {
+    target.classList.add("active");
+    if (sectionId === 'home') {
+      // Small delay to ensure CSS transition has finished before recalculating map
+      setTimeout(() => map.invalidateSize(), 50);
+    }
+  }
+}
+document.addEventListener('mousedown', () => cursor.classList.add('click'));
+document.addEventListener('mouseup', () => cursor.classList.remove('click'));
+
+// 3. Navigation Functions (MUST BE OUTSIDE THE LOOP)
+function showSection(sectionId) {
+  document.querySelectorAll("main section").forEach(section => {
+    section.classList.remove("active");
+  });
+  const target = document.getElementById(sectionId);
+  if(target) target.classList.add("active");
+}
+
+// 4. Intro Button Logic
+if (startButton) {
+  startButton.addEventListener('click', () => {
+    // Add your dissolve class for the animation you have in CSS
+    introPopup.classList.add("dissolve"); 
+    // Wait for animation to finish before hiding and showing map
+    setTimeout(() => {
+      introPopup.style.display = "none";
+      showSection("home");
+    }, 1200); 
+  });
+}
+
+// 5. Markers & Data
 const soundLocations = [
-  { title: "Edward Jeffreys Ave", description: "Edward Jeffreys avenue GO train station", lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",image:"Markham-Village-Train-Station-3.jpg"},
+  { title: "Edward Jeffreys Ave", description: "Edward Jeffreys avenue GO train station", lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a", image: "Markham-Village-Train-Station-3.jpg" },
   { title: "Scott Brown St", description: "25 Scott Brown St", lat: 43.89945, lng: -79.27401, time: "17 Feb, 2026 5:30pm", audio: "https://image2url.com/r2/default/audio/1771617515406-ea055bbd-6cb8-460f-b1be-d6a683aae14a.m4a" },
   { title: "Edward Jeffreys GO Bus Station", description: "Markham Rd at Edward Jeffreys Ave", lat: 43.896358, lng: -79.265278, time: "16 Feb, 2026 10:20pm", audio: "https://image2url.com/r2/default/audio/1771617711520-42b4daf9-bea6-409f-98a2-931ec4d6aa53.m4a" },
   { title: "Bur Oak Ave", description: "Bur Oak Ave", lat: 43.8929, lng: -79.3022, time: "17 Feb, 2026 4:00pm", audio: "https://image2url.com/r2/default/audio/1771617858226-0335278e-1a9a-4509-86d6-d80ff5f8aca6.m4a" },
@@ -505,118 +571,44 @@ const soundLocations = [
   { title: "Milliken Meadows Dr GO Train", description: "Milliken Meadows Dr GO Train", lat: 43.82319, lng: -79.30167, time: "20 Feb, 2026 4:33pm", audio: "https://image2url.com/r2/default/audio/1772144564808-71c77456-09c8-4500-814d-5019b67bffd2.m4a" },
   { title: "Day & Night King Crab", description: "Day and Night Crab Kitchen", lat: 43.82392, lng: -79.30074, time: "21 Feb, 2026 7:16pm", audio: "https://image2url.com/r2/default/audio/1772144653984-18449777-4c39-44e2-84f8-30ac16ffbf44.m4a" }
 ];
+/* --- Transitions & Button Logic --- */
 
-const cursor = document.createElement("div");
-cursor.classList.add("custom-cursor");
-document.body.appendChild(cursor);
+// Optimized Intro Button Logic
+if (startButton) {
+  startButton.addEventListener('click', () => {
+    // 1. Trigger the CSS animation
+    introPopup.classList.add('dissolve');
 
-
-document.addEventListener('mouseup', () => {
-  cursor.classList.remove('click');
-});
-
-const markerGroup = L.layerGroup().addTo(map);
-const pathCoords = [];
-
-document.addEventListener("mousemove", (e) => {
-  const mouseX = e.clientX;
-  const mouseY = e.clientY;
-
-  cursor.style.left = mouseX + "px";
-  cursor.style.top = mouseY + "px";
-
-
-});
-const bg = document.getElementById("bg-image");
-
-soundLocations.forEach((location, index) => {
-
-  // path
-  pathCoords.push([location.lat, location.lng]);
-
-  // icon
-  const crossIcon = L.divIcon({
-    className: 'custom-cross-icon',
-    html: '<div class="cross-marker"></div>',
-    iconSize: [20, 20],
-    iconAnchor: [10, 10]
+    // 2. Wait for the transition (1200ms) then switch views
+    setTimeout(() => {
+      introPopup.style.display = "none"; 
+      
+      // Use the navigation function to go home
+      showSection("home");
+      
+      // Essential: Force Leaflet to recalculate the map size 
+      // now that the container is finally visible/active
+      map.invalidateSize();
+    }, 1200); 
   });
+}
 
-  // marker
-  const marker = L.marker([location.lat, location.lng], {
-    icon: crossIcon,
-    zIndexOffset: 1000
-  }).addTo(markerGroup);
-
-  // popup
-  const transcriptId = `transcript-${index}`;
-  const audioId = `audio-${index}`;
-  const transcriptText = `Recording captured at ${location.title}. Duration: 30s. Ambient sound profile active.`;
-
-  marker.bindPopup(`
-    <div class="map-popup-content">
-      <b style="text-transform:uppercase">${location.title}</b><br>
-      ${location.description}<br>
-      <i>${location.time}</i><br><br>
-      <audio controls id="${audioId}" style="width:200px">
-        <source src="${location.audio}" type="audio/mp4">
-      </audio>
-      <div id="${transcriptId}" class="typing-box"></div>
-    </div>
-  `);
-
-  marker.on('popupopen', () => {
-    const popupEl = marker.getPopup().getElement();
-    const audio = popupEl.querySelector(`#${audioId}`);
-    const transcript = popupEl.querySelector(`#${transcriptId}`);
-    let typingInterval;
-
-    audio.addEventListener('play', () => {
-      transcript.textContent = '';
-      let i = 0;
-
-      clearInterval(typingInterval);
-      typingInterval = setInterval(() => {
-        if (i < transcriptText.length) {
-          transcript.textContent += transcriptText[i];
-          i++;
-        } else {
-          clearInterval(typingInterval);
-        }
-      }, 30);
-    });
-
-    audio.addEventListener('pause', () => clearInterval(typingInterval));
-  });
-
-
-  function showSection(sectionId) {
-  document.querySelectorAll("main section").forEach(section => {
+// Optimized Navigation Function
+function showSection(sectionId) {
+  // Select all sections within <main>
+  const sections = document.querySelectorAll("main section");
+  
+  sections.forEach(section => {
     section.classList.remove("active");
   });
 
-  document.getElementById(sectionId).classList.add("active");
+  const target = document.getElementById(sectionId);
+  if (target) {
+    target.classList.add("active");
+    
+    // If we are switching to the map, ensure it fills the container properly
+    if (sectionId === 'home') {
+      map.invalidateSize();
+    }
+  }
 }
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("start-map").addEventListener("click", () => {
-    document.getElementById("intro-popup");
-    showSection("home");
-  });
-});
-
-
-  marker.on('mouseover', () => {
-    if (location.image && bg) {
-      bg.style.backgroundImage = `url(${location.image})`;
-      bg.style.opacity = "70%";
-    }
-  });
-  
-  marker.on('mouseout', () => {
-    if (bg) {
-      bg.style.opacity = "0";
-    }
-  });
-});
