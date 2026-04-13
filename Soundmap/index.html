@@ -22,9 +22,10 @@
       </div>
   
       <div class="enter-wrapper">
-        <button id="start-map" class="intro-btn" onclick="showSection('home')">(map)</button>
-        <button class="intro-btn" onclick="showSection('about')">(about)</button>        
-        <button class="intro-btn" onclick="showSection('submission')">(submit)</button>     
+        <button id="start-map" class="intro-btn" onclick="enterMap()">(map)</button>
+        
+        <button class="intro-btn" onclick="showSection('about-page')">(about)</button>        
+        <button class="intro-btn" onclick="showSection('submission-page')">(submit)</button>     
       </div>
    </div>
  </div>
@@ -70,10 +71,7 @@
 </main>
     <div>
  </div>
-
-
- <body>
-  
+<body>
 
   <div class="map-navigation">
     <button onclick="showSection('intro-popup')">( Home )</button>
@@ -81,37 +79,50 @@
     <button onclick="showSection('submission-page')">( Submit )</button>
   </div>
 
-
   <section id="about-page">
-    <div class="map-navigation">
-      <button onclick="showSection('intro-popup')">( Home )</button>
-      <button onclick="showSection('map-page')">( Map )</button>
-      <button onclick="showSection('submission-page')">( Submit )</button>
+    <div class="about-map-bg">
+      <img src="./images/your_map_image.png" alt="Markham Map" class="fixed-map-image">
+    </div>
+  
+    <div class="about-content-scroller">
       
-    </div>
-    <div class="about-wrapper">
-      <div class="about-grid">
-        <div class="about-header">
-          <h2 class="archive-no">Project.01</h2>
-          <h1 class="about-main-title">Markham<br>Sound<br>Map</h1>
-        </div>
-    <div class="about-content">
-      <h2>About the Project</h2>
-      <p>Created as part of my studies at OCAD University.</p>
-      <button class="back-btn" onclick="showSection('map-page')">← Back to Map</button>
-    </div>
-    <h3>The Concept</h3>
-          <p>The Markham Sound Map is a sensory archive dedicated to the environmental audio of Markham, Ontario.</p>
-        </div>
-        <div class="credits-box">
-          <p>Designed & Developed by Chan Wing In</p>
-          <p>© 2026 Archive Series</p>
-        </div>
+      <div class="map-navigation">
+        <button onclick="showSection('intro-popup')">( Home )</button>
+        <button onclick="enterMap()">( Map )</button>
+        <button onclick="showSection('submission-page')">( Submit )</button>
       </div>
-    </div>
-  </div>
-</section>
-  </section>
+  
+      <div class="about-wrapper">
+        
+        <div class="about-grid">
+          <div class="about-header">
+            <h1 class="about-main-title">About<br>System</h1>
+          </div>
+  
+          <div class="about-body">
+            <div class="about-section">
+              <p class="monospace-text">this map blaalalal</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="about-block scroll-content">
+          <p class="scrolling-instruction">when you scroll the image follow the page</p>
+          <div class="about-photo-wrapper">
+            <img src="./images/your_first_photo.jpg" alt="Recording Process" class="about-photo">
+            <small class="photo-caption">( Process Image.01 )</small>
+          </div>
+        </div>
+  
+        <div class="about-block scroll-content">
+          <div class="about-photo-wrapper">
+            <img src="./images/your_second_photo.jpg" alt="Field Recording" class="about-photo">
+            <small class="photo-caption">( Field Work.02 )</small>
+          </div>
+          <p>Your description for the second photo goes here...</p>
+        </div>
+  
+      </div> </div> </section>
  
   <!-- ── SUBMISSION ── -->
   <section id="submission-page">
