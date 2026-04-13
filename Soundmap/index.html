@@ -29,12 +29,13 @@
    </div>
  </div>
 
- 
-
+<button id="about-btn">About</button>
+<button id="submit-btn">Submit</button>
   <main> 
     <section id="map-page" style="display:none;">
       <button class="back-home-btn" onclick="showSection('intro-popup')">(home)</button>
     </section>
+    
 
     <div id="map"></div>
 
@@ -72,6 +73,7 @@
 
 
  <body>
+  
 
   <div class="map-navigation">
     <button onclick="showSection('intro-popup')">( Home )</button>
@@ -79,44 +81,28 @@
     <button onclick="showSection('submission-page')">( Submit )</button>
   </div>
 
-  <section id="intro-popup">
-    <div class="intro-content">
-      <h1 class="main-title">Markham Sound Map</h1>
-      <p>Explore the sonic identity of the city.</p>
-      <button class="intro-btn" onclick="showSection('map-page')">( Enter Map )</button>
-    </div>
-  </section>
 
-  <section id="map-page" style="display:none;">
-    <div id="map"></div>
-    
-    <div class="sound-browser" id="soundBrowser">
-      <button class="toggle-btn" onclick="toggleBrowser()">☰</button>
-      <div class="browser-content">
-        <h3>Filter Sound</h3>
-        <div class="filters">
-          <select id="timeFilter" onchange="filterSounds()">
-            <option value="all">ANY TIME</option>
-            <option value="morning">MORNING</option>
-          </select>
-          <select id="categoryFilter" onchange="filterSounds()">
-            <option value="all">ANY CATEGORY</option>
-          </select>
-        </div>
-        <div id="soundList" class="sound-list"></div>
-      </div>
+  <section id="about-page">
+    <div class="map-navigation">
+      <button onclick="showSection('intro-popup')">( Home )</button>
+      <button onclick="showSection('map-page')">( Map )</button>
+      <button onclick="showSection('submission-page')">( Submit )</button>
+      
     </div>
-  </section>
-
-  <section id="about-page" style="display:none;">
     <div class="about-content">
       <h2>About the Project</h2>
       <p>Created as part of my studies at OCAD University.</p>
       <button class="back-btn" onclick="showSection('map-page')">← Back to Map</button>
     </div>
   </section>
-
-  <section id="submission-page" style="display:none;">
+ 
+  <!-- ── SUBMISSION ── -->
+  <section id="submission-page">
+    <div class="map-navigation">
+      <button onclick="showSection('intro-popup')">( Home )</button>
+      <button onclick="showSection('map-page')">( Map )</button>
+      <button onclick="showSection('about-page')">( About )</button>
+    </div>
     <div class="about-content">
       <h2>Submit a Sound</h2>
       <p>Upload your recording here.</p>
@@ -124,6 +110,7 @@
     </div>
   </section>
 
+  
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.21/leaflet-maplibre-gl.js"></script>
