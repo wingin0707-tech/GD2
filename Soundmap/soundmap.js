@@ -543,6 +543,15 @@ if (startBtn) {
     }, 1200); 
   });
 }
+
+const myCustomIcon = L.divIcon({
+  className: 'custom-cross-icon', 
+  html: '<div class="marker-dot"></div>', 
+  iconSize: [20, 20],
+  iconAnchor: [10, 10] 
+});
+// 5. Markers & Data
+   // 1. Icon Definition
 const crossIcon = L.divIcon({
   className: 'custom-cross-icon',
   html: '<div class="cross-marker"></div>', 
@@ -550,30 +559,208 @@ const crossIcon = L.divIcon({
   iconAnchor: [10, 10]
 });
 
+const soundLocations = [
+  { 
+    title: "Edward Jeffreys Ave", 
+    description: "Edward Jeffreys avenue GO train station", 
+    lat: 43.89411, lng: -79.27344, 
+    time: "16 Feb, 2026 02:55pm", 
+    audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",
+    cues: [
+      { s: 0, t: "[Distant hum of the GO Train approaching]" },
+      { s: 5, t: "Screech of brakes on metal tracks." },
+      { s: 10, t: "[Automated chime: Doors opening]" }
+    ]
+  },
+  { 
+    title: "Scott Brown St", 
+    description: "25 Scott Brown St", 
+    lat: 43.89945, lng: -79.27401, 
+    time: "17 Feb, 2026 5:30pm", 
+    audio: "https://image2url.com/r2/default/audio/1771617515406-ea055bbd-6cb8-460f-b1be-d6a683aae14a.m4a",
+    cues: [
+      { s: 0, t: "[Residential neighborhood evening sounds]" },
+      { s: 4, t: "Wind rustling through bare winter branches." },
+      { s: 12, t: "A car passes in the distance." }
+    ]
+  },
+  { 
+    title: "Edward Jeffreys GO Bus Station", 
+    description: "Markham Rd at Edward Jeffreys Ave", 
+    lat: 43.896358, lng: -79.265278, 
+    time: "16 Feb, 2026 10:20pm", 
+    audio: "https://image2url.com/r2/default/audio/1771617711520-42b4daf9-bea6-409f-98a2-931ec4d6aa53.m4a",
+    cues: [
+      { s: 0, t: "[Idling bus engine vibrations]" },
+      { s: 6, t: "The hiss of hydraulic suspension." },
+      { s: 15, t: "Muffled traffic from Markham Road." }
+    ]
+  },
+  { 
+    title: "Bur Oak Ave", 
+    description: "Bur Oak Ave", 
+    lat: 43.8929, lng: -79.3022, 
+    time: "17 Feb, 2026 4:00pm", 
+    audio: "https://image2url.com/r2/default/audio/1771617858226-0335278e-1a9a-4509-86d6-d80ff5f8aca6.m4a",
+    cues: [
+      { s: 0, t: "[Suburban street atmosphere]" },
+      { s: 8, t: "Distant sound of a crosswalk signal chirping." }
+    ]
+  },
+  { 
+    title: "South Unionville Ave", 
+    description: "Highway 407", 
+    lat: 43.8605, lng: -79.2833, 
+    time: "16 Feb, 2026 12:00pm", 
+    audio: "https://image2url.com/r2/default/audio/1771618112948-02075d34-09c1-4200-8bc5-6e1b130472f2.m4a",
+    cues: [
+      { s: 0, t: "[Continuous white noise of highway traffic]" },
+      { s: 5, t: "High-speed gusts as vehicles pass overhead." }
+    ]
+  },
+  { 
+    title: "Markham Auto Spa", 
+    description: "New Kennedy Mall", 
+    lat: 43.85934, lng: -79.3047, 
+    time: "17 Feb, 2026 5:47pm", 
+    audio: "https://image2url.com/r2/default/audio/1771618383533-1b1844c7-6186-4d66-a64e-d8fb2e0b8eff.m4a",
+    cues: [
+      { s: 0, t: "[High-pressure water spray drones]" },
+      { s: 7, t: "Metallic clanging of car wash machinery." }
+    ]
+  },
+  { 
+    title: "Edward Jeffreys Ave", 
+    description: "Inside GO Train", 
+    lat: 43.89412, lng: -79.27343, 
+    time: "16 Feb, 2026 02:45pm", 
+    audio: "https://image2url.com/r2/default/audio/1771618633399-02792719-3ee0-4572-b59a-75379656f70b.m4a",
+    cues: [
+      { s: 0, t: "[Muffled interior train cabin rumble]" },
+      { s: 10, t: "[Automated Voice: 'Now arriving at Mount Joy']" }
+    ]
+  },
+  { 
+    title: "Kennedy Rd", 
+    description: "T&T Meat Market", 
+    lat: 43.85934, lng:-79.3047, 
+    time: "16 Feb, 2026 4:32pm", 
+    audio: "https://image2url.com/r2/default/audio/1771618722900-06fc915f-343b-4b38-85a1-6ec0bc6ed6b0.m4a",
+    cues: [
+      { s: 0, t: "[Supermarket chatter and cart wheels]" },
+      { s: 5, t: "The rhythmic chopping at the meat counter." }
+    ]
+  },
+  { 
+    title: "Markham GO Bus", 
+    description: "Highway 407", 
+    lat: 43.896358, lng: -79.265278, 
+    time: "16 Feb, 2026 10:46pm", 
+    audio: "https://image2url.com/r2/default/audio/1771619947868-cef868a6-5059-4f3d-bddb-3028eb21ac17.m4a",
+    cues: [
+      { s: 0, t: "[Late night bus interior silence]" },
+      { s: 12, t: "Turn signal clicking 'tic-toc' rhythm." }
+    ]
+  },
+  { 
+    title: "Markham Plaza", 
+    description: "Train", 
+    lat: 43.8763, lng: -79.2575, 
+    time: "17 Feb, 2026 4:00pm", 
+    audio: "https://image2url.com/r2/default/audio/1772144198078-d1de5c85-3734-4222-abdb-8915acf204de.m4a",
+    cues: [
+      { s: 0, t: "[Platform announcements echoing]" },
+      { s: 8, t: "Squeal of metal wheels on a curved track." }
+    ]
+  },
+  { 
+    title: "Kennedy Rd", 
+    description: "Kennedy Rd", 
+    lat: 43.874527, lng: -79.286243, 
+    time: "18 Feb, 2026 8:30pm", 
+    audio: "https://image2url.com/r2/default/audio/1772144461963-b6596e1b-7a63-40de-9dc0-771281e02950.m4a",
+    cues: [
+      { s: 0, t: "[Wet pavement sounds from recent rain]" },
+      { s: 6, t: "Heavy truck passing with a deep bass roar." }
+    ]
+  },
+  { 
+    title: "Mercedes-Benz Markham", 
+    description: "Mercedes-Benz Markham", 
+    lat: 43.8577525, lng: -79.3043853, 
+    time: "19 Feb, 2026 5:02pm", 
+    audio: "https://image2url.com/r2/default/audio/1772144515177-ef239853-490c-4881-9f99-78d92d8c7fdc.m4a",
+    cues: [
+      { s: 0, t: "[Polished showroom reverb]" },
+      { s: 4, t: "Soft click of a car door closing." }
+    ]
+  },
+  { 
+    title: "Milliken Meadows Dr GO Train", 
+    description: "Milliken Meadows Dr GO Train", 
+    lat: 43.82319, lng: -79.30167, 
+    time: "20 Feb, 2026 4:33pm", 
+    audio: "https://image2url.com/r2/default/audio/1772144564808-71c77456-09c8-4500-814d-5019b67bffd2.m4a",
+    cues: [
+      { s: 0, t: "[Outdoor platform wind interference]" },
+      { s: 9, t: "Electronic chime for departing train." }
+    ]
+  },
+  { 
+    title: "Day & Night King Crab", 
+    description: "Day and Night Crab Kitchen", 
+    lat: 43.82392, lng: -79.30074, 
+    time: "21 Feb, 2026 7:16pm", 
+    audio: "https://image2url.com/r2/default/audio/1772144653984-18449777-4c39-44e2-84f8-30ac16ffbf44.m4a",
+    cues: [
+      { s: 0, t: "[Lively restaurant kitchen sounds]" },
+      { s: 5, t: "Clinking of cutlery and porcelain." },
+      { s: 15, t: "Distant laughter and bubbling steam." }
+    ]
+  }
+];
 
-const myCustomIcon = L.divIcon({
-  className: 'custom-cross-icon', // The class name for your CSS
-  html: '<div class="marker-dot"></div>', // The actual HTML element
-  iconSize: [20, 20], // The logical size of the icon
-  iconAnchor: [10, 10] // The "tip" of the icon (center it)
+soundLocations.forEach((location, index) => {
+  const marker = L.marker([location.lat, location.lng], {
+    icon: crossIcon,
+    zIndexOffset: 2000 
+  }).addTo(map);
+  
+
+  const popupHTML = `
+    <div class="popup-content" style="width: 200px;">
+      <h3 style="color:#ff0000; margin:0 0 5px 0;">${location.title}</h3>
+      <p style="font-size: 0.7rem; color: #666; margin-bottom: 7px;">Recorded: ${location.time}</p>
+      
+      <audio id="audio-${index}" controls src="${location.audio}" style="width:100%; margin-bottom:10px;"></audio>
+      
+      <div id="transcript-${index}" class="auto-transcript">
+        Press the play button to play
+      </div>
+    </div>
+  `;
+
+  marker.bindPopup(popupHTML);
+
+  // 4. The Auto-Transcript Logic
+  marker.on('popupopen', () => {
+    const audio = document.getElementById(`audio-${index}`);
+    const display = document.getElementById(`transcript-${index}`);
+
+    if (audio && location.cues) {
+      audio.ontimeupdate = () => {
+        let activeText = "RECORDING...";
+        // Loop through cues to find which one is active
+        location.cues.forEach(cue => {
+          if (audio.currentTime >= cue.s) {
+            activeText = cue.t;
+          }
+        });
+        display.innerText = activeText;
+      };
+    }
+  });
 });
-// 5. Markers & Data
-    const soundLocations = [
-   { title: "Edward Jeffreys Ave", description: "Edward Jeffreys avenue GO train station", lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a", image: "Markham-Village-Train-Station-3.jpg" },
-   { title: "Scott Brown St", description: "25 Scott Brown St", lat: 43.89945, lng: -79.27401, time: "17 Feb, 2026 5:30pm", audio: "https://image2url.com/r2/default/audio/1771617515406-ea055bbd-6cb8-460f-b1be-d6a683aae14a.m4a" },
-    { title: "Edward Jeffreys GO Bus Station", description: "Markham Rd at Edward Jeffreys Ave", lat: 43.896358, lng: -79.265278, time: "16 Feb, 2026 10:20pm", audio: "https://image2url.com/r2/default/audio/1771617711520-42b4daf9-bea6-409f-98a2-931ec4d6aa53.m4a" },
-    { title: "Bur Oak Ave", description: "Bur Oak Ave", lat: 43.8929, lng: -79.3022, time: "17 Feb, 2026 4:00pm", audio: "https://image2url.com/r2/default/audio/1771617858226-0335278e-1a9a-4509-86d6-d80ff5f8aca6.m4a" },
-    { title: "South Unionville Ave", description: "Highway 407", lat: 43.8605, lng: -79.2833, time: "16 Feb, 2026 12:00pm", audio: "https://image2url.com/r2/default/audio/1771618112948-02075d34-09c1-4200-8bc5-6e1b130472f2.m4a" },
-      { title: "Markham Auto Spa", description: "New Kennedy Mall", lat: 43.85934, lng: -79.3047, time: "17 Feb, 2026 5:47pm", audio: "https://image2url.com/r2/default/audio/1771618383533-1b1844c7-6186-4d66-a64e-d8fb2e0b8eff.m4a" },
-    { title: "Edward Jeffreys Ave", description: "Inside GO Train", lat: 43.89412, lng: -79.27343, time: "16 Feb, 2026 02:45pm", audio: "https://image2url.com/r2/default/audio/1771618633399-02792719-3ee0-4572-b59a-75379656f70b.m4a" },
-    { title: "Kennedy Rd", description: "T&T Meat Market", lat: 43.85934, lng:-79.3047, time: "16 Feb, 2026 4:32pm", audio: "https://image2url.com/r2/default/audio/1771618722900-06fc915f-343b-4b38-85a1-6ec0bc6ed6b0.m4a" },
-    { title: "Markham GO Bus", description: "Highway 407", lat: 43.896358, lng: -79.265278, time: "16 Feb, 2026 10:46pm", audio: "https://image2url.com/r2/default/audio/1771619947868-cef868a6-5059-4f3d-bddb-3028eb21ac17.m4a" },
-    { title: "Markham Plaza", description: "Train", lat: 43.8763, lng: -79.2575, time: "17 Feb, 2026 4:00pm", audio: "https://image2url.com/r2/default/audio/1772144198078-d1de5c85-3734-4222-abdb-8915acf204de.m4a" },
-    { title: "Kennedy Rd", description: "Kennedy Rd", lat: 43.874527, lng: -79.286243, time: "18 Feb, 2026 8:30pm", audio: "https://image2url.com/r2/default/audio/1772144461963-b6596e1b-7a63-40de-9dc0-771281e02950.m4a" },
-    { title: "Mercedes-Benz Markham", description: "Mercedes-Benz Markham", lat: 43.8577525, lng: -79.3043853, time: "19 Feb, 2026 5:02pm", audio: "https://image2url.com/r2/default/audio/1772144515177-ef239853-490c-4881-9f99-78d92d8c7fdc.m4a" },
-    { title: "Milliken Meadows Dr GO Train", description: "Milliken Meadows Dr GO Train", lat: 43.82319, lng: -79.30167, time: "20 Feb, 2026 4:33pm", audio: "https://image2url.com/r2/default/audio/1772144564808-71c77456-09c8-4500-814d-5019b67bffd2.m4a" },
-    { title: "Day & Night King Crab", description: "Day and Night Crab Kitchen", lat: 43.82392, lng: -79.30074, time: "21 Feb, 2026 7:16pm", audio: "https://image2url.com/r2/default/audio/1772144653984-18449777-4c39-44e2-84f8-30ac16ffbf44.m4a" }
-    ];
     soundLocations.forEach((location) => {
       const marker = L.marker([location.lat, location.lng], {
         icon: crossIcon,
@@ -648,3 +835,66 @@ function showSection(sectionId) {
   }
 }
 
+function showSection(sectionId) {
+  // 1. Hide all sections
+  document.querySelectorAll('main > section').forEach(section => {
+    section.classList.remove('active');
+    section.style.display = 'none';
+  });
+
+  // 2. Show the one you clicked
+  const activeSection = document.getElementById(sectionId);
+  activeSection.style.display = 'block';
+  activeSection.classList.add('active');
+
+  // 3. Special fix: If switching back to the map, tell Leaflet to resize
+  if (sectionId === 'home') {
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+  }
+}
+// Function to generate the list initially
+function buildSoundList(locations) {
+  const list = document.getElementById('soundList');
+  list.innerHTML = ''; // Clear current list
+
+  locations.forEach((loc, index) => {
+      const item = document.createElement('div');
+      item.className = 'sound-item';
+      item.innerHTML = `
+          <h4>${loc.title}</h4>
+          <span>${loc.time}</span>
+      `;
+      // Clicking a list item zooms the map to that marker
+      item.onclick = () => {
+          map.setView([loc.lat, loc.lng], 16);
+          // Optional: find the marker in your marker array and open its popup
+      };
+      list.appendChild(item);
+  });
+}
+
+// Function to Filter based on Search Input
+function filterSounds() {
+  const searchTerm = document.getElementById('soundSearch').value.toLowerCase();
+  const timeTerm = document.getElementById('timeFilter').value;
+  
+  const filtered = soundLocations.filter(loc => {
+      const matchesSearch = loc.title.toLowerCase().includes(searchTerm) || 
+                            loc.description.toLowerCase().includes(searchTerm);
+      
+      // Simple logic for time-of-day filtering
+      let matchesTime = true;
+      if (timeTerm !== 'all') {
+          matchesTime = loc.time.toLowerCase().includes(timeTerm);
+      }
+      
+      return matchesSearch && matchesTime;
+  });
+
+  buildSoundList(filtered);
+}
+
+// Call this once your map loads
+buildSoundList(soundLocations);

@@ -30,7 +30,6 @@ main section.active {
   z-index: 5000; /* Sit on top of the map */
 }
 
-/* --- Layout: Title Overlay --- */
 .header-container {
   position: fixed;
   top: 40px;
@@ -45,6 +44,32 @@ main section.active {
   cursor: none; 
 }
 
+leaflet-tile-pane {
+  z-index: 700 !important;
+}
+
+/* Push the marker container to the back */
+.leaflet-marker-pane {
+  z-index: 400 !important;
+}
+
+/* Ensure the popups still appear on the very top so you can read them */
+.leaflet-popup-pane {
+  z-index: 1000 !important;
+}
+
+
+.auto-transcript {
+  background: #ffffff;
+  color: #ff0000;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  border-left: 3px solid #ff0000;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
 .intro-popup {
   position: fixed;
   inset: 0;
@@ -58,9 +83,8 @@ main section.active {
   z-index: 15000; /* Should be higher than everything */
 }
 
-/* 2. Fix the header blocking the screen */
 .header-container {
-  pointer-events: none; /* Mouse passes through the empty space */
+  pointer-events: none; 
 }
 
 .title {
@@ -131,55 +155,40 @@ section.active {
   mix-blend-mode: difference; /* Makes it visible on light/dark backgrounds */
 }
 
-/* Ensure buttons are above other layers and clickable */
-.top-nav {
+
+.main-nav {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1000;
+  z-index: 1000; /* Stays above the map */
+  display: flex;
+  gap: 15px;
 }
 
-
-.auto-transcript {
+.main-nav button {
   background: white;
   color: #ff0000;
-  padding: 10px;
   border: 1.5px solid #ff0000;
+  padding: 8px 15px;
   font-family: monospace;
-  font-size: 0.8rem;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  text-transform: uppercase;
-  /* Add a little 'scanning' animation feel */
-  border-left: 5px solid #ff0000;
-}
-
-.top-nav button {
   cursor: pointer;
-  pointer-events: auto;
-  background: white;
-  border: 1px solid black;
-  padding: 5px 10px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
 }
 
+.main-nav button:hover {
+  background: #ff0000;
+}
 .intro-popup {
   background: rgba(255, 255, 255, 0.9); 
   z-index: 12000;
 }
 
-.intro-box {
-  border: 0.5px solid #000;
-  border-radius: 0; 
-  box-shadow: 10px 10px 0px #000;
-}
 
 .fade-out {
   opacity: 0;
   pointer-events: none; 
-  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  transition: opacity 2s ease-out, transform 1.5s ease-out;
   transform: scale(1.05); 
 }
 
@@ -194,7 +203,6 @@ section.active {
   transition: opacity 1.5s ease, filter 1.5s ease;
   pointer-events: none;
 }
-/* The Landing Page (Intro) */
 .intro-popup {
   position: fixed;
   top: 0;
@@ -206,7 +214,7 @@ section.active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 5000; /* Sits on top of everything */
+  z-index: 5000;
   transition: opacity 1.5s ease, filter 1.5s ease;
 }
 
@@ -223,7 +231,6 @@ section.active {
   opacity: 1;
 }
 
-/* Intro Popup Overlay */
 .intro-popup {
   position: fixed;
   inset: 0;
@@ -231,7 +238,7 @@ section.active {
     display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; /* Left aligned like your mockup */
+  align-items: flex-start;
   padding-left: 5vw;
   z-index: 9999;
   transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
@@ -263,16 +270,13 @@ section.active {
 }
 
 .intro-btn:hover {
-  color: #9caeff;
-  border-bottom: 2px solid #7b73da;
   letter-spacing: 6px; 
 }
 
-/* The Main Static Title */
 .main-title {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 450;
-  font-size: 8rem; /* Big, impactful title */
+  font-size: 8rem;
   color: rgb(241, 0, 0);
   letter-spacing: -4px;
   margin: 50;
@@ -280,11 +284,10 @@ section.active {
   pointer-events: none;
 }
 
-/* Individual Dot Styling */
 .dot {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background-color: white;
   border-radius: 50%;
   display: flex;
@@ -293,21 +296,20 @@ section.active {
   
   color: #ff0000; 
   font-family: 'Helvetica', sans-serif;
-  font-weight: 20;
-  font-size: 35pt;
+  font-weight: 18;
+  font-size: 50pt;
   text-transform: lowercase;
   
   animation: wander 15s ease-in-out infinite alternate;
 }
 
 
-.s1 { top: 60%; left: 35%; }
-.s2 { top: 65%; left: 42%; animation-delay: -10s; }
-.s3 { top: 62%; left: 50%; animation-delay: -5s; }
-.s4 { top: 68%; left: 58%; animation-delay: -1s; }
-.s5 { top: 63%; left: 65%; animation-delay: -3s; }
+.s1 { top: 40%; left: 50%; }
+.s2 { top: 44%; left: 58%; animation-delay: -10s; }
+.s3 { top: 48%; left: 66%; animation-delay: -5s; }
+.s4 { top: 50%; left: 72%; animation-delay: -1s; }
+.s5 { top: 65%; left: 70%; animation-delay: -3s; }
 
-/* Map (Further down) */
 .m1 { top: 80%; left: 45%; }
 .m2 { top: 82%; left: 52%; animation-delay: -5s; }
 .m3 { top: 78%; left: 59%; animation-delay: -2.5s; }
@@ -323,7 +325,6 @@ section.active {
   margin-top: 40px;
   background: transparent;
   color: rgb(255, 0, 0);
-  border: 1px solid white;
   padding: 12px 30px;
   font-family: monospace;
   cursor: pointer;
@@ -334,4 +335,67 @@ section.active {
 .intro-btn:hover {
   background: white;
   color: #ff0000;
+}
+
+.sound-browser {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background: white;
+  border-right: 2px solid #ff0000;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.browser-header h3 {
+  color: #ff0000;
+  font-family: monospace;
+  margin-bottom: 15px;
+}
+
+#soundSearch, #timeFilter {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ff0000;
+  font-family: monospace;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.sound-list {
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.sound-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.sound-item:hover {
+  color: #ff0000;
+}
+
+.sound-item h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.sound-item span {
+  font-size: 0.7rem;
+  font-family: monospace;
+}
+
+/* Adjust the map to sit next to the sidebar */
+#map {
+  margin-left: 300px; /* Push map over so sidebar doesn't cover it */
+  width: calc(100% - 300px);
+  height: 100vh;
 }

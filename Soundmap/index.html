@@ -16,11 +16,7 @@
   <div id="intro-popup" class="intro-popup">
     <div class="intro-bg"></div>
   
-    <nav class="top-nav">
-      <button onclick="showSection('about')">(about)</button>
-      <button onclick="showSection('home')">(home)</button>
-      <button onclick="showSection('submission')">(submit)</button>
-    </nav>
+
   
     <div class="intro-content">
       <h1 class="main-title">Markham</h1>
@@ -31,22 +27,27 @@
       </div>
   
       <div class="enter-wrapper">
-        <button id="start-map" class="intro-btn">(map)</button>
+        <button id="start-map" class="intro-btn" onclick="showSection('home')">(map)</button>
+        <button class="intro-btn" onclick="showSection('about')">(about)</button>        
+        <button class="intro-btn" onclick="showSection('submission')">(submit)</button>     
+        <button class="intro-btn" onclick="showSection('intro-popup')">(home)</button>
       </div>
-    </div>
+  </div>
+
   </div>
 
   <main> 
     <section id="home" class="active">
-      <div id="map" style="height: 100vh; width: 100%;"></div>
+      <div id="map"></div>
     </section>
 
-    <section id="about" style="display:none;">
+    <section id="about">
       <h1>About This Project</h1>
       <p>This sound map archives and explores environments through audio recordings collected across Markham.</p>
     </section>
 
-    <section id="submission" style="display:none;">
+
+    <section id="submission">
       <h2>Submit a Recording</h2>
       <form action="https://formspree.io/f/your@email.com" method="POST" enctype="multipart/form-data">
         <input type="text" name="location" placeholder="Location Name" required><br>
@@ -58,9 +59,36 @@
       </form>
     </section>
   </main>
+
+  <section id="home" class="section">
+    <button class="back-home-btn" onclick="showSection('intro-popup')">(home)</button>
+    
+    <div class="sound-browser">
+        <div class="browser-header">
+            <h3>ARCHIVE</h3>
+            <input type="text" id="soundSearch" placeholder="Search location..." onkeyup="filterSounds()">
+            
+            <div class="filters">
+                <select id="timeFilter" onchange="filterSounds()">
+                    <option value="all">Any Time</option>
+                    <option value="morning">Morning</option>
+                    <option value="afternoon">Afternoon</option>
+                    <option value="evening">Evening</option>
+                </select>
+            </div>
+        </div>
+        
+        <div id="soundList" class="sound-list">
+            </div>
+    </div>
+
+    <div id="map"></div>
+</section>
   
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-  <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.21/leaflet-maplibre-gl.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" crossorigin></script>
+  <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.21/leaflet-maplibre-gl.js" crossorigin></script>
   <script src="soundmap.js"></script>
+
 </body>
+</html>
