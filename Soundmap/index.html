@@ -34,38 +34,42 @@
       <button class="back-home-btn" onclick="showSection('intro-popup')">(home)</button>
     </section>
 
-    <div class="sound-browser">
+    <div id="map"></div>
+
       <div class="sound-browser" id="soundBrowser">
     <button class="toggle-btn" onclick="toggleBrowser()">☰</button>
     
-      <div class="browser-header">
-          <h3>Find Sound</h3>
-          <input type="text" id="soundSearch" onkeyup="filterSounds()">
-          <div class="filters"><div class="filters" style="display: flex; flex-direction: column; gap: 10px;"></div>
-          
-              </select>
-            </div>
-          </div>
-          <div id="soundList" class="sound-list"></div>
-      </div>
-      <div id="map"></div>
-    </section>
 
-    <div class="filters">
-      <select id="timeFilter" onchange="filterSounds()">
-        <option value="all">ANY TIME</option>
-        <option value="morning">MORNING</option>
-        <option value="afternoon">AFTERNOON</option>
-        <option value="evening">EVENING</option>
+    <div class="browser-content">
+      <h3>Filter Sound</h3>
+
+      <div class="filters">
+        <select id="timeFilter" onchange="filterSounds()">
+          <option value="all">ANY TIME</option>
+          <option value="morning">MORNING</option>
+          <option value="afternoon">AFTERNOON</option>
+          <option value="evening">EVENING</option>
+      </select>
+    
+      <select id="categoryFilter" onchange="filterSounds()">
+        <option value="all">ANY CATEGORY</option>
+        <option value="Transit">TRANSIT</option>
+        <option value="Commercial">COMMERCIAL</option>
+        <option value="Residential">RESIDENTIAL</option>
     </select>
-  
-    <select id="categoryFilter" onchange="filterSounds()">
-      <option value="all">ANY CATEGORY</option>
-      <option value="Transit">TRANSIT</option>
-      <option value="Commercial">COMMERCIAL</option>
-      <option value="Residential">RESIDENTIAL</option>
-  </select>
   </div>
+      <div class="browser-header">
+         
+        <div id="soundList" class="sound-list"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+ 
+    <div>
+ </div>
+
   
     <section id="about">
       <h1>About This Project</h1>
