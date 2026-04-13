@@ -336,66 +336,64 @@ section.active {
   background: white;
   color: #ff0000;
 }
-
+/* The main container - Moved to the RIGHT */
 .sound-browser {
   position: fixed;
-  left: 0;
+  right: 0;           /* Changed from left: 0 */
   top: 0;
   width: 300px;
-  height: 100vh;
+  height: 100%;
   background: white;
-  border-right: 2px solid #ff0000;
+  transition: transform 0.3s ease;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-sizing: border-box;
+  
+  /* Added padding so text isn't touching the edges */
+  padding: 20px;      
+  box-sizing: border-box; /* Ensures padding doesn't make the box wider than 300px */
+  border-left: 1px solid #eee; /* Optional: adds a nice subtle border on the inner edge */
 }
 
-.browser-header h3 {
-  color: #ff0000;
-  font-family: monospace;
-  margin-bottom: 15px;
+/* Updated Collapsed state for the RIGHT side */
+.sound-browser.collapsed {
+  transform: translateX(260px); /* Slides to the right instead of left */
 }
 
-#soundSearch, #timeFilter {
+/* Style for the toggle button - Now on the LEFT side of the bar */
+.toggle-btn {
+  position: absolute;
+  left: -40px;        /* Changed from right: -40px to stick out the inner side */
+  top: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-right: none; /* Looks cleaner attached to the bar */
+}
+
+/* Fixing font spacing for the sound items */
+.sound-item {
+    padding: 12px 0;   /* Adds vertical space between items */
+    display: block;
+}
+
+.sound-item strong {
+    font-family: 'Helvetica Neue', sans-serif;
+    letter-spacing: -0.2px; /* Loosened slightly so it's not "too close" */
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    line-height: 1.4;    /* Adds space between lines of text */
+}
+
+/* Spacing for the filters */
+.filters {
+    margin-top: 15px;
+    padding-bottom: 15px;
+}
+
+#soundSearch {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ff0000;
-  font-family: monospace;
-  margin-bottom: 10px;
-  outline: none;
-}
-
-.sound-list {
-  overflow-y: auto;
-  flex-grow: 1;
-}
-
-.sound-item {
-  padding: 15px 0;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-}
-
-.sound-item:hover {
-  color: #ff0000;
-}
-
-.sound-item h4 {
-  margin: 0;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-}
-
-.sound-item span {
-  font-size: 0.7rem;
-  font-family: monospace;
-}
-
-/* Adjust the map to sit next to the sidebar */
-#map {
-  margin-left: 300px; /* Push map over so sidebar doesn't cover it */
-  width: calc(100% - 300px);
-  height: 100vh;
+  margin-bottom: 20px;
+  box-sizing: border-box; /* This keeps it from overflowing the sidebar */
 }

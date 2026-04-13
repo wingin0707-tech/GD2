@@ -11,16 +11,11 @@
 </head>
 <body>
 
-  <div class="custom-cursor"></div>
 
   <div id="intro-popup" class="intro-popup">
     <div class="intro-bg"></div>
-  
-
-  
     <div class="intro-content">
       <h1 class="main-title">Markham</h1>
-  
       <div class="dot-field">
         <span class="dot s1">s</span><span class="dot s2">o</span><span class="dot s3">u</span><span class="dot s4">n</span><span class="dot s5">d</span>
         <span class="dot m1">m</span><span class="dot m2">a</span><span class="dot m3">p</span>
@@ -30,61 +25,55 @@
         <button id="start-map" class="intro-btn" onclick="showSection('home')">(map)</button>
         <button class="intro-btn" onclick="showSection('about')">(about)</button>        
         <button class="intro-btn" onclick="showSection('submission')">(submit)</button>     
-        <button class="intro-btn" onclick="showSection('intro-popup')">(home)</button>
       </div>
-  </div>
-
-  </div>
+   </div>
+ </div>
 
   <main> 
-    <section id="home" class="active">
+    <section id="map-page" style="display:none;">
+      <button class="back-home-btn" onclick="showSection('intro-popup')">(home)</button>
+    </section>
+
+    <div class="sound-browser">
+      <div class="sound-browser" id="soundBrowser">
+    <button class="toggle-btn" onclick="toggleBrowser()">☰</button>
+    
+      <div class="browser-header">
+          <h3>Find Sound</h3>
+          <input type="text" id="soundSearch" onkeyup="filterSounds()">
+          <div class="filters"><div class="filters" style="display: flex; flex-direction: column; gap: 10px;"></div>
+          
+              </select>
+            </div>
+          </div>
+          <div id="soundList" class="sound-list"></div>
+      </div>
       <div id="map"></div>
     </section>
 
+    <div class="filters">
+      <select id="timeFilter" onchange="filterSounds()">
+        <option value="all">ANY TIME</option>
+        <option value="morning">MORNING</option>
+        <option value="afternoon">AFTERNOON</option>
+        <option value="evening">EVENING</option>
+    </select>
+  
+    <select id="categoryFilter" onchange="filterSounds()">
+      <option value="all">ANY CATEGORY</option>
+      <option value="Transit">TRANSIT</option>
+      <option value="Commercial">COMMERCIAL</option>
+      <option value="Residential">RESIDENTIAL</option>
+  </select>
+  </div>
+  
     <section id="about">
       <h1>About This Project</h1>
       <p>This sound map archives and explores environments through audio recordings collected across Markham.</p>
     </section>
 
-
-    <section id="submission">
-      <h2>Submit a Recording</h2>
-      <form action="https://formspree.io/f/your@email.com" method="POST" enctype="multipart/form-data">
-        <input type="text" name="location" placeholder="Location Name" required><br>
-        <input type="text" name="description" placeholder="Description"><br>
-        <input type="text" name="time" placeholder="Time"><br>
-        <label>Upload Audio:</label><br>
-        <input type="file" name="upload" accept="audio/*"><br>
-        <button type="submit">Send Submission</button>
-      </form>
-    </section>
-  </main>
-
-  <section id="home" class="section">
-    <button class="back-home-btn" onclick="showSection('intro-popup')">(home)</button>
-    
-    <div class="sound-browser">
-        <div class="browser-header">
-            <h3>ARCHIVE</h3>
-            <input type="text" id="soundSearch" placeholder="Search location..." onkeyup="filterSounds()">
-            
-            <div class="filters">
-                <select id="timeFilter" onchange="filterSounds()">
-                    <option value="all">Any Time</option>
-                    <option value="morning">Morning</option>
-                    <option value="afternoon">Afternoon</option>
-                    <option value="evening">Evening</option>
-                </select>
-            </div>
-        </div>
-        
-        <div id="soundList" class="sound-list">
-            </div>
-    </div>
-
-    <div id="map"></div>
-</section>
   
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" crossorigin></script>
   <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.21/leaflet-maplibre-gl.js" crossorigin></script>
