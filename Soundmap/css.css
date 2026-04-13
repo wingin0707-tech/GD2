@@ -414,3 +414,29 @@ section.active {
   border-bottom: 0.5px solid #eee;
   cursor: pointer;
 }
+
+
+.map-navigation {
+    position: absolute;
+    top: 20px;
+    left: 60px; /* Moves it away from the sidebar toggle */
+    z-index: 1000; /* Keeps it above the map */
+    display: flex;
+    gap: 10px;
+}
+
+.map-navigation button {
+    background: white;
+    border: 1px solid black;
+    padding: 8px 15px;
+    font-family: 'Helvetica', sans-serif; /* OCAD aesthetic */
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.map-navigation button:hover {
+    background: black;
+    color: white;
+}
