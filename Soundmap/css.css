@@ -116,7 +116,7 @@ section.active {
 #home.active {
   display: block;
 }
-/* --- The Map --- */
+
 #map {
   width: 100vw;
   height: 100vh;
@@ -304,11 +304,11 @@ section.active {
 }
 
 
-.s1 { top: 40%; left: 50%; }
-.s2 { top: 44%; left: 58%; animation-delay: -10s; }
-.s3 { top: 48%; left: 66%; animation-delay: -5s; }
-.s4 { top: 50%; left: 72%; animation-delay: -1s; }
-.s5 { top: 65%; left: 70%; animation-delay: -3s; }
+.s1 { top: 40%; left: 45%; }
+.s2 { top: 49%; left: 50%; animation-delay: -10s; }
+.s3 { top: 48%; left: 56%; animation-delay: -5s; }
+.s4 { top: 50%; left: 63%; animation-delay: -1s; }
+.s5 { top: 50%; left: 68%; animation-delay: -3s; }
 
 .m1 { top: 80%; left: 45%; }
 .m2 { top: 82%; left: 52%; animation-delay: -5s; }
@@ -320,7 +320,6 @@ section.active {
   100% { transform: translate(-10px, 15px); }
 }
 
-/* The Enter Button */
 .intro-btn {
   margin-top: 40px;
   background: transparent;
