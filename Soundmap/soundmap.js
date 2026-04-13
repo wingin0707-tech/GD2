@@ -443,21 +443,102 @@ L.maplibreGL({
   }
 }).addTo(map);
 
-function showSection(id) {
-  document.querySelectorAll('section').forEach(sec => {
-    sec.classList.remove('active');
-    sec.style.display = 'none';
+function showSection(sectionId) {
+  const introPopup = document.getElementById("intro-popup");
+
+  if (sectionId === 'intro-popup') {
+    if (introPopup) {
+      introPopup.style.display = "flex"; 
+      
+      setTimeout(() => {
+        introPopup.classList.remove('dissolve');
+        introPopup.style.pointerEvents = "auto"; // Re-enable clicks
+      }, 10);
+    }
+  } else {
+    if (introPopup) {
+      introPopup.classList.add('dissolve');
+
+      setTimeout(() => {
+        if (introPopup.classList.contains('dissolve')) {
+          introPopup.style.display = "none";
+        }
+      }, 1200); 
+    }
+  }
+  function enterMap() {
+    const introPopup = document.getElementById('intro-popup');
+    
+    // 1. If intro is visible, dissolve it
+    if (introPopup && introPopup.style.display !== 'none') {
+      introPopup.classList.add('dissolve');
+      
+      // 2. Wait for the blur animation, then switch
+      setTimeout(() => {
+        showSection('map-page');
+      }, 1200);
+    } else {
+      // 3. If we're coming from About/Submit, just go to map
+      showSection('map-page');
+    }
+  }
+  
+  function showSection(sectionId) {
+    const introPopup = document.getElementById("intro-popup");
+  
+    // Handle Home Page Logic
+    if (sectionId === 'intro-popup') {
+      if (introPopup) {
+        introPopup.style.display = "flex";
+        introPopup.classList.remove('dissolve'); 
+        introPopup.style.pointerEvents = "auto";
+      }
+    } else {
+      if (introPopup) {
+        introPopup.style.display = "none";
+        // We keep 'dissolve' on so it's ready to fade in next time
+      }
+    }
+  
+    // --- Toggle Sections ---
+    const sections = ["map-page", "about-page", "submission-page"];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('active');
+        el.style.display = "none";
+      }
+    });
+  
+    const target = document.getElementById(sectionId);
+    if (target) {
+      target.classList.add('active');
+      target.style.display = "block";
+      
+      // Fix Leaflet Gray Box Glitch
+      if (sectionId === 'map-page' && window.map) {
+        setTimeout(() => {
+          window.map.invalidateSize();
+        }, 200);
+      }
+    }
+  }
+  const sections = ["map-page", "about-page", "submission-page"];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.remove('active');
+      el.style.display = "none";
+    }
   });
 
-  const target = document.getElementById(id);
+  const target = document.getElementById(sectionId);
   if (target) {
     target.classList.add('active');
-    target.style.display = 'block';
-  }
-
-  // Fix Leaflet map glitch when returning
-  if (id === 'map-page' && window.map) {
-    setTimeout(() => map.invalidateSize(), 200);
+    target.style.display = "block";
+    if (sectionId === 'map-page' && window.map) {
+      setTimeout(() => map.invalidateSize(), 200);
+    }
   }
 }
 
@@ -471,9 +552,6 @@ document.addEventListener('mousemove', function(e) {
 document.addEventListener('mousedown', function() { cursor.classList.add('click'); });
 document.addEventListener('mouseup', function() { cursor.classList.remove('click'); });
  
-// ============================================================
-// 4. INTRO BUTTON
-// ============================================================
 const startBtn = document.getElementById('start-map');
 const introPopup = document.getElementById('intro-popup');
 
@@ -487,10 +565,6 @@ if (startBtn && introPopup) {
   });
 }
 
-
-// ============================================================
-// 5. MARKER ICON
-// ============================================================
 const crossIcon = L.divIcon({
   className: 'custom-cross-icon',
   html: '<div class="cross-marker"></div>',
@@ -498,9 +572,7 @@ const crossIcon = L.divIcon({
   iconAnchor: [10, 10]
 });
  
-// ============================================================
-// 6. SOUND DATA
-// ============================================================
+
 const soundData = [
   { title: "Edward Jeffreys Ave", category: "Transit", description: "Edward Jeffreys avenue GO train station", lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",
     cues: [{ s: 0, t: "[Distant hum of the GO Train approaching]" }, { s: 5, t: "Screech of brakes on metal tracks." }, { s: 10, t: "[Automated chime: Doors opening]" }] },

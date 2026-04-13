@@ -478,7 +478,6 @@ section.active {
 /* When a section has .active, it MUST show and be at the front */
 section.active, div.active {
   display: block !important;
-  opacity: 1 !important;
   visibility: visible !important;
   z-index: 8000 !important; 
 }
@@ -497,5 +496,225 @@ section.active, div.active {
 
 .custom-cursor {
   z-index: 20000;
+  pointer-events: none !important;
+}
+
+/* --- Submission Page Styling --- */
+.submission-container {
+  max-width: 600px;
+  margin: 100px auto; /* Space for the top nav */
+  padding: 40px;
+  background: white;
+  border: 1px solid #000;
+}
+
+.form-header {
+  margin-bottom: 40px;
+  border-bottom: 3px solid #ff0000;
+  padding-bottom: 10px;
+}
+
+.form-title {
+  font-family: 'Halenoir', sans-serif;
+  font-size: 3rem;
+  color: #ff0000;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -2px;
+}
+
+.form-subtitle {
+  font-family: 'F25 Bank Printer', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.input-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-family: 'F25 Bank Printer', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.input-group input, 
+.input-group select {
+  padding: 12px;
+  border: 1.5px solid #000;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #ff0000;
+}
+
+/* Custom File Upload Styling */
+.hidden-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px dashed #ff0000;
+  color: #ff0000;
+  font-family: 'F25 Bank Printer', monospace;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+}
+
+.file-label:hover {
+  background: #fff5f5;
+}
+
+.submit-action-btn {
+  width: 100%;
+  padding: 15px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  font-family: 'F25 Bank Printer', monospace;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: letter-spacing 0.3s ease;
+}
+
+.submit-action-btn:hover {
+  letter-spacing: 4px;
+  background: #354aa6; /* Changes to your blue on hover */
+}
+
+.back-btn {
+  margin-top: 30px;
+  background: none;
+  border: none;
+  font-family: 'F25 Bank Printer', monospace;
+  text-decoration: underline;
+  cursor: pointer;
+}
+/* --- About Page Styling --- */
+.about-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 120px 40px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Split screen layout */
+  gap: 80px;
+  align-items: start;
+}
+
+.archive-no {
+  font-family: 'F25 Bank Printer', monospace;
+  font-size: 0.9rem;
+  color: #ff0000;
+  margin-bottom: 10px;
+}
+
+.about-main-title {
+  font-family: 'Halenoir', sans-serif; /* Your heading font */
+  font-size: 6rem;
+  line-height: 0.85;
+  text-transform: uppercase;
+  margin: 0;
+  color: #000;
+  letter-spacing: -3px;
+}
+
+.about-body {
+  border-left: 1px solid #eee;
+  padding-left: 40px;
+}
+
+.about-section {
+  margin-bottom: 40px;
+}
+
+.about-section h3 {
+  font-family: 'F25 Bank Printer', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #ff0000;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.about-section p {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+}
+
+.credits-box {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #000;
+  font-family: 'F25 Bank Printer', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Mobile Responsive */
+@media (max-width: 800px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-main-title {
+    font-size: 4rem;
+  }
+  .about-body {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid #eee;
+    padding-top: 40px;
+  }
+}
+
+#about-page, #submission-page {
+  background-color: #ffffff !important; /* Ensure it's not transparent */
+  min-height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.intro-popup {
+  transition: opacity 1.2s ease, filter 1.2s ease;
+  opacity: 1;
+  filter: blur(0px); /* Clean state */
+  pointer-events: auto;
+}
+
+.dissolve {
+  opacity: 0 !important;
+  filter: blur(30px) !important;
   pointer-events: none !important;
 }
