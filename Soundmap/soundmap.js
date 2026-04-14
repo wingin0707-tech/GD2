@@ -610,66 +610,68 @@ const soundData = [
 let markers = [];
  
 function filterSounds() {
-  var searchEl = document.getElementById('soundSearch');
-  var timeEl = document.getElementById('timeFilter');
-  var catEl = document.getElementById('categoryFilter');
-  var listContainer = document.getElementById('soundList');
-  if (!timeEl || !catEl || !listContainer) return;
+  const searchEl = document.getElementById('soundSearch');
+  const timeEl = document.getElementById('timeFilter');
+  const catEl = document.getElementById('categoryFilter');
+  const listContainer = document.getElementById('soundList');
+  
+  if (!listContainer || !window.map) return;
  
-  var searchTerm = searchEl ? searchEl.value.toLowerCase() : '';
-  var timeReq = timeEl.value;
-  var catReq = catEl.value;
+  const searchTerm = searchEl ? searchEl.value.toLowerCase() : '';
+  const timeReq = timeEl ? timeEl.value : 'all';
+  const catReq = catEl ? catEl.value : 'all';
  
-  markers.forEach(function(m) { map.removeLayer(m); });
+  // Clear old markers
+  markers.forEach(m => map.removeLayer(m));
   markers = [];
   listContainer.innerHTML = '';
  
-  soundData.forEach(function(loc, index) {
-    var matchesSearch = loc.title.toLowerCase().includes(searchTerm) || loc.description.toLowerCase().includes(searchTerm);
-    var matchesCategory = (catReq === 'all' || loc.category === catReq);
+  soundData.forEach((loc, index) => {
+    const matchesSearch = loc.title.toLowerCase().includes(searchTerm) || loc.description.toLowerCase().includes(searchTerm);
+    const matchesCategory = (catReq === 'all' || loc.category === catReq);
  
-    var timeStr = loc.time.toLowerCase();
-    var isPM = timeStr.includes('pm');
-    var hourMatch = timeStr.match(/(\d+):/);
-    var hour = hourMatch ? parseInt(hourMatch[1]) : 0;
-    var timeOfDay = 'morning';
-    if (isPM) { timeOfDay = (hour >= 5 && hour !== 12) ? 'evening' : 'afternoon'; }
-    var matchesTime = (timeReq === 'all' || timeOfDay === timeReq);
+    const timeStr = loc.time.toLowerCase();
+    const isPM = timeStr.includes('pm');
+    const hourMatch = timeStr.match(/(\d+):/);
+    const hour = hourMatch ? parseInt(hourMatch[1]) : 0;
+    
+    let timeOfDay = 'morning';
+    if (isPM) { 
+      timeOfDay = (hour >= 5 && hour !== 12) ? 'evening' : 'afternoon'; 
+    }
+    const matchesTime = (timeReq === 'all' || timeOfDay === timeReq);
  
     if (matchesSearch && matchesCategory && matchesTime) {
-      // Sidebar item
-      var item = document.createElement('div');
+      const item = document.createElement('div');
       item.className = 'sound-item';
-      item.innerHTML = '<strong>' + loc.title + '</strong><br><small>' + loc.description + '</small>';
+      item.innerHTML = `<strong>${loc.title}</strong><br><small>${loc.description}</small>`;
  
-      // Popup with transcript
-      var popupHTML = '<div class="popup-content" style="width:200px;">'
-        + '<h3 style="color:#ff0000;margin:0 0 5px 0;">' + loc.title + '</h3>'
-        + '<p style="font-size:0.7rem;color:#666;margin-bottom:7px;">Recorded: ' + loc.time + '</p>'
-        + '<audio id="audio-' + index + '" controls src="' + loc.audio + '" style="width:100%;margin-bottom:10px;"></audio>'
-        + '<div id="transcript-' + index + '" class="auto-transcript">Press play to begin</div>'
-        + '</div>';
+      const popupHTML = `
+        <div class="popup-content" style="width:200px;">
+          <h3 style="color:#ff0000;margin:0 0 5px 0;">${loc.title}</h3>
+          <p style="font-size:0.7rem;color:#666;margin-bottom:7px;">Recorded: ${loc.time}</p>
+          <audio id="audio-${index}" controls src="${loc.audio}" style="width:100%;margin-bottom:10px;"></audio>
+          <div id="transcript-${index}" class="auto-transcript">Press play to begin</div>
+        </div>`;
  
-      var marker = L.marker([loc.lat, loc.lng], { icon: crossIcon }).addTo(map);
+      const marker = L.marker([loc.lat, loc.lng], { icon: crossIcon }).addTo(map);
       marker.bindPopup(popupHTML);
  
-      marker.on('popupopen', (function(i, location) {
-        return function() {
-          var audio = document.getElementById('audio-' + i);
-          var display = document.getElementById('transcript-' + i);
-          if (audio && location.cues) {
-            audio.ontimeupdate = function() {
-              var activeText = 'RECORDING...';
-              location.cues.forEach(function(cue) {
-                if (audio.currentTime >= cue.s) activeText = cue.t;
-              });
-              display.innerText = activeText;
-            };
-          }
-        };
-      })(index, loc));
+      marker.on('popupopen', () => {
+        const audio = document.getElementById(`audio-${index}`);
+        const display = document.getElementById(`transcript-${index}`);
+        if (audio && loc.cues) {
+          audio.ontimeupdate = () => {
+            let activeText = 'RECORDING...';
+            loc.cues.forEach(cue => {
+              if (audio.currentTime >= cue.s) activeText = cue.t;
+            });
+            display.innerText = activeText;
+          };
+        }
+      });
  
-      item.onclick = function() {
+      item.onclick = () => {
         map.flyTo([loc.lat, loc.lng], 16);
         marker.openPopup();
       };
@@ -679,7 +681,6 @@ function filterSounds() {
     }
   });
 }
- 
-// Run on load
-filterSounds();
 
+// Initial Run
+document.addEventListener('DOMContentLoaded', filterSounds);

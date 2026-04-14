@@ -9,15 +9,13 @@
 }
 
 * {
-  cursor: none !important; /* Keep your custom cursor logic */
+  cursor: none !important; 
   box-sizing: border-box;
 }
 
-/* Use your requested monospace font for the specific 'retro' look */
 body {
   margin: 0;
   padding: 0;
-  font-family: 'F25 Bank Printer', monospace !important;
   background-color: var(--map-bg);
   color: #000;
   overflow: hidden;
@@ -27,7 +25,7 @@ main section.active {
   display: block !important; 
   visibility: visible !important;
   opacity: 1 !important;
-  z-index: 5000; /* Sit on top of the map */
+  z-index: 5000; 
 }
 
 .header-container {
@@ -35,12 +33,12 @@ main section.active {
   top: 40px;
   left: 40px;
   z-index: 1000;
-  pointer-events: none; /* This makes the "sheet of glass" invisible to the mouse */
+  pointer-events: none; 
   height: auto;
 }
 
 .title {
-  pointer-events: auto; /* This makes the TEXT itself clickable again */
+  pointer-events: auto; 
   cursor: none; 
 }
 
@@ -48,12 +46,10 @@ leaflet-tile-pane {
   z-index: 700 !important;
 }
 
-/* Push the marker container to the back */
 .leaflet-marker-pane {
   z-index: 400 !important;
 }
 
-/* Ensure the popups still appear on the very top so you can read them */
 .leaflet-popup-pane {
   z-index: 1000 !important;
 }
@@ -73,14 +69,12 @@ leaflet-tile-pane {
 .intro-popup {
   position: fixed;
   inset: 0;
-  z-index: 10000; /* Higher than everything else */
-  pointer-events: auto; /* Ensure we can click the Enter button */
-  /* ... keep your other styles ... */
+  z-index: 10000;
+  pointer-events: auto; 
 }
-/* --- Bottom Left Navigation --- */
 .custom-cursor {
   pointer-events: none !important;
-  z-index: 15000; /* Should be higher than everything */
+  z-index: 15000;
 }
 
 .header-container {
@@ -88,10 +82,9 @@ leaflet-tile-pane {
 }
 
 .title {
-  pointer-events: auto; /* But the text itself can still be clicked */
+  pointer-events: auto; 
 }
 
-/* 3. Ensure nav buttons are on top and clickable */
 .top-nav {
   z-index: 11000;
   pointer-events: auto;
@@ -99,10 +92,9 @@ leaflet-tile-pane {
 
 .top-nav button {
   pointer-events: auto;
-  cursor: none; /* Hide real cursor so yours shows */
+  cursor: none;
 }
 
-/* 4. Fix Section Visibility */
 section {
   display: none;
   opacity: 0;
@@ -152,7 +144,7 @@ section.active {
   z-index: 9999;
   transform: translate(-50%, -50%);
   transition: transform 0.1s ease-out;
-  mix-blend-mode: difference; /* Makes it visible on light/dark backgrounds */
+  mix-blend-mode: difference;
 }
 
 
@@ -160,7 +152,7 @@ section.active {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1000; /* Stays above the map */
+  z-index: 1000; 
   display: flex;
   gap: 15px;
 }
@@ -208,7 +200,7 @@ section.active {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #d3d2d5; /* Matches your body color */
+  background: #d3d2d5; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -234,7 +226,7 @@ section.active {
   position: fixed;
   inset: 0;
   background-color: rgba(155, 216, 195, 0.5);
-    display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -243,10 +235,9 @@ section.active {
   transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
-/* Massive Hero Typography */
 .intro-title {
   font-family: 'Halenoir', sans-serif;
-  font-size: 12vw; /* Extremely large font */
+  font-size: 12vw; 
   line-height: 0.8;
   font-style: normal;
   letter-spacing: -0.05em;
@@ -295,7 +286,7 @@ section.active {
   
   color: #ff0000; 
   font-family: 'Helvetica', sans-serif;
-  font-weight: 18;
+  font-weight: 40pt;
   font-size: 50pt;
   text-transform: lowercase;
   
@@ -312,6 +303,7 @@ section.active {
 .m1 { top: 80%; left: 45%; }
 .m2 { top: 82%; left: 52%; animation-delay: -5s; }
 .m3 { top: 78%; left: 59%; animation-delay: -2.5s; }
+
 
 @keyframes wander {
   0% { transform: translate(0, 0); }
@@ -334,56 +326,41 @@ section.active {
   background: white;
   color: #ff0000;
 }
-/* The main container - Moved to the RIGHT */
+
 .sound-browser {
   position: fixed;
-  right: 0;           /* Changed from left: 0 */
+  right: 0;         
   top: 0;
   width: 300px;
   height: 100%;
   background: white;
   transition: transform 0.3s ease;
   z-index: 1000;
-  
-  /* Added padding so text isn't touching the edges */
+  font-family: 'Helvetica Neue', sans-serif;
+
   padding: 20px;      
-  box-sizing: border-box; /* Ensures padding doesn't make the box wider than 300px */
-  border-left: 1px solid #eee; /* Optional: adds a nice subtle border on the inner edge */
+  box-sizing: border-box; 
+  border-left: 1px solid #eee; 
 }
 
-/* Updated Collapsed state for the RIGHT side */
 .sound-browser.collapsed {
-  transform: translateX(260px); /* Slides to the right instead of left */
+  transform: translateX(260px);
 }
 
-/* Style for the toggle button - Now on the LEFT side of the bar */
-.toggle-btn {
-  position: absolute;
-  left: -40px;        /* Changed from right: -40px to stick out the inner side */
-  top: 20px;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-right: none; /* Looks cleaner attached to the bar */
-}
 
-/* Fixing font spacing for the sound items */
 .sound-item {
-    padding: 12px 0;   /* Adds vertical space between items */
+    padding: 12px 0;  
     display: block;
 }
 
 .sound-item strong {
     font-family: 'Helvetica Neue', sans-serif;
-    letter-spacing: -0.2px; /* Loosened slightly so it's not "too close" */
+    letter-spacing: -0.2px; 
     text-transform: uppercase;
     font-size: 0.9rem;
-    line-height: 1.4;    /* Adds space between lines of text */
+    line-height: 1.4;   
 }
 
-/* Spacing for the filters */
 .filters {
     margin-top: 15px;
     padding-bottom: 15px;
@@ -403,10 +380,9 @@ section.active {
 }
 
 #soundSearch:focus {
-  border-bottom: 1px solid #ff0000; /* Subtle highlight when typing */
+  border-bottom: 1px solid #ff0000; 
 }
 
-/* Optional: Add some spacing between the list items */
 .sound-item {
   padding: 15px 0;
   border-bottom: 0.5px solid #eee;
@@ -417,8 +393,8 @@ section.active {
 .map-navigation {
     position: absolute;
     top: 20px;
-    left: 60px; /* Moves it away from the sidebar toggle */
-    z-index: 100; /* Keeps it above the map */
+    left: 60px; 
+    z-index: 100;
     display: flex;
     gap: 10px;
 }
@@ -427,7 +403,7 @@ section.active {
     background: white;
     border: 1px solid black;
     padding: 8px 15px;
-    font-family: 'Helvetica', sans-serif; /* OCAD aesthetic */
+    font-family: 'Helvetica', sans-serif; 
     font-size: 12px;
     letter-spacing: 1px;
     cursor: pointer;
@@ -437,18 +413,6 @@ section.active {
 .map-navigation button:hover {
     background: black;
     color: white;
-}
-
-/* Hide sections by default */
-#map-page, #about-page, #submission-page {
-  display: none;
-  position: fixed; /* Ensures they stay in place over the map */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: white; /* Give them a background so you can't see the map through them */
-  z-index: 100; 
 }
 
 /* --- 1. BASE LAYER: THE MAP --- */
@@ -474,8 +438,6 @@ section.active {
   z-index: 5000;  
 }
 
-/* --- 3. TOP LAYER: THE ACTIVE STATE --- */
-/* When a section has .active, it MUST show and be at the front */
 section.active, div.active {
   display: block !important;
   visibility: visible !important;
@@ -501,12 +463,27 @@ section.active, div.active {
 /* --- Submission Page Styling --- */
 .submission-container {
   max-width: 600px;
+  position: fixed;
+  left:35%;
   margin: 100px auto; /* Space for the top nav */
   padding: 40px;
   background: white;
   border: 1px solid #000;
 }
-
+#submission-page {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 30;
+  
+  display: flex;           /* Enables flexbox */
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  
+  background-color: #f0f0f0; /* Optional: light grey to make your white box pop */
+  z-index: 10000;
+}
 .form-header {
   margin-bottom: 40px;
   border-bottom: 3px solid #ff0000;
@@ -582,24 +559,7 @@ section.active, div.active {
   background: #fff5f5;
 }
 
-.submit-action-btn {
-  width: 100%;
-  padding: 15px;
-  background: #ff0000;
-  color: white;
-  border: none;
-  font-family: 'F25 Bank Printer', monospace;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: letter-spacing 0.3s ease;
-}
 
-.submit-action-btn:hover {
-  letter-spacing: 4px;
-  background: #354aa6; /* Changes to your blue on hover */
-}
 
 .back-btn {
   margin-top: 30px;
@@ -609,8 +569,8 @@ section.active, div.active {
   text-decoration: underline;
   cursor: pointer;
 }
-/* --- About Page Styling --- */
-/* --- 1. Base Layer: The Fixed Map --- */
+
+
 .about-map-bg {
   position: fixed; /* THIS IS THE TRICK: The map is fixed */
   top: 0;
@@ -629,14 +589,12 @@ section.active, div.active {
   object-fit: contain;
 }
 
-/* --- 2. Middle Layer: The Scrolling Content --- */
 .about-content-scroller {
   position: relative;
   z-index: 500; /* Sits ON TOP of the fixed map layer */
   height: 100vh;
   overflow-y: auto; /* ALLOWS THE CONTENT TO SCROLL */
   
-  /* Matches your design */
   background: white; 
   font-family: 'Helvetica Neue', sans-serif;
 }
@@ -701,12 +659,6 @@ section.active, div.active {
   color: #ff0000;
   margin-top: 8px;
   display: block;
-}
-.intro-popup {
-  transition: opacity 1.2s ease, filter 1.2s ease;
-  opacity: 1;
-  filter: blur(0px); /* Clean state */
-  pointer-events: auto;
 }
 
 .dissolve {
