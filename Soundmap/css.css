@@ -333,7 +333,7 @@ section.active {
   top: 0;
   width: 300px;
   height: 100%;
-  background: white;
+  background: rgb(241, 239, 239);
   transition: transform 0.3s ease;
   z-index: 1000;
   font-family: 'Helvetica Neue', sans-serif;
@@ -402,31 +402,29 @@ section.active {
 .map-navigation button {
     background: white;
     border: 1px solid black;
-    padding: 8px 15px;
+    padding: 10px 15px;
     font-family: 'Helvetica', sans-serif; 
-    font-size: 12px;
+    font-size: 16px;
     letter-spacing: 1px;
     cursor: pointer;
     transition: 0.2s;
 }
 
 .map-navigation button:hover {
-    background: black;
-    color: white;
+    background: rgb(255, 255, 255);
+    color: rgb(250, 4, 4);
 }
 
-/* --- 1. BASE LAYER: THE MAP --- */
 #map {
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1; /* Lowest level */
+  z-index: 1; 
   background-color: #d3d2d5;
 }
 
-/* --- 2. MIDDLE LAYER: SECTIONS (Hidden by default) --- */
 #map-page, #about-page, #submission-page {
   display: none;
   position: fixed;
@@ -435,7 +433,7 @@ section.active {
   width: 100%;
   height: 100vh;
   background-color: white; 
-  z-index: 5000;  
+  z-index: 500;  
 }
 
 section.active, div.active {
@@ -450,7 +448,6 @@ section.active, div.active {
   pointer-events: auto !important;
 }
 
-/* --- 5. INTRO & CURSOR: THE HIGHEST LAYER --- */
 .intro-popup {
   z-index: 15000;
 }
@@ -460,12 +457,11 @@ section.active, div.active {
   pointer-events: none !important;
 }
 
-/* --- Submission Page Styling --- */
 .submission-container {
   max-width: 600px;
   position: fixed;
   left:35%;
-  margin: 100px auto; /* Space for the top nav */
+  margin: 100px auto; 
   padding: 40px;
   background: white;
   border: 1px solid #000;
@@ -477,12 +473,11 @@ section.active, div.active {
   top: 0;
   left: 30;
   
-  display: flex;           /* Enables flexbox */
-  justify-content: center; /* Centers horizontally */
-  align-items: center;     /* Centers vertically */
+  display: flex;          
+  justify-content: center;
+  align-items: center;   
   
-  background-color: #f0f0f0; /* Optional: light grey to make your white box pop */
-  z-index: 10000;
+  background-color: #f0f0f0; 
 }
 .form-header {
   margin-bottom: 40px;
@@ -534,7 +529,6 @@ section.active, div.active {
   border-color: #ff0000;
 }
 
-/* Custom File Upload Styling */
 .hidden-input {
   width: 0.1px;
   height: 0.1px;
@@ -572,41 +566,39 @@ section.active, div.active {
 
 
 .about-map-bg {
-  position: fixed; /* THIS IS THE TRICK: The map is fixed */
+  position: fixed; 
   top: 0;
-  right: -10vw; /* Push to the right like in the screenshot */
-  width: 70vw; /* Give it space */
+  right: -10vw; 
+  width: 70vw; 
   height: 100vh;
-  z-index: 100; /* Must be low enough so content covers it */
-  pointer-events: none; /* Mouse passes through it to the links below */
+  z-index: 100; 
+  pointer-events: none;
   overflow: hidden;
 }
 
 .fixed-map-image {
   width: 100%;
   height: auto;
-  opacity: 0.9; /* Slight opacity as requested */
+  opacity: 0.9; 
   object-fit: contain;
 }
 
 .about-content-scroller {
   position: relative;
-  z-index: 500; /* Sits ON TOP of the fixed map layer */
+  z-index: 500; 
   height: 100vh;
-  overflow-y: auto; /* ALLOWS THE CONTENT TO SCROLL */
+  overflow-y: auto;
   
   background: white; 
   font-family: 'Helvetica Neue', sans-serif;
 }
 
-/* Give space for the navigation and first content block */
 .about-wrapper {
   max-width: 1200px;
   margin: 0 auto;
   padding: 100px 40px;
 }
 
-/* The grid header (Like in the screenshot) */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -666,3 +658,120 @@ section.active, div.active {
   filter: blur(30px) !important;
   pointer-events: none !important;
 }
+
+
+
+@media (max-width: 800px) {
+  /* --- Typography & Scale --- */
+  .main-title {
+    font-size: 4rem !important; /* Scaled down from 8rem */
+    letter-spacing: -2px;
+    margin: 20px;
+  }
+
+  .intro-title {
+    font-size: 18vw !important; /* Larger impact for mobile portrait */
+    line-height: 0.9;
+  }
+
+  /* --- Navigation (Thumb-Friendly) --- */
+  .map-navigation {
+    top: auto;
+    bottom: 30px; /* Moved to bottom for easier reach */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    justify-content: center;
+  }
+
+  .main-nav {
+    top: 15px;
+    right: 15px;
+    gap: 8px;
+  }
+
+  .main-nav button {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+
+  /* --- Sound Browser (The Drawer) --- */
+  .sound-browser {
+    width: 100vw; /* Leave a gap so they see the map behind it */
+    right: 0;
+    transform: translateX(100%); /* Hidden by default */
+    z-index: 13000;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Add this class via JS when clicking the 'Sounds' button */
+  .sound-browser.open {
+    transform: translateX(0);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  }
+
+  /* --- Submission Form --- */
+  #submission-page {
+    padding: 15px;
+    overflow-y: auto;
+  }
+
+  .submission-container {
+    width: 100%;
+    margin: 500px auto; /* Space for the top nav */
+    padding: 25px;
+    left: 0 !important;
+    position: relative;
+    box-shadow: 8px 8px 0px var(--accent-red);
+  }
+
+  .form-title {
+    font-size: 2.2rem !important;
+  }
+
+  /* --- About Page --- */
+  .about-grid {
+    grid-template-columns: 1fr; /* Stack layout */
+    gap: 30px;
+  }
+
+  .about-main-title {
+    font-size: 3.5rem !important;
+  }
+
+  .about-map-bg {
+    width: 150vw; /* Make the map background huge so it crops interestingly */
+    opacity: 0.3;
+  }
+}
+
+  /* Prevent the background dots from causing scrollbars */
+  .dot {
+    width: 40px;
+    height: 40px;
+    font-size: 20pt;
+
+    .s1 { top: 00%; left: 45%; }
+    .s2 { top: 49%; left: 50%; animation-delay: -10s; }
+    .s3 { top: 48%; left: 56%; animation-delay: -5s; }
+.s4 { top: 50%; left: 63%; animation-delay: -1s; }
+.s5 { top: 50%; left: 68%; animation-delay: -3s; }
+
+.m1 { top: 80%; left: 45%; }
+.m2 { top: 82%; left: 52%; animation-delay: -5s; }
+.m3 { top: 78%; left: 59%; animation-delay: -2.5s; }
+  }
+
+  /* Fix the Intro Popup layout */
+  .intro-popup {
+    padding: 20px;
+    align-items: center; /* Center everything on mobile */
+    text-align: center;
+  }
+
+  .intro-title {
+    font-size: 15vw !important;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
