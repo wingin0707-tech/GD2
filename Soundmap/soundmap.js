@@ -648,60 +648,90 @@ const soundData = [
     cues: [{ s: 0, t: "[Polished showroom reverb]" }, { s: 4, t: "Soft click of a car door closing." }] 
   },
   { 
-    title: "Milliken Meadows Dr GO Train", category: "Transit", description: "Milliken Meadows Dr GO Train", 
-    lat: 43.82319, lng: -79.30167, time: "20 Feb, 2026 4:33pm", 
-    audio: "https://image2url.com/r2/default/audio/1772144564808-71c77456-09c8-4500-814d-5019b67bffd2.m4a",
-    cues: [{ s: 0, t: "[Outdoor platform wind interference]" }, { s: 9, t: "Electronic chime for departing train." }] 
-  },
-  { 
     title: "Day & Night King Crab", category: "Commercial", description: "Day and Night Crab Kitchen", 
     lat: 43.82392, lng: -79.30074, time: "21 Feb, 2026 7:16pm", 
     audio: "https://image2url.com/r2/default/audio/1772144653984-18449777-4c39-44e2-84f8-30ac16ffbf44.m4a",
     cues: [{ s: 0, t: "[Lively restaurant kitchen sounds]" }, { s: 5, t: "Clinking of cutlery and porcelain." }, { s: 15, t: "Distant laughter and bubbling steam." }] 
   },
 
-  // --- LOCAL UPLOADS ---
+  // --- LOCAL UPLOADED DATA ---
+  { 
+    title: "Unionville Station", category: "Transit", description: "Unionville Station platform ambiance", 
+    lat: 43.8519, lng: -79.3142, time: "16 Feb, 2026 01:41pm", 
+    audio: "https://www.image2url.com/r2/default/audio/1776276712261-d41c86c2-b5fd-4258-8c08-158dd8773fbf.m4a",
+    cues: [{ s: 0, t: "[Station ambiance]" }] 
+  },
+  { 
+    title: "The Ring Cafe", category: "Commercial", description: "Afternoon cafe atmosphere", 
+    lat: 43.89945, lng: -79.27401, time: "17 Feb, 2026 02:00pm", 
+    audio: "audio/2:00 the ring cafe.m4a",
+    cues: [{ s: 0, t: "[Cafe chatter and espresso machines]" }] 
+  },
+  { 
+    title: "First Markham Place (FMP)", category: "Commercial", description: "Indoor mall ambiance", 
+    lat: 43.8525, lng: -79.3496, time: "16 Feb, 2026 03:49pm", 
+    audio: "audio/3:49 FMP.m4a",
+    cues: [{ s: 0, t: "[Mall chatter and background hum]" }] 
+  },
+  { 
+    title: "King Square (王府)", category: "Commercial", description: "Marketplace chatter", 
+    lat: 43.8864, lng: -79.3465, time: "16 Feb, 2026 04:21pm", 
+    audio: "audio/4:21pm 王府.m4a",
+    cues: [{ s: 0, t: "[Lively market sounds]" }] 
+  },
+  { 
+    title: "Bur Oak Ave (Night)", category: "Residential", description: "Late night residential street", 
+    lat: 43.8931, lng: -79.3025, time: "17 Feb, 2026 08:00pm", 
+    audio: "audio/Bur Oak Ave 7.m4a",
+    cues: [{ s: 0, t: "[Quiet evening ambiance]" }] 
+  },
+  { 
+    title: "Cathedral High St", category: "Residential", description: "Suburban street atmosphere", 
+    lat: 43.8912, lng: -79.3821, time: "19 Feb, 2026 11:00am", 
+    audio: "audio/Cathedral High St.m4a",
+    cues: [{ s: 0, t: "[Residential silence]" }] 
+  },
+  { 
+    title: "Enterprise Blvd", category: "Transit", description: "Street-side transit sounds", 
+    lat: 43.8552, lng: -79.3361, time: "16 Feb, 2026 03:07pm", 
+    audio: "audio/Enterprise Blvd 3:07PM.m4a",
+    cues: [{ s: 0, t: "[Urban traffic sounds]" }] 
+  },
+  { 
+    title: "First Markham Place", category: "Commercial", description: "Alternative mall recording", 
+    lat: 43.8525, lng: -79.3496, time: "16 Feb, 2026 03:10pm", 
+    audio: "audio/First Markham Place 3:10PM.m4a",
+    cues: [{ s: 0, t: "[Mall environment]" }] 
+  },
+  { 
+    title: "Leslie St", category: "Transit", description: "Roadside ambiance", 
+    lat: 43.8231, lng: -79.3695, time: "18 Feb, 2026 01:00pm", 
+    audio: "audio/Leslie St.m4a",
+    cues: [{ s: 0, t: "[Steady traffic flow]" }] 
+  },
+  { 
+    title: "Major Mackenzie Dr E", category: "Transit", description: "Main road traffic", 
+    lat: 43.9015, lng: -79.4442, time: "18 Feb, 2026 03:30pm", 
+    audio: "audio/Major Mackenzie Dr E.m4a",
+    cues: [{ s: 0, t: "[Passing vehicles]" }] 
+  },
+  { 
+    title: "Markham Street Circuit", category: "Transit", description: "Street racing area atmosphere", 
+    lat: 43.8550, lng: -79.3150, time: "18 Feb, 2026 04:00pm", 
+    audio: "audio/Markham Street Circuit.m4a",
+    cues: [{ s: 0, t: "[Distant engine roars]" }] 
+  },
   { 
     title: "Mount Joy GO Station", category: "Transit", description: "Morning platform sounds", 
-    lat: 43.9214, lng: -79.2631, time: "16 Feb, 2026 8:06am", 
+    lat: 43.9214, lng: -79.2631, time: "16 Feb, 2026 08:06am", 
     audio: "audio/Mount joy go station 8:06.m4a",
-    cues: [{ s: 0, t: "[Platform ambiance]" }] 
+    cues: [{ s: 0, t: "[Morning station atmosphere]" }] 
   },
   { 
-    title: "First Markham Place", category: "Commercial", description: "Shopping center atmosphere", 
-    lat: 43.8525, lng: -79.3496, time: "16 Feb, 2026 3:10pm", 
-    audio: "audio/First Markham Place 3:10PM.m4a",
-    cues: [{ s: 0, t: "[Mall chatter]" }] 
-  },
-  { 
-    title: "Via Renzo Dr", category: "Residential", description: "Quiet residential street", 
-    lat: 43.8791, lng: -79.3624, time: "18 Feb, 2026 2:15pm", 
+    title: "Via Renzo Dr", category: "Residential", description: "Quiet residential neighborhood", 
+    lat: 43.8791, lng: -79.3624, time: "18 Feb, 2026 02:15pm", 
     audio: "audio/Via Renzo Dr.m4a",
-    cues: [{ s: 0, t: "[Suburban silence]" }] 
-  },
-  { 
-    title: "Markham Street Circuit", category: "Transit", description: "Roadside traffic flow", 
-    lat: 43.8550, lng: -79.3150, time: "18 Feb, 2026 4:00pm", 
-    audio: "audio/Markham Street Circuit.m4a",
-    cues: [{ s: 0, t: "[Vehicles passing]" }] 
-  },
-  { 
-    title: "Bur Oak Ave (8:00pm)", category: "Residential", description: "Late night atmosphere", 
-    lat: 43.8931, lng: -79.3025, time: "17 Feb, 2026 8:00pm", 
-    audio: "audio/Bur Oak Ave 7.m4a", 
-    cues: [{ s: 0, t: "[Quiet night street]" }] 
-  },
-  { 
-    title: "Leslie St", category: "Transit", description: "Major intersection sounds", 
-    lat: 43.8231, lng: -79.3695, time: "18 Feb, 2026 1:00pm", 
-    audio: "audio/Leslie St.m4a",
-    cues: [{ s: 0, t: "[Traffic hum]" }] 
-  },
-  { 
-    title: "Major Mackenzie Dr E", category: "Transit", description: "Busy road transit", 
-    lat: 43.9015, lng: -79.4442, time: "18 Feb, 2026 3:30pm", 
-    audio: "audio/Major Mackenzie Dr E.m4a",
-    cues: [{ s: 0, t: "[Engine noise]" }] 
+    cues: [{ s: 0, t: "[Residential silence]" }] 
   }
 ];
  
