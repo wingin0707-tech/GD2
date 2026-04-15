@@ -257,6 +257,8 @@ section.active {
   padding: 10px 0;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
+  z-index: 100;
+
 }
 
 .intro-btn:hover {
@@ -283,6 +285,7 @@ section.active {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 50;
   
   color: #ff0000; 
   font-family: 'Helvetica', sans-serif;
@@ -297,8 +300,8 @@ section.active {
 .s1 { top: 40%; left: 45%; }
 .s2 { top: 49%; left: 50%; animation-delay: -10s; }
 .s3 { top: 48%; left: 56%; animation-delay: -5s; }
-.s4 { top: 50%; left: 63%; animation-delay: -1s; }
-.s5 { top: 50%; left: 68%; animation-delay: -3s; }
+.s4 { top: 50%; left: 63%; animation-delay: -4s; }
+.s5 { top: 50%; left: 68%; animation-delay: -2s; }
 
 .m1 { top: 80%; left: 45%; }
 .m2 { top: 82%; left: 52%; animation-delay: -5s; }
@@ -745,23 +748,13 @@ section.active, div.active {
   }
 }
 
-  /* Prevent the background dots from causing scrollbars */
-  .dot {
-    width: 40px;
-    height: 40px;
-    font-size: 20pt;
-
-    .s1 { top: 00%; left: 45%; }
-    .s2 { top: 49%; left: 50%; animation-delay: -10s; }
-    .s3 { top: 48%; left: 56%; animation-delay: -5s; }
-.s4 { top: 50%; left: 63%; animation-delay: -1s; }
-.s5 { top: 50%; left: 68%; animation-delay: -3s; }
-
-.m1 { top: 80%; left: 45%; }
-.m2 { top: 82%; left: 52%; animation-delay: -5s; }
-.m3 { top: 78%; left: 59%; animation-delay: -2.5s; }
-  }
-
+  @media (max-width: 768px) {
+    .dot {
+      width: 35px;
+      height: 35px;
+      font-size: 12pt;
+    }
+  
   /* Fix the Intro Popup layout */
   .intro-popup {
     padding: 20px;
@@ -775,3 +768,4 @@ section.active, div.active {
     margin-bottom: 20px;
   }
 
+}
