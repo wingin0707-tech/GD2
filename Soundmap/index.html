@@ -10,8 +10,6 @@
   <link rel="stylesheet" href="css.css">
 </head>
 <body>
-
-
   <div id="intro-popup" class="intro-popup">
     <div class="intro-bg"></div>
     <div class="intro-content">
@@ -20,57 +18,41 @@
         <span class="dot s1">s</span><span class="dot s2">o</span><span class="dot s3">u</span><span class="dot s4">n</span><span class="dot s5">d</span>
         <span class="dot m1">m</span><span class="dot m2">a</span><span class="dot m3">p</span>
       </div>
-  
+
       <div class="enter-wrapper">
         <button id="start-map" class="intro-btn" onclick="enterMap()">(map)</button>
-        
-        <button class="intro-btn" onclick="showSection('about-page')">(about)</button>        
-        <button class="intro-btn" onclick="showSection('submission-page')">(submit)</button>     
+        <button class="intro-btn" onclick="showSection('about-page')">(about)</button>
+        <button class="intro-btn" onclick="showSection('submission-page')">(submit)</button>
       </div>
-   </div>
- </div>
+    </div>
+  </div>
 
-<button id="about-btn">About</button>
-<button id="submit-btn">Submit</button>
-  <main> 
-    <section id="map-page" style="display:none;">
-      <button class="back-home-btn" onclick="showSection('intro-popup')">(home)</button>
-    </section>
-    
+  <div id="map"></div>
 
-    <div id="map"></div>
-
-      <div class="sound-browser" id="soundBrowser">
-    
-
+  <div class="sound-browser" id="soundBrowser">
     <div class="browser-content">
       <h3>Filter Sound</h3>
-
       <div class="filters">
         <select id="timeFilter" onchange="filterSounds()">
           <option value="all">ANY TIME</option>
           <option value="morning">MORNING</option>
           <option value="afternoon">AFTERNOON</option>
           <option value="evening">EVENING</option>
-      </select>
-    
-      <select id="categoryFilter" onchange="filterSounds()">
-        <option value="all">ANY CATEGORY</option>
-        <option value="Transit">TRANSIT</option>
-        <option value="Commercial">COMMERCIAL</option>
-        <option value="Residential">RESIDENTIAL</option>
-    </select>
-  </div>
+        </select>
+
+        <select id="categoryFilter" onchange="filterSounds()">
+          <option value="all">ANY CATEGORY</option>
+          <option value="Transit">TRANSIT</option>
+          <option value="Commercial">COMMERCIAL</option>
+          <option value="Residential">RESIDENTIAL</option>
+        </select>
+      </div>
+
       <div class="browser-header">
-         
         <div id="soundList" class="sound-list"></div>
       </div>
     </div>
-  </section>
-</main>
-    <div>
- </div>
-<body>
+  </div>
 
   <div class="map-navigation">
     <button onclick="showSection('intro-popup')">( Home )</button>
@@ -78,60 +60,62 @@
     <button onclick="showSection('submission-page')">( Submit )</button>
   </div>
 
-  <section id="about-page">
-    <div class="about-map-bg">
-      <img src="./images/your_map_image.png" alt="Markham Map" class="fixed-map-image">
-    </div>
-  
-    <div class="about-content-scroller">
-      
-      <div class="map-navigation">
-        <button onclick="showSection('intro-popup')">( Home )</button>
-        <button onclick="enterMap()">( Map )</button>
-        <button onclick="showSection('submission-page')">( Submit )</button>
-      </div>
-  
-      <div class="about-wrapper">
-        
-        <div class="about-grid">
-          <div class="about-header">
+  <main>
+    <section id="map-page"></section>
+
+    <section id="about-page">
+      <audio id="sound-train" src="./sounds/train.mp3" preload="auto"></audio>
+      <audio id="sound-karaoke" src="./sounds/karaoke.mp3" preload="auto"></audio>
+      <audio id="sound-church" src="./sounds/church.mp3" preload="auto"></audio>
+      <audio id="sound-parking" src="./sounds/parking.mp3" preload="auto"></audio>
+
+      <div class="about-content-scroller">
+        <div class="about-wrapper">
+          <div class="about-grid">
             <h1 class="about-main-title">About<br>Sound</h1>
+            <p class="text">The Markham Sound Map is a field-recording archive that documents the auditory life of my immediate surroundings. Since early Feb 2026, I have been capturing environmental audio to better understand how the sounds we live with every day shape our experience of the city</p>
           </div>
-  
-          <div class="about-body">
-            <div class="about-section">
-              <p class="text">The Markham Sound Map is a field-recording archive that documents the auditory life of my immediate surroundings. Since early Feb 2026, I have been capturing environmental audio to better understand how the sounds we live with every day shape our experience of the city.</p>
+
+          <div class="about-block scroll-content">
+            <div class="about-photo-wrapper">
+              <img src="./assets/IMG_6621.jpg" class="about-photo" data-sound="sound-train">
+              <small class="photo-caption">( GO Station Tracks / Transit )</small>
+            </div>
+          </div>
+
+          <div class="about-block scroll-content">
+            <div class="about-photo-wrapper">
+              <img src="./assets/IMG_6634.jpg" class="about-photo" data-sound="sound-karaoke">
+              <small class="photo-caption">( Pacific Mall Karaoke / Commercial )</small>
+            </div>
+          </div>
+
+          <div class="about-block scroll-content">
+            <div class="about-photo-wrapper">
+              <img src="./assets/IMG_6647.jpg" class="about-photo" data-sound="sound-church">
+              <small class="photo-caption">( Cathedral of the Transfiguration / Residential )</small>
+            </div>
+          </div>
+
+          <div class="about-block scroll-content">
+            <div class="about-photo-wrapper">
+              <img src="./assets/IMG_6667.jpg" class="about-photo" data-sound="sound-parking">
+              <small class="photo-caption">( Unionville Parking / Evening )</small>
             </div>
           </div>
         </div>
-  
-        <div class="about-block scroll-content">
-          <p class="scrolling-instruction">when you scroll the image follow the page</p>
-          <div class="about-photo-wrapper">
-            <img src="./images/your_first_photo.jpg" alt="Recording Process" class="about-photo">
-            <small class="photo-caption">(Process Image )</small>
-          </div>
-        </div>
-  
-        <div class="about-block scroll-content">
-          <div class="about-photo-wrapper">
-            <img src="./images/your_second_photo.jpg" alt="Field Recording" class="about-photo">
-            <small class="photo-caption">( Field Work.02 )</small>
-          </div>
-          <p>Your description for the second photo goes here...</p>
-        </div>
-  
-      </div> </div> </section>
- 
-  <!-- ── SUBMISSION ── -->
-          <section id="submission-page">
-         <div class="map-navigation">
+      </div>
+    </section>
 
-          <div class="submission-container">
+    <section id="submission-page">
+      <div class="submission-container">
         <div class="form-header">
           <h2 class="form-title">Submit Sound</h2>
           <p class="form-subtitle">Add to the Markham Archive email me : Wingin0707@gmail.com</p>
         </div>
+      </div>
+    </section>
+  </main>
 
   
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -139,3 +123,4 @@
   <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.21/leaflet-maplibre-gl.js"></script>
   <script src="soundmap.js"></script>
 </body>
+</html>

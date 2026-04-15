@@ -444,102 +444,59 @@ L.maplibreGL({
 }).addTo(map);
 
 function showSection(sectionId) {
-  const introPopup = document.getElementById("intro-popup");
+  const introPopup = document.getElementById('intro-popup');
+  const sections = ['map-page', 'about-page', 'submission-page'];
 
-  if (sectionId === 'intro-popup') {
-    if (introPopup) {
-      introPopup.style.display = "flex"; 
-      
-      setTimeout(() => {
-        introPopup.classList.remove('dissolve');
-        introPopup.style.pointerEvents = "auto"; // Re-enable clicks
-      }, 10);
-    }
-  } else {
-    if (introPopup) {
-      introPopup.classList.add('dissolve');
-
-      setTimeout(() => {
-        if (introPopup.classList.contains('dissolve')) {
-          introPopup.style.display = "none";
-        }
-      }, 1200); 
-    }
-  }
-  function enterMap() {
-    const introPopup = document.getElementById('intro-popup');
-    
-    // 1. If intro is visible, dissolve it
-    if (introPopup && introPopup.style.display !== 'none') {
-      introPopup.classList.add('dissolve');
-      
-      // 2. Wait for the blur animation, then switch
-      setTimeout(() => {
-        showSection('map-page');
-      }, 1200);
-    } else {
-      // 3. If we're coming from About/Submit, just go to map
-      showSection('map-page');
-    }
-  }
-  
-  function showSection(sectionId) {
-    const introPopup = document.getElementById("intro-popup");
-  
-    // Handle Home Page Logic
-    if (sectionId === 'intro-popup') {
-      if (introPopup) {
-        introPopup.style.display = "flex";
-        introPopup.classList.remove('dissolve'); 
-        introPopup.style.pointerEvents = "auto";
-      }
-    } else {
-      if (introPopup) {
-        introPopup.style.display = "none";
-        // We keep 'dissolve' on so it's ready to fade in next time
-      }
-    }
-  
-    // --- Toggle Sections ---
-    const sections = ["map-page", "about-page", "submission-page"];
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.classList.remove('active');
-        el.style.display = "none";
-      }
-    });
-  
-    const target = document.getElementById(sectionId);
-    if (target) {
-      target.classList.add('active');
-      target.style.display = "block";
-      
-      // Fix Leaflet Gray Box Glitch
-      if (sectionId === 'map-page' && window.map) {
-        setTimeout(() => {
-          window.map.invalidateSize();
-        }, 200);
-      }
-    }
-  }
-  const sections = ["map-page", "about-page", "submission-page"];
   sections.forEach(id => {
     const el = document.getElementById(id);
     if (el) {
       el.classList.remove('active');
-      el.style.display = "none";
+      el.style.display = 'none';
     }
   });
+
+  if (sectionId === 'intro-popup') {
+    if (introPopup) {
+      introPopup.style.display = 'flex';
+      introPopup.classList.remove('dissolve');
+      introPopup.style.pointerEvents = 'auto';
+    }
+    return;
+  }
+
+  if (introPopup) {
+    introPopup.classList.add('dissolve');
+    introPopup.style.pointerEvents = 'none';
+    introPopup.style.display = 'none';
+  }
 
   const target = document.getElementById(sectionId);
   if (target) {
     target.classList.add('active');
-    target.style.display = "block";
-    if (sectionId === 'map-page' && window.map) {
-      setTimeout(() => map.invalidateSize(), 200);
-    }
+    target.style.display = 'block';
   }
+
+  if (sectionId === 'map-page') {
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 200);
+  }
+}
+
+function enterMap() {
+  const introPopup = document.getElementById('intro-popup');
+
+  if (introPopup && introPopup.style.display !== 'none') {
+    introPopup.classList.add('dissolve');
+    introPopup.style.pointerEvents = 'none';
+
+    setTimeout(() => {
+      showSection('map-page');
+    }, 1200);
+    return;
+  }
+
+  showSection('map-page');
 }
 
 const cursor = document.createElement('div');
@@ -551,19 +508,6 @@ document.addEventListener('mousemove', function(e) {
 });
 document.addEventListener('mousedown', function() { cursor.classList.add('click'); });
 document.addEventListener('mouseup', function() { cursor.classList.remove('click'); });
- 
-const startBtn = document.getElementById('start-map');
-const introPopup = document.getElementById('intro-popup');
-
-if (startBtn && introPopup) {
-  startBtn.addEventListener('click', () => {
-    introPopup.classList.add('dissolve');
-
-    setTimeout(() => {
-      showPage('map-page');
-    }, 1200);
-  });
-}
 
 const crossIcon = L.divIcon({
   className: 'custom-cross-icon',
@@ -571,10 +515,9 @@ const crossIcon = L.divIcon({
   iconSize: [20, 20],
   iconAnchor: [10, 10]
 });
- 
+
 
 const soundData = [
-  // --- REMOTE HOSTED DATA ---
   { 
     title: "Edward Jeffreys Ave", category: "Transit", description: "Edward Jeffreys avenue GO train station", 
     lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", 
@@ -654,7 +597,6 @@ const soundData = [
     cues: [{ s: 0, t: "[Lively restaurant kitchen sounds]" }, { s: 5, t: "Clinking of cutlery and porcelain." }, { s: 15, t: "Distant laughter and bubbling steam." }] 
   },
 
-  // --- LOCAL UPLOADED DATA ---
   { 
     title: "Unionville Station", category: "Transit", description: "Unionville Station platform ambiance", 
     lat: 43.8519, lng: -79.3142, time: "14 April, 2026 01:41pm", 
@@ -674,7 +616,7 @@ const soundData = [
     cues: [{ s: 0, t: "[Mall chatter and background hum]" }] 
   },
   { 
-    title: "King Square (王府)", category: "Commercial", description: "Marketplace chatter", 
+    title: "King Square", category: "Commercial", description: "Marketplace chatter", 
     lat: 43.8864, lng: -79.3465, time: "14 April, 2026 04:21pm", 
     audio: "https://www.image2url.com/r2/default/audio/1776276941299-f45fdcc8-b48d-4aa8-829a-ff70887e85b3.m4a",
     cues: [{ s: 0, t: "[Lively market sounds]" }] 
@@ -737,44 +679,52 @@ const soundData = [
  
 
 let markers = [];
- 
+
+function getTimeOfDayLabel(timeValue) {
+  const timeStr = timeValue.toLowerCase();
+  const isPM = timeStr.includes('pm');
+  const hourMatch = timeStr.match(/(\d+):/);
+  const hour = hourMatch ? parseInt(hourMatch[1], 10) : 0;
+
+  if (!isPM) {
+    return 'morning';
+  }
+
+  return hour >= 5 && hour !== 12 ? 'evening' : 'afternoon';
+}
+
 function filterSounds() {
   const searchEl = document.getElementById('soundSearch');
   const timeEl = document.getElementById('timeFilter');
   const catEl = document.getElementById('categoryFilter');
   const listContainer = document.getElementById('soundList');
-  
-  if (!listContainer || !window.map) return;
- 
+
+  if (!listContainer) return;
+
   const searchTerm = searchEl ? searchEl.value.toLowerCase() : '';
   const timeReq = timeEl ? timeEl.value : 'all';
   const catReq = catEl ? catEl.value : 'all';
- 
-  // Clear old markers
-  markers.forEach(m => map.removeLayer(m));
+
+  markers.forEach(marker => {
+    if (map.hasLayer(marker)) {
+      map.removeLayer(marker);
+    }
+  });
   markers = [];
   listContainer.innerHTML = '';
- 
+
   soundData.forEach((loc, index) => {
     const matchesSearch = loc.title.toLowerCase().includes(searchTerm) || loc.description.toLowerCase().includes(searchTerm);
     const matchesCategory = (catReq === 'all' || loc.category === catReq);
- 
-    const timeStr = loc.time.toLowerCase();
-    const isPM = timeStr.includes('pm');
-    const hourMatch = timeStr.match(/(\d+):/);
-    const hour = hourMatch ? parseInt(hourMatch[1]) : 0;
-    
-    let timeOfDay = 'morning';
-    if (isPM) { 
-      timeOfDay = (hour >= 5 && hour !== 12) ? 'evening' : 'afternoon'; 
-    }
+
+    const timeOfDay = getTimeOfDayLabel(loc.time);
     const matchesTime = (timeReq === 'all' || timeOfDay === timeReq);
- 
+
     if (matchesSearch && matchesCategory && matchesTime) {
       const item = document.createElement('div');
       item.className = 'sound-item';
       item.innerHTML = `<strong>${loc.title}</strong><br><small>${loc.description}</small>`;
- 
+
       const popupHTML = `
         <div class="popup-content" style="width:200px;">
           <h3 style="color:#ff0000;margin:0 0 5px 0;">${loc.title}</h3>
@@ -782,14 +732,14 @@ function filterSounds() {
           <audio id="audio-${index}" controls src="${loc.audio}" style="width:100%;margin-bottom:10px;"></audio>
           <div id="transcript-${index}" class="auto-transcript">Press play to begin</div>
         </div>`;
- 
+
       const marker = L.marker([loc.lat, loc.lng], { icon: crossIcon }).addTo(map);
       marker.bindPopup(popupHTML);
- 
+
       marker.on('popupopen', () => {
         const audio = document.getElementById(`audio-${index}`);
         const display = document.getElementById(`transcript-${index}`);
-        if (audio && loc.cues) {
+        if (audio && display && loc.cues) {
           audio.ontimeupdate = () => {
             let activeText = 'RECORDING...';
             loc.cues.forEach(cue => {
@@ -799,22 +749,23 @@ function filterSounds() {
           };
         }
       });
- 
+
       item.onclick = () => {
         map.flyTo([loc.lat, loc.lng], 16);
         marker.openPopup();
       };
- 
+
       listContainer.appendChild(item);
       markers.push(marker);
     }
   });
 }
 
-// Initial Run
 document.addEventListener('DOMContentLoaded', filterSounds);
 
 
 setTimeout(() => {
   map.invalidateSize();
 }, 400);
+
+

@@ -6,6 +6,10 @@
 			"path": "."
 		},
 		{
+			"name": "sound",
+			"path": "../../../../Desktop/sound"
+		},
+		{
 			"name": "dist",
 			"path": "../../../Downloads/dist"
 		}
