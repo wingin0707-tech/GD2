@@ -574,12 +574,18 @@ const crossIcon = L.divIcon({
  
 
 const soundData = [
-  // --- TRANSIT ---
+  // --- REMOTE HOSTED DATA ---
   { 
     title: "Edward Jeffreys Ave", category: "Transit", description: "Edward Jeffreys avenue GO train station", 
     lat: 43.89411, lng: -79.27344, time: "16 Feb, 2026 02:55pm", 
     audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",
     cues: [{ s: 0, t: "[Distant hum of the GO Train approaching]" }, { s: 5, t: "Screech of brakes on metal tracks." }, { s: 10, t: "[Automated chime: Doors opening]" }] 
+  },
+  { 
+    title: "Scott Brown St", category: "Residential", description: "25 Scott Brown St", 
+    lat: 43.89945, lng: -79.27401, time: "17 Feb, 2026 5:30pm", 
+    audio: "https://image2url.com/r2/default/audio/1771617515406-ea055bbd-6cb8-460f-b1be-d6a683aae14a.m4a",
+    cues: [{ s: 0, t: "[Residential neighborhood evening sounds]" }, { s: 4, t: "Wind rustling through bare winter branches." }, { s: 12, t: "A car passes in the distance." }] 
   },
   { 
     title: "Edward Jeffreys GO Bus Station", category: "Transit", description: "Markham Rd at Edward Jeffreys Ave", 
@@ -588,74 +594,115 @@ const soundData = [
     cues: [{ s: 0, t: "[Idling bus engine vibrations]" }, { s: 6, t: "The hiss of hydraulic suspension." }] 
   },
   { 
-    title: "Highway 407", category: "Transit", description: "South Unionville Ave Overpass", 
+    title: "Bur Oak Ave", category: "Residential", description: "Bur Oak Ave", 
+    lat: 43.8929, lng: -79.3022, time: "17 Feb, 2026 4:00pm", 
+    audio: "https://image2url.com/r2/default/audio/1771617858226-0335278e-1a9a-4509-86d6-d80ff5f8aca6.m4a",
+    cues: [{ s: 0, t: "[Suburban street atmosphere]" }, { s: 8, t: "Distant sound of a crosswalk signal chirping." }] 
+  },
+  { 
+    title: "South Unionville Ave", category: "Transit", description: "Highway 407", 
     lat: 43.8605, lng: -79.2833, time: "16 Feb, 2026 12:00pm", 
     audio: "https://image2url.com/r2/default/audio/1771618112948-02075d34-09c1-4200-8bc5-6e1b130472f2.m4a",
-    cues: [{ s: 0, t: "[Continuous white noise of highway traffic]" }] 
+    cues: [{ s: 0, t: "[Continuous white noise of highway traffic]" }, { s: 5, t: "High-speed gusts as vehicles pass overhead." }] 
   },
   { 
-    title: "Milliken Meadows GO", category: "Transit", description: "GO Train Platform", 
-    lat: 43.82319, lng: -79.30167, time: "20 Feb, 2026 4:33pm", 
-    audio: "https://image2url.com/r2/default/audio/1772144564808-71c77456-09c8-4500-814d-5019b67bffd2.m4a",
-    cues: [{ s: 0, t: "[Outdoor platform wind]" }, { s: 9, t: "Electronic chime for departing train." }] 
-  },
-
-  // --- COMMERCIAL ---
-  { 
-    title: "The Ring Cafe", category: "Commercial", description: "Afternoon Cafe Ambiance", 
-    lat: 43.89945, lng: -79.27401, time: "17 Feb, 2026 2:00pm", 
-    audio: "audio/2:00 the ring cafe.m4a",
-    cues: [{ s: 0, t: "[Cafe chatter and espresso machine]" }] 
-  },
-  { 
-    title: "King Square (王府)", category: "Commercial", description: "Marketplace chatter", 
-    lat: 43.8864, lng: -79.3465, time: "16 Feb, 2026 4:21pm", 
-    audio: "audio/4:21pm 王府.m4a",
-    cues: [{ s: 0, t: "[Lively chatter and shopping echoes]" }] 
-  },
-  { 
-    title: "Markham Auto Spa", category: "Commercial", description: "Car wash machinery", 
+    title: "Markham Auto Spa", category: "Commercial", description: "New Kennedy Mall", 
     lat: 43.85934, lng: -79.3047, time: "17 Feb, 2026 5:47pm", 
     audio: "https://image2url.com/r2/default/audio/1771618383533-1b1844c7-6186-4d66-a64e-d8fb2e0b8eff.m4a",
-    cues: [{ s: 0, t: "[High-pressure water drones]" }] 
+    cues: [{ s: 0, t: "[High-pressure water spray drones]" }, { s: 7, t: "Metallic clanging of car wash machinery." }] 
   },
   { 
-    title: "Day & Night King Crab", category: "Commercial", description: "Kitchen and dining sounds", 
+    title: "Edward Jeffreys Ave", category: "Transit", description: "Inside GO Train", 
+    lat: 43.89412, lng: -79.27343, time: "16 Feb, 2026 02:45pm", 
+    audio: "https://image2url.com/r2/default/audio/1771618633399-02792719-3ee0-4572-b59a-75379656f70b.m4a",
+    cues: [{ s: 0, t: "[Muffled interior train cabin rumble]" }, { s: 10, t: "[Automated Voice: Now arriving at Mount Joy]" }] 
+  },
+  { 
+    title: "Kennedy Rd", category: "Commercial", description: "T&T Meat Market", 
+    lat: 43.85934, lng: -79.3047, time: "16 Feb, 2026 4:32pm", 
+    audio: "https://image2url.com/r2/default/audio/1771618722900-06fc915f-343b-4b38-85a1-6ec0bc6ed6b0.m4a",
+    cues: [{ s: 0, t: "[Supermarket chatter and cart wheels]" }, { s: 5, t: "The rhythmic chopping at the meat counter." }] 
+  },
+  { 
+    title: "Markham GO Bus", category: "Transit", description: "Highway 407", 
+    lat: 43.896358, lng: -79.265278, time: "16 Feb, 2026 10:46pm", 
+    audio: "https://image2url.com/r2/default/audio/1771619947868-cef868a6-5059-4f3d-bddb-3028eb21ac17.m4a",
+    cues: [{ s: 0, t: "[Late night bus interior silence]" }, { s: 12, t: "Turn signal clicking tic-toc rhythm." }] 
+  },
+  { 
+    title: "Markham Plaza", category: "Transit", description: "Train", 
+    lat: 43.8763, lng: -79.2575, time: "17 Feb, 2026 4:00pm", 
+    audio: "https://image2url.com/r2/default/audio/1772144198078-d1de5c85-3734-4222-abdb-8915acf204de.m4a",
+    cues: [{ s: 0, t: "[Platform announcements echoing]" }, { s: 8, t: "Squeal of metal wheels on a curved track." }] 
+  },
+  { 
+    title: "Kennedy Rd", category: "Residential", description: "Kennedy Rd", 
+    lat: 43.874527, lng: -79.286243, time: "18 Feb, 2026 8:30pm", 
+    audio: "https://image2url.com/r2/default/audio/1772144461963-b6596e1b-7a63-40de-9dc0-771281e02950.m4a",
+    cues: [{ s: 0, t: "[Wet pavement sounds from recent rain]" }, { s: 6, t: "Heavy truck passing with a deep bass roar." }] 
+  },
+  { 
+    title: "Mercedes-Benz Markham", category: "Commercial", description: "Mercedes-Benz Markham", 
+    lat: 43.8577525, lng: -79.3043853, time: "19 Feb, 2026 5:02pm", 
+    audio: "https://image2url.com/r2/default/audio/1772144515177-ef239853-490c-4881-9f99-78d92d8c7fdc.m4a",
+    cues: [{ s: 0, t: "[Polished showroom reverb]" }, { s: 4, t: "Soft click of a car door closing." }] 
+  },
+  { 
+    title: "Milliken Meadows Dr GO Train", category: "Transit", description: "Milliken Meadows Dr GO Train", 
+    lat: 43.82319, lng: -79.30167, time: "20 Feb, 2026 4:33pm", 
+    audio: "https://image2url.com/r2/default/audio/1772144564808-71c77456-09c8-4500-814d-5019b67bffd2.m4a",
+    cues: [{ s: 0, t: "[Outdoor platform wind interference]" }, { s: 9, t: "Electronic chime for departing train." }] 
+  },
+  { 
+    title: "Day & Night King Crab", category: "Commercial", description: "Day and Night Crab Kitchen", 
     lat: 43.82392, lng: -79.30074, time: "21 Feb, 2026 7:16pm", 
     audio: "https://image2url.com/r2/default/audio/1772144653984-18449777-4c39-44e2-84f8-30ac16ffbf44.m4a",
-    cues: [{ s: 0, t: "[Lively restaurant sounds]" }, { s: 5, t: "Clinking of cutlery." }] 
+    cues: [{ s: 0, t: "[Lively restaurant kitchen sounds]" }, { s: 5, t: "Clinking of cutlery and porcelain." }, { s: 15, t: "Distant laughter and bubbling steam." }] 
   },
 
-  // --- RESIDENTIAL ---
+  // --- LOCAL UPLOADS ---
   { 
-    title: "Scott Brown St", category: "Residential", description: "Evening neighborhood sounds", 
-    lat: 43.89945, lng: -79.27401, time: "17 Feb, 2026 5:30pm", 
-    audio: "https://image2url.com/r2/default/audio/1771617515406-ea055bbd-6cb8-460f-b1be-d6a683aae14a.m4a",
-    cues: [{ s: 0, t: "[Wind rustling branches]" }, { s: 12, t: "Distant car passes." }] 
+    title: "Mount Joy GO Station", category: "Transit", description: "Morning platform sounds", 
+    lat: 43.9214, lng: -79.2631, time: "16 Feb, 2026 8:06am", 
+    audio: "audio/Mount joy go station 8:06.m4a",
+    cues: [{ s: 0, t: "[Platform ambiance]" }] 
   },
   { 
-    title: "Bur Oak Ave (Day)", category: "Residential", description: "Afternoon street atmosphere", 
-    lat: 43.8929, lng: -79.3022, time: "17 Feb, 2026 4:00pm", 
-    audio: "audio/Bur Oak Ave 7.m4a",
-    cues: [{ s: 0, t: "[Suburban street atmosphere]" }, { s: 8, t: "Crosswalk signal chirping." }] 
+    title: "First Markham Place", category: "Commercial", description: "Shopping center atmosphere", 
+    lat: 43.8525, lng: -79.3496, time: "16 Feb, 2026 3:10pm", 
+    audio: "audio/First Markham Place 3:10PM.m4a",
+    cues: [{ s: 0, t: "[Mall chatter]" }] 
   },
   { 
-    title: "Bur Oak Ave (Night)", category: "Residential", description: "Late night recording", 
+    title: "Via Renzo Dr", category: "Residential", description: "Quiet residential street", 
+    lat: 43.8791, lng: -79.3624, time: "18 Feb, 2026 2:15pm", 
+    audio: "audio/Via Renzo Dr.m4a",
+    cues: [{ s: 0, t: "[Suburban silence]" }] 
+  },
+  { 
+    title: "Markham Street Circuit", category: "Transit", description: "Roadside traffic flow", 
+    lat: 43.8550, lng: -79.3150, time: "18 Feb, 2026 4:00pm", 
+    audio: "audio/Markham Street Circuit.m4a",
+    cues: [{ s: 0, t: "[Vehicles passing]" }] 
+  },
+  { 
+    title: "Bur Oak Ave (8:00pm)", category: "Residential", description: "Late night atmosphere", 
     lat: 43.8931, lng: -79.3025, time: "17 Feb, 2026 8:00pm", 
-    audio: "audio/Bur-Oak-8pm.m4a", // Make sure to name your file this!
-    cues: [{ s: 0, t: "[Quiet night silence]" }, { s: 15, t: "Distanced traffic hum." }] 
+    audio: "audio/Bur Oak Ave 7.m4a", 
+    cues: [{ s: 0, t: "[Quiet night street]" }] 
   },
   { 
-    title: "Cathedral High St", category: "Residential", description: "Quiet community street", 
-    lat: 43.8912, lng: -79.3821, time: "19 Feb, 2026 11:00am", 
-    audio: "audio/Cathedral High St.m4a",
-    cues: [{ s: 0, t: "[Residential silence]" }] 
+    title: "Leslie St", category: "Transit", description: "Major intersection sounds", 
+    lat: 43.8231, lng: -79.3695, time: "18 Feb, 2026 1:00pm", 
+    audio: "audio/Leslie St.m4a",
+    cues: [{ s: 0, t: "[Traffic hum]" }] 
   },
-
-  // --- OTHERS ---
-  { title: "First Markham Place", category: "Commercial", lat: 43.8525, lng: -79.3496, time: "16 Feb, 2026 3:10pm", audio: "audio/First Markham Place 3:10PM.m4a" },
-  { title: "Leslie St", category: "Transit", lat: 43.8231, lng: -79.3695, time: "18 Feb, 2026 1:00pm", audio: "audio/Leslie St.m4a" },
-  { title: "Major Mackenzie Dr E", category: "Transit", lat: 43.9015, lng: -79.4442, time: "18 Feb, 2026 3:30pm", audio: "audio/Major Mackenzie Dr E.m4a" }
+  { 
+    title: "Major Mackenzie Dr E", category: "Transit", description: "Busy road transit", 
+    lat: 43.9015, lng: -79.4442, time: "18 Feb, 2026 3:30pm", 
+    audio: "audio/Major Mackenzie Dr E.m4a",
+    cues: [{ s: 0, t: "[Engine noise]" }] 
+  }
 ];
  
 // ============================================================
