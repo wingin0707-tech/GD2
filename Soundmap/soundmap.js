@@ -657,87 +657,85 @@ const soundData = [
   // --- LOCAL UPLOADED DATA ---
   { 
     title: "Unionville Station", category: "Transit", description: "Unionville Station platform ambiance", 
-    lat: 43.8519, lng: -79.3142, time: "16 Feb, 2026 01:41pm", 
+    lat: 43.8519, lng: -79.3142, time: "14 April, 2026 01:41pm", 
     audio: "https://www.image2url.com/r2/default/audio/1776276712261-d41c86c2-b5fd-4258-8c08-158dd8773fbf.m4a",
     cues: [{ s: 0, t: "[Station ambiance]" }] 
   },
   { 
     title: "The Ring Cafe", category: "Commercial", description: "Afternoon cafe atmosphere", 
-    lat: 43.89945, lng: -79.27401, time: "17 Feb, 2026 02:00pm", 
-    audio: "audio/2:00 the ring cafe.m4a",
+    lat: 43.8456331, lng: -79.3061777, time: "14 April, 2026 02:00pm", 
+    audio: "https://www.image2url.com/r2/default/audio/1776276783148-9294ae0f-ce51-487c-89bd-59189308680f.m4a",
     cues: [{ s: 0, t: "[Cafe chatter and espresso machines]" }] 
   },
   { 
-    title: "First Markham Place (FMP)", category: "Commercial", description: "Indoor mall ambiance", 
-    lat: 43.8525, lng: -79.3496, time: "16 Feb, 2026 03:49pm", 
-    audio: "audio/3:49 FMP.m4a",
+    title: "First Markham Place", category: "Commercial", description: "Indoor mall ambiance/ the food court", 
+    lat: 43.8525, lng: -79.3496, time: "14 April, 2026 03:49pm", 
+    audio: "https://www.image2url.com/r2/default/audio/1776276825563-f720170f-e801-4e6c-aba6-8a36f748546e.m4a",
     cues: [{ s: 0, t: "[Mall chatter and background hum]" }] 
   },
   { 
     title: "King Square (王府)", category: "Commercial", description: "Marketplace chatter", 
-    lat: 43.8864, lng: -79.3465, time: "16 Feb, 2026 04:21pm", 
-    audio: "audio/4:21pm 王府.m4a",
+    lat: 43.8864, lng: -79.3465, time: "14 April, 2026 04:21pm", 
+    audio: "https://www.image2url.com/r2/default/audio/1776276941299-f45fdcc8-b48d-4aa8-829a-ff70887e85b3.m4a",
     cues: [{ s: 0, t: "[Lively market sounds]" }] 
   },
   { 
     title: "Bur Oak Ave (Night)", category: "Residential", description: "Late night residential street", 
-    lat: 43.8931, lng: -79.3025, time: "17 Feb, 2026 08:00pm", 
-    audio: "audio/Bur Oak Ave 7.m4a",
+    lat: 43.8931, lng: -79.3025, time: "14 April, 2026 08:00pm", 
+    audio: "https://www.image2url.com/r2/default/audio/1776276951992-fadc049c-c2ac-468a-bb73-e14ebd12bd61.m4a",
     cues: [{ s: 0, t: "[Quiet evening ambiance]" }] 
   },
   { 
     title: "Cathedral High St", category: "Residential", description: "Suburban street atmosphere", 
-    lat: 43.8912, lng: -79.3821, time: "19 Feb, 2026 11:00am", 
-    audio: "audio/Cathedral High St.m4a",
+    lat: 43.8912, lng: -79.3821, time: "14 April, 2026 11:00am", 
+    audio: "https://www.image2url.com/r2/default/audio/1776277052274-c02bee66-dc7f-4e59-bd48-f550eb1ea6ad.m4a",
     cues: [{ s: 0, t: "[Residential silence]" }] 
   },
   { 
     title: "Enterprise Blvd", category: "Transit", description: "Street-side transit sounds", 
-    lat: 43.8552, lng: -79.3361, time: "16 Feb, 2026 03:07pm", 
-    audio: "audio/Enterprise Blvd 3:07PM.m4a",
+    lat: 43.8552, lng: -79.3361, time: "14 April, 2026 03:07pm", 
+    audio: "https://www.image2url.com/r2/default/audio/1776277625750-8274fdd8-fcd9-4822-847b-3788db6b60d3.m4a",
     cues: [{ s: 0, t: "[Urban traffic sounds]" }] 
   },
   { 
-    title: "First Markham Place", category: "Commercial", description: "Alternative mall recording", 
-    lat: 43.8525, lng: -79.3496, time: "16 Feb, 2026 03:10pm", 
-    audio: "audio/First Markham Place 3:10PM.m4a",
-    cues: [{ s: 0, t: "[Mall environment]" }] 
+    title: "First Markham Place", category: "Commercial", description: "Mall enviornment", 
+    lat: 43.8525, lng: -79.3496, time: "15 April, 2026 03:10pm", 
+    audio: "https://www.image2url.com/r2/default/audio/1776277653967-0e47446e-4b67-44c9-938b-2d80371d684f.m4a",
+    cues: [{ s: 0, t: "[An old CD player shop in the mall]" }] 
   },
   { 
     title: "Leslie St", category: "Transit", description: "Roadside ambiance", 
     lat: 43.8231, lng: -79.3695, time: "18 Feb, 2026 01:00pm", 
-    audio: "audio/Leslie St.m4a",
+    audio: "https://www.image2url.com/r2/default/audio/1776277680965-90db01a8-dc68-431a-b3ed-01deb605d995.m4a",
     cues: [{ s: 0, t: "[Steady traffic flow]" }] 
   },
   { 
     title: "Major Mackenzie Dr E", category: "Transit", description: "Main road traffic", 
     lat: 43.9015, lng: -79.4442, time: "18 Feb, 2026 03:30pm", 
-    audio: "audio/Major Mackenzie Dr E.m4a",
+    audio: "https://www.image2url.com/r2/default/audio/1776277699355-3c8426ef-dce2-4430-8c21-876a3d6cd9fb.m4a",
     cues: [{ s: 0, t: "[Passing vehicles]" }] 
   },
   { 
     title: "Markham Street Circuit", category: "Transit", description: "Street racing area atmosphere", 
-    lat: 43.8550, lng: -79.3150, time: "18 Feb, 2026 04:00pm", 
-    audio: "audio/Markham Street Circuit.m4a",
+    lat: 43.8550, lng: -79.3150, time: "14 April, 2026 04:00pm", 
+    audio: "https://www.image2url.com/r2/default/audio/1776277721407-dca4b06c-4542-41d6-912f-ae13a4fe1a12.m4a",
     cues: [{ s: 0, t: "[Distant engine roars]" }] 
   },
   { 
     title: "Mount Joy GO Station", category: "Transit", description: "Morning platform sounds", 
-    lat: 43.9214, lng: -79.2631, time: "16 Feb, 2026 08:06am", 
+    lat: 43.9214, lng: -79.2631, time: "14 April 2026 08:06am", 
     audio: "audio/Mount joy go station 8:06.m4a",
     cues: [{ s: 0, t: "[Morning station atmosphere]" }] 
   },
   { 
     title: "Via Renzo Dr", category: "Residential", description: "Quiet residential neighborhood", 
-    lat: 43.8791, lng: -79.3624, time: "18 Feb, 2026 02:15pm", 
+    lat: 43.8791, lng: -79.3624, time: "15 April, 2026 02:15pm", 
     audio: "audio/Via Renzo Dr.m4a",
     cues: [{ s: 0, t: "[Residential silence]" }] 
   }
 ];
  
-// ============================================================
-// 7. FILTER + RENDER SOUNDS
-// ============================================================
+
 let markers = [];
  
 function filterSounds() {
@@ -816,3 +814,7 @@ function filterSounds() {
 // Initial Run
 document.addEventListener('DOMContentLoaded', filterSounds);
 
+
+setTimeout(() => {
+  map.invalidateSize();
+}, 400);
