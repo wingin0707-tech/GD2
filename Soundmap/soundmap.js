@@ -489,6 +489,21 @@ if (dismissMarkerGuideBtn) {
 }
 
 // Section switching
+function resetSectionScroll(sectionEl) {
+  if (!sectionEl) return;
+
+  sectionEl.scrollTop = 0;
+
+  const sectionScroller = sectionEl.querySelector('.about-content-scroller, .submission-content-scroller');
+  if (sectionScroller) {
+    sectionScroller.scrollTop = 0;
+
+    requestAnimationFrame(() => {
+      sectionScroller.scrollTop = 0;
+    });
+  }
+}
+
 function showSection(sectionId) {
   const introPopup = document.getElementById('intro-popup');
   const sections = ['map-page', 'about-page', 'submission-page'];
@@ -520,6 +535,7 @@ function showSection(sectionId) {
   if (target) {
     target.classList.add('active');
     target.style.display = 'block';
+    resetSectionScroll(target);
   }
 
   if (sectionId === 'map-page') {
