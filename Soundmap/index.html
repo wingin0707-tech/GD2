@@ -29,6 +29,11 @@
 
   <div id="map"></div>
 
+  <div id="marker-guide" class="marker-guide" aria-hidden="true">
+    <p>Guide: tap or click a red marker to listen to its sound.</p>
+    <button id="dismiss-marker-guide" type="button">Got it</button>
+  </div>
+
   <div class="sound-browser" id="soundBrowser">
     <div class="browser-content">
       <h3>Filter Sound</h3>
@@ -56,6 +61,7 @@
 
   <div class="map-navigation">
     <button onclick="showSection('intro-popup')">( Home )</button>
+    <button onclick="showSection('map-page')">( Map )</button>
     <button onclick="showSection('about-page')">( About )</button>
     <button onclick="showSection('submission-page')">( Submit )</button>
   </div>
@@ -73,11 +79,24 @@
         <div class="about-wrapper">
           <div class="about-grid">
             <h1 class="about-main-title">About<br>Sound</h1>
-            <p class="text">The Markham Sound Map is a field-recording archive that documents the auditory life of my immediate surroundings. Since early Feb 2026, I have been capturing environmental audio to better understand how the sounds we live with every day shape our experience of the city</p>
+            <div class="about-intro-copy">
+              <p class="text">The Markham Sound Map is a field-recording archive that documents the auditory life of my immediate surroundings. Since early Feb 2026, I have been capturing environmental audio to better understand how the sounds we live with every day shape our experience of the city.</p>
+              <div class="about-meta" aria-label="about tags">
+              </div>
+            </div>
+          </div>
+
+          <div class="about-progress-panel" aria-label="project progress">
+          </div>
+
+          <div class="about-gallery-head">
+            <p class="about-kicker">Featured Moments</p>
+            <h2 class="about-gallery-title">Some of my favourite recordings</h2>
           </div>
 
           <div class="about-block scroll-content">
             <div class="about-photo-wrapper">
+              <span class="photo-hover-hint">Hover or tap to listen</span>
               <img src="./assets/IMG_6621.jpg" class="about-photo" data-sound="sound-train">
               <small class="photo-caption">( GO Station Tracks / Transit )</small>
             </div>
@@ -85,6 +104,7 @@
 
           <div class="about-block scroll-content">
             <div class="about-photo-wrapper">
+              <span class="photo-hover-hint">Hover or tap to listen</span>
               <img src="./assets/IMG_6634.jpg" class="about-photo" data-sound="sound-karaoke">
               <small class="photo-caption">( Pacific Mall Karaoke / Commercial )</small>
             </div>
@@ -92,6 +112,7 @@
 
           <div class="about-block scroll-content">
             <div class="about-photo-wrapper">
+              <span class="photo-hover-hint">Hover or tap to listen</span>
               <img src="./assets/IMG_6647.jpg" class="about-photo" data-sound="sound-church">
               <small class="photo-caption">( Cathedral of the Transfiguration / Residential )</small>
             </div>
@@ -99,6 +120,7 @@
 
           <div class="about-block scroll-content">
             <div class="about-photo-wrapper">
+              <span class="photo-hover-hint">Hover or tap to listen</span>
               <img src="./assets/IMG_6667.jpg" class="about-photo" data-sound="sound-parking">
               <small class="photo-caption">( Unionville Parking / Evening )</small>
             </div>
@@ -108,10 +130,13 @@
     </section>
 
     <section id="submission-page">
-      <div class="submission-container">
-        <div class="form-header">
-          <h2 class="form-title">Submit Sound</h2>
-          <p class="form-subtitle">Add to the Markham Archive email me : Wingin0707@gmail.com</p>
+      <div class="submission-content-scroller">
+        <div class="submission-container">
+          <p class="submission-kicker">Contribute to the Markham Sound Map</p>
+          <div class="form-header">
+            <h2 class="form-title">Submit Sound</h2>
+            <p class="form-subtitle">Add to the Markham Archive email me: <a href="mailto:Wingin0707@gmail.com">Wingin0707@gmail.com</a></p>
+          </div>
         </div>
       </div>
     </section>

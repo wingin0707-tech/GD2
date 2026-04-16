@@ -443,6 +443,48 @@ L.maplibreGL({
   }
 }).addTo(map);
 
+const markerGuide = document.getElementById('marker-guide');
+const dismissMarkerGuideBtn = document.getElementById('dismiss-marker-guide');
+let markerGuideTimeoutId = null;
+let markerGuideDismissed = false;
+
+function hideMarkerGuide(markSeen = false) {
+  if (!markerGuide) return;
+
+  markerGuide.classList.remove('visible');
+  markerGuide.setAttribute('aria-hidden', 'true');
+
+  if (markerGuideTimeoutId) {
+    clearTimeout(markerGuideTimeoutId);
+    markerGuideTimeoutId = null;
+  }
+
+  if (markSeen) {
+    markerGuideDismissed = true;
+  }
+}
+
+function showMarkerGuide() {
+  if (!markerGuide || markerGuideDismissed) return;
+
+  markerGuide.classList.add('visible');
+  markerGuide.setAttribute('aria-hidden', 'false');
+
+  if (markerGuideTimeoutId) {
+    clearTimeout(markerGuideTimeoutId);
+  }
+
+  markerGuideTimeoutId = setTimeout(() => {
+    hideMarkerGuide(false);
+  }, 9000);
+}
+
+if (dismissMarkerGuideBtn) {
+  dismissMarkerGuideBtn.addEventListener('click', () => {
+    hideMarkerGuide(true);
+  });
+}
+
 function showSection(sectionId) {
   const introPopup = document.getElementById('intro-popup');
   const sections = ['map-page', 'about-page', 'submission-page'];
@@ -480,6 +522,12 @@ function showSection(sectionId) {
     setTimeout(() => {
       map.invalidateSize();
     }, 200);
+
+    setTimeout(() => {
+      showMarkerGuide();
+    }, 260);
+  } else {
+    hideMarkerGuide(false);
   }
 }
 
@@ -736,9 +784,21 @@ function filterSounds() {
       const marker = L.marker([loc.lat, loc.lng], { icon: crossIcon }).addTo(map);
       marker.bindPopup(popupHTML);
 
+      marker.on('click', () => {
+        marker.shouldAutoPlay = true;
+        hideMarkerGuide(true);
+      });
+
       marker.on('popupopen', () => {
         const audio = document.getElementById(`audio-${index}`);
         const display = document.getElementById(`transcript-${index}`);
+
+        if (audio && marker.shouldAutoPlay) {
+          audio.currentTime = 0;
+          audio.play().catch(() => {});
+          marker.shouldAutoPlay = false;
+        }
+
         if (audio && display && loc.cues) {
           audio.ontimeupdate = () => {
             let activeText = 'RECORDING...';
@@ -750,7 +810,18 @@ function filterSounds() {
         }
       });
 
+      marker.on('popupclose', () => {
+        const audio = document.getElementById(`audio-${index}`);
+        if (audio) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+        marker.shouldAutoPlay = false;
+      });
+
       item.onclick = () => {
+        marker.shouldAutoPlay = true;
+        hideMarkerGuide(true);
         map.flyTo([loc.lat, loc.lng], 16);
         marker.openPopup();
       };
@@ -761,7 +832,58 @@ function filterSounds() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', filterSounds);
+const aboutSoundDictionary = {
+  'sound-train': new Audio('https://image2url.com/r2/default/audio/1771618112948-02075d34-09c1-4200-8bc5-6e1b130472f2.m4a'),
+  'sound-karaoke': new Audio('https://www.image2url.com/r2/default/audio/1776277653967-0e47446e-4b67-44c9-938b-2d80371d684f.m4a'),
+  'sound-church': new Audio('https://www.image2url.com/r2/default/audio/1776277052274-c02bee66-dc7f-4e59-bd48-f550eb1ea6ad.m4a'),
+  'sound-parking': new Audio('https://www.image2url.com/r2/default/audio/1776276941299-f45fdcc8-b48d-4aa8-829a-ff70887e85b3.m4a')
+};
+
+function initAboutHoverSounds() {
+  const aboutImages = document.querySelectorAll('#about-page .about-photo[data-sound]');
+  let activeAboutSound = null;
+
+  const playAboutSound = image => {
+    const soundKey = image.dataset.sound;
+    const sound = aboutSoundDictionary[soundKey];
+    if (!sound) return;
+
+    if (activeAboutSound && activeAboutSound !== sound) {
+      activeAboutSound.pause();
+      activeAboutSound.currentTime = 0;
+    }
+
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+    activeAboutSound = sound;
+  };
+
+  const stopAboutSound = image => {
+    const soundKey = image.dataset.sound;
+    const sound = aboutSoundDictionary[soundKey];
+    if (!sound) return;
+
+    sound.pause();
+    sound.currentTime = 0;
+
+    if (activeAboutSound === sound) {
+      activeAboutSound = null;
+    }
+  };
+
+  aboutImages.forEach(image => {
+    image.addEventListener('mouseenter', () => playAboutSound(image));
+    image.addEventListener('mouseleave', () => stopAboutSound(image));
+    image.addEventListener('touchstart', () => playAboutSound(image), { passive: true });
+    image.addEventListener('touchend', () => stopAboutSound(image), { passive: true });
+    image.addEventListener('touchcancel', () => stopAboutSound(image), { passive: true });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  filterSounds();
+  initAboutHoverSounds();
+});
 
 
 setTimeout(() => {
