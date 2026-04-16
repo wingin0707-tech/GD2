@@ -1,6 +1,7 @@
 
 
 
+// Map setup
 const map = L.map('map', {
   maxZoom: 15,
   minZoom: 13,          
@@ -8,6 +9,7 @@ const map = L.map('map', {
 }).setView([43.8561, -79.3370], 13);
 
 
+// Base map style layer
 L.maplibreGL({
   style: {
     "version": 8,
@@ -443,6 +445,7 @@ L.maplibreGL({
   }
 }).addTo(map);
 
+// Marker guide helpers
 const markerGuide = document.getElementById('marker-guide');
 const dismissMarkerGuideBtn = document.getElementById('dismiss-marker-guide');
 let markerGuideTimeoutId = null;
@@ -485,6 +488,7 @@ if (dismissMarkerGuideBtn) {
   });
 }
 
+// Section switching
 function showSection(sectionId) {
   const introPopup = document.getElementById('intro-popup');
   const sections = ['map-page', 'about-page', 'submission-page'];
@@ -531,6 +535,7 @@ function showSection(sectionId) {
   }
 }
 
+// Intro transition
 function enterMap() {
   const introPopup = document.getElementById('intro-popup');
 
@@ -547,6 +552,7 @@ function enterMap() {
   showSection('map-page');
 }
 
+// Custom cursor
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');
 document.body.appendChild(cursor);
@@ -565,6 +571,7 @@ const crossIcon = L.divIcon({
 });
 
 
+// Sound dataset
 const soundData = [
   { 
     title: "Edward Jeffreys Ave", category: "Transit", description: "Edward Jeffreys avenue GO train station", 
@@ -573,7 +580,7 @@ const soundData = [
     cues: [{ s: 0, t: "[Distant hum of the GO Train approaching]" }, { s: 5, t: "Screech of brakes on metal tracks." }, { s: 10, t: "[Automated chime: Doors opening]" }] 
   },
   { 
-    title: "Scott Brown St", category: "Residential", description: "25 Scott Brown St", 
+    title: "Scott Brown St", category: "Residential", description: "My neighbourhood street", 
     lat: 43.89945, lng: -79.27401, time: "17 Feb, 2026 5:30pm", 
     audio: "https://image2url.com/r2/default/audio/1771617515406-ea055bbd-6cb8-460f-b1be-d6a683aae14a.m4a",
     cues: [{ s: 0, t: "[Residential neighborhood evening sounds]" }, { s: 4, t: "Wind rustling through bare winter branches." }, { s: 12, t: "A car passes in the distance." }] 
@@ -726,6 +733,7 @@ const soundData = [
 ];
  
 
+// Map filtering and marker rendering
 let markers = [];
 
 function getTimeOfDayLabel(timeValue) {
@@ -832,6 +840,7 @@ function filterSounds() {
   });
 }
 
+// About image hover sounds
 const aboutSoundDictionary = {
   'sound-train': new Audio('https://image2url.com/r2/default/audio/1771618112948-02075d34-09c1-4200-8bc5-6e1b130472f2.m4a'),
   'sound-karaoke': new Audio('https://www.image2url.com/r2/default/audio/1776277653967-0e47446e-4b67-44c9-938b-2d80371d684f.m4a'),
@@ -880,11 +889,11 @@ function initAboutHoverSounds() {
   });
 }
 
+// App bootstrap
 document.addEventListener('DOMContentLoaded', () => {
   filterSounds();
   initAboutHoverSounds();
 });
-
 
 setTimeout(() => {
   map.invalidateSize();

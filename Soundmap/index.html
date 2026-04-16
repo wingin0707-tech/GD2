@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css.css">
 </head>
 <body>
+  <!-- Intro Overlay -->
   <div id="intro-popup" class="intro-popup">
     <div class="intro-bg"></div>
     <div class="intro-content">
@@ -27,29 +28,32 @@
     </div>
   </div>
 
+  <!-- Map Canvas -->
   <div id="map"></div>
 
+  <!-- Marker Guide -->
   <div id="marker-guide" class="marker-guide" aria-hidden="true">
     <p>Guide: tap or click a red marker to listen to its sound.</p>
     <button id="dismiss-marker-guide" type="button">Got it</button>
   </div>
 
+  <!-- Sound Browser Panel -->
   <div class="sound-browser" id="soundBrowser">
     <div class="browser-content">
       <h3>Filter Sound</h3>
       <div class="filters">
         <select id="timeFilter" onchange="filterSounds()">
-          <option value="all">ANY TIME</option>
-          <option value="morning">MORNING</option>
-          <option value="afternoon">AFTERNOON</option>
-          <option value="evening">EVENING</option>
+          <option value="all">Any time</option>
+          <option value="morning">morning</option>
+          <option value="afternoon">afternoon</option>
+          <option value="evening">evening</option>
         </select>
 
         <select id="categoryFilter" onchange="filterSounds()">
-          <option value="all">ANY CATEGORY</option>
-          <option value="Transit">TRANSIT</option>
-          <option value="Commercial">COMMERCIAL</option>
-          <option value="Residential">RESIDENTIAL</option>
+          <option value="all">any category</option>
+          <option value="Transit">transit</option>
+          <option value="Commercial">commercial</option>
+          <option value="Residential">residential</option>
         </select>
       </div>
 
@@ -59,6 +63,7 @@
     </div>
   </div>
 
+  <!-- Global Navigation -->
   <div class="map-navigation">
     <button onclick="showSection('intro-popup')">( Home )</button>
     <button onclick="showSection('map-page')">( Map )</button>
@@ -66,9 +71,11 @@
     <button onclick="showSection('submission-page')">( Submit )</button>
   </div>
 
+  <!-- Page Sections -->
   <main>
     <section id="map-page"></section>
 
+    <!-- About Page Content -->
     <section id="about-page">
       <audio id="sound-train" src="./sounds/train.mp3" preload="auto"></audio>
       <audio id="sound-karaoke" src="./sounds/karaoke.mp3" preload="auto"></audio>
@@ -96,7 +103,7 @@
 
           <div class="about-block scroll-content">
             <div class="about-photo-wrapper">
-              <span class="photo-hover-hint">Hover or tap to listen</span>
+              <span class="photo-hover-hint">Hover to listen</span>
               <img src="./assets/IMG_6621.jpg" class="about-photo" data-sound="sound-train">
               <small class="photo-caption">( GO Station Tracks / Transit )</small>
             </div>
@@ -104,7 +111,7 @@
 
           <div class="about-block scroll-content">
             <div class="about-photo-wrapper">
-              <span class="photo-hover-hint">Hover or tap to listen</span>
+              <span class="photo-hover-hint">Hover to listen</span>
               <img src="./assets/IMG_6634.jpg" class="about-photo" data-sound="sound-karaoke">
               <small class="photo-caption">( Pacific Mall Karaoke / Commercial )</small>
             </div>
@@ -112,7 +119,7 @@
 
           <div class="about-block scroll-content">
             <div class="about-photo-wrapper">
-              <span class="photo-hover-hint">Hover or tap to listen</span>
+              <span class="photo-hover-hint">Hover to listen</span>
               <img src="./assets/IMG_6647.jpg" class="about-photo" data-sound="sound-church">
               <small class="photo-caption">( Cathedral of the Transfiguration / Residential )</small>
             </div>
@@ -120,15 +127,16 @@
 
           <div class="about-block scroll-content">
             <div class="about-photo-wrapper">
-              <span class="photo-hover-hint">Hover or tap to listen</span>
+              <span class="photo-hover-hint">Hover to listen</span>
               <img src="./assets/IMG_6667.jpg" class="about-photo" data-sound="sound-parking">
-              <small class="photo-caption">( Unionville Parking / Evening )</small>
+              <small class="photo-caption">( Mount Joy go train station )</small>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Submission Page Content -->
     <section id="submission-page">
       <div class="submission-content-scroller">
         <div class="submission-container">
@@ -142,10 +150,11 @@
     </section>
   </main>
 
-  
+  <!-- Vendor Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.21/leaflet-maplibre-gl.js"></script>
+  <!-- App Script -->
   <script src="soundmap.js"></script>
 </body>
 </html>
