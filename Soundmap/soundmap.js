@@ -721,13 +721,13 @@ const soundData = [
   { 
     title: "Mount Joy GO Station", category: "Transit", description: "Morning platform sounds", 
     lat: 43.9214, lng: -79.2631, time: "14 April 2026 08:06am", 
-    audio: "audio/Mount joy go station 8:06.m4a",
+    audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",
     cues: [{ s: 0, t: "[Morning station atmosphere]" }] 
   },
   { 
     title: "Via Renzo Dr", category: "Residential", description: "Quiet residential neighborhood", 
     lat: 43.8791, lng: -79.3624, time: "15 April, 2026 02:15pm", 
-    audio: "audio/Via Renzo Dr.m4a",
+    audio: "https://image2url.com/r2/default/audio/1771616956404-94393f99-3144-4b5c-95fd-891869b3fdf8.m4a",
     cues: [{ s: 0, t: "[Residential silence]" }] 
   }
 ];
@@ -894,6 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
   filterSounds();
   initAboutHoverSounds();
 });
+
 
 setTimeout(() => {
   map.invalidateSize();
