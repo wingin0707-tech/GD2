@@ -905,12 +905,10 @@ function initAboutHoverSounds() {
   });
 }
 
-// App bootstrap
 document.addEventListener('DOMContentLoaded', () => {
   filterSounds();
   initAboutHoverSounds();
 });
-
 
 setTimeout(() => {
   map.invalidateSize();
