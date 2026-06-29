@@ -135,6 +135,78 @@ h1, h2, h3{
 .hero-cta:hover{ opacity: 0.6; }
 
 /* ============================================
+   Featured Project (Sound Map)
+   ============================================ */
+.featured-project{
+  padding: 10px 0 80px;
+}
+.featured-inner{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gut);
+}
+.featured-desc{
+  max-width: 60ch;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  margin: 16px 0 36px;
+}
+
+.browser-frame{
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: 0 24px 60px -30px rgba(0,0,0,0.28);
+}
+.browser-bar{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  background: #efeee9;
+  border-bottom: 1px solid var(--line);
+}
+.browser-dot{
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #d8d5cc;
+  display: inline-block;
+}
+.browser-url{
+  margin-left: 10px;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+.browser-iframe{
+  display: block;
+  width: 100%;
+  height: 640px;
+  border: 0;
+  background: #fff;
+}
+@media (max-width: 700px){
+  .browser-iframe{ height: 460px; }
+}
+
+.featured-cta{
+  display: inline-block;
+  margin-top: 26px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+}
+.featured-cta:hover{ opacity: 0.6; }
+
+/* ============================================
    Section heads (shared)
    ============================================ */
 .section-head{
