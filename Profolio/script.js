@@ -222,6 +222,7 @@ document.addEventListener("keydown", (e) => {
 
   let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
   let squares = [];
+  let ripples = [];
   let pointer = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
   let rafId = null;
 
@@ -247,6 +248,8 @@ document.addEventListener("keydown", (e) => {
         size,
         vx: (Math.random() - 0.5) * 0.12,
         vy: (Math.random() - 0.5) * 0.12,
+        impulseX: 0,
+        impulseY: 0,
         rot: Math.random() * Math.PI,
         vr: (Math.random() - 0.5) * 0.0006,
         color: palette[i % palette.length],
@@ -280,8 +283,11 @@ document.addEventListener("keydown", (e) => {
     ctx.globalAlpha = 0.16;
 
     squares.forEach((s) => {
-      s.x += s.vx;
-      s.y += s.vy;
+      // shockwave impulse decays back to zero, base drift continues underneath
+      s.x += s.vx + s.impulseX;
+      s.y += s.vy + s.impulseY;
+      s.impulseX *= 0.92;
+      s.impulseY *= 0.92;
       s.rot += s.vr;
 
       // wrap around edges so the drift loops forever
@@ -303,7 +309,47 @@ document.addEventListener("keydown", (e) => {
 
     ctx.globalAlpha = 1;
     ctx.globalCompositeOperation = "source-over";
+
+    // expanding shockwave rings from clicks
+    ripples = ripples.filter((r) => r.alpha > 0.01);
+    ripples.forEach((r) => {
+      r.radius += r.speed;
+      r.alpha *= 0.94;
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = r.color;
+      ctx.globalAlpha = r.alpha;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    });
+
     rafId = requestAnimationFrame(step);
+  }
+
+  function triggerShockwave(clickX, clickY) {
+    const maxReach = Math.max(w, h) * 0.6;
+    const strength = w < 700 ? 4.5 : 7;
+
+    squares.forEach((s) => {
+      const dx = s.x - clickX;
+      const dy = s.y - clickY;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      const falloff = Math.max(0, 1 - dist / maxReach);
+      if (falloff <= 0) return;
+      const force = falloff * falloff * strength;
+      s.impulseX += (dx / dist) * force;
+      s.impulseY += (dy / dist) * force;
+    });
+
+    ripples.push({
+      x: clickX,
+      y: clickY,
+      radius: 4,
+      speed: w < 700 ? 5 : 7,
+      alpha: 0.35,
+      color: palette[Math.floor(Math.random() * palette.length)]
+    });
   }
 
   hero.addEventListener("pointermove", (e) => {
@@ -311,6 +357,13 @@ document.addEventListener("keydown", (e) => {
     pointer.tx = (e.clientX - rect.left) / rect.width;
     pointer.ty = (e.clientY - rect.top) / rect.height;
   });
+
+  if (!reduceMotion) {
+    hero.addEventListener("pointerdown", (e) => {
+      const rect = hero.getBoundingClientRect();
+      triggerShockwave(e.clientX - rect.left, e.clientY - rect.top);
+    });
+  }
 
   let resizeTimer = null;
   window.addEventListener("resize", () => {
