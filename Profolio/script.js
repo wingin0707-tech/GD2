@@ -78,10 +78,11 @@ const PROJECTS = [
 // ---------- Render tiles ----------
 const grid = document.getElementById("grid");
 
-PROJECTS.forEach((p) => {
+PROJECTS.forEach((p, i) => {
   const tile = document.createElement("article");
   tile.className = "tile";
   tile.style.setProperty("--accent", p.accent);
+  tile.style.transitionDelay = `${Math.min(i * 60, 360)}ms`;
   tile.setAttribute("data-id", p.id);
   tile.setAttribute("tabindex", "0");
   tile.setAttribute("role", "button");
@@ -166,3 +167,170 @@ overlay.addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && overlay.classList.contains("open")) closeModal();
 });
+
+// ============================================
+// Active nav link — highlights Sound Map / Work /
+// About / Contact as you scroll past each section.
+// ============================================
+(function navActiveState() {
+  const navLinks = Array.from(document.querySelectorAll(".main-nav a"));
+  const sections = navLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  if (!("IntersectionObserver" in window) || sections.length === 0) return;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const link = navLinks.find(
+          (a) => a.getAttribute("href") === `#${entry.target.id}`
+        );
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach((a) => a.classList.remove("active"));
+          link.classList.add("active");
+        }
+      });
+    },
+    { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+  );
+
+  sections.forEach((s) => io.observe(s));
+})();
+
+// ============================================
+// Hero motion graphic — drifting duotone tiles,
+// echoing the layered-collage look used across
+// the actual poster work. Pauses for reduced motion.
+// ============================================
+(function heroCanvas() {
+  const canvas = document.getElementById("heroCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const hero = canvas.closest(".hero");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const palette = [
+    "#2c4a33", // verses bound green
+    "#6a4c93", // jstdrmn purple
+    "#3f6b73", // 100m teal
+    "#c9762f", // hyco orange
+    "#c98fa0", // climate pink
+    "#b0241f"  // archive red
+  ];
+
+  let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let squares = [];
+  let pointer = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
+  let rafId = null;
+
+  function resize() {
+    const rect = hero.getBoundingClientRect();
+    w = rect.width;
+    h = rect.height;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildSquares();
+  }
+
+  function buildSquares() {
+    const count = w < 700 ? 7 : 12;
+    squares = Array.from({ length: count }, (_, i) => {
+      const size = (w < 700 ? 50 : 80) + Math.random() * (w < 700 ? 70 : 130);
+      return {
+        x: Math.random() * w,
+        y: Math.random() * h,
+        size,
+        vx: (Math.random() - 0.5) * 0.12,
+        vy: (Math.random() - 0.5) * 0.12,
+        rot: Math.random() * Math.PI,
+        vr: (Math.random() - 0.5) * 0.0006,
+        color: palette[i % palette.length],
+        depth: 0.4 + Math.random() * 0.6 // parallax strength
+      };
+    });
+  }
+
+  function drawStatic() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = 0.16;
+    squares.forEach((s) => {
+      ctx.save();
+      ctx.translate(s.x, s.y);
+      ctx.rotate(s.rot);
+      ctx.fillStyle = s.color;
+      ctx.fillRect(-s.size / 2, -s.size / 2, s.size, s.size);
+      ctx.restore();
+    });
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = "source-over";
+  }
+
+  function step() {
+    pointer.x += (pointer.tx - pointer.x) * 0.04;
+    pointer.y += (pointer.ty - pointer.y) * 0.04;
+
+    ctx.clearRect(0, 0, w, h);
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = 0.16;
+
+    squares.forEach((s) => {
+      s.x += s.vx;
+      s.y += s.vy;
+      s.rot += s.vr;
+
+      // wrap around edges so the drift loops forever
+      if (s.x < -s.size) s.x = w + s.size;
+      if (s.x > w + s.size) s.x = -s.size;
+      if (s.y < -s.size) s.y = h + s.size;
+      if (s.y > h + s.size) s.y = -s.size;
+
+      const px = (pointer.x - 0.5) * 24 * s.depth;
+      const py = (pointer.y - 0.5) * 24 * s.depth;
+
+      ctx.save();
+      ctx.translate(s.x + px, s.y + py);
+      ctx.rotate(s.rot);
+      ctx.fillStyle = s.color;
+      ctx.fillRect(-s.size / 2, -s.size / 2, s.size, s.size);
+      ctx.restore();
+    });
+
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = "source-over";
+    rafId = requestAnimationFrame(step);
+  }
+
+  hero.addEventListener("pointermove", (e) => {
+    const rect = hero.getBoundingClientRect();
+    pointer.tx = (e.clientX - rect.left) / rect.width;
+    pointer.ty = (e.clientY - rect.top) / rect.height;
+  });
+
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 150);
+  });
+
+  resize();
+
+  if (reduceMotion) {
+    drawStatic();
+  } else {
+    step();
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (rafId) cancelAnimationFrame(rafId);
+    } else if (!reduceMotion) {
+      step();
+    }
+  });
+})();

@@ -85,6 +85,7 @@ h1, h2, h3{
   padding-bottom: 4px;
 }
 .main-nav a:hover{ color: var(--ink); }
+.main-nav a.active{ color: var(--ink); }
 .main-nav a::after{
   content:"";
   position:absolute; left:0; right:0; bottom:0;
@@ -93,15 +94,34 @@ h1, h2, h3{
   transform-origin: left;
   transition: transform .25s ease;
 }
-.main-nav a:hover::after{ transform: scaleX(1); }
+.main-nav a:hover::after,
+.main-nav a.active::after{ transform: scaleX(1); }
+
+#soundmap, #work, #about, #contact{
+  scroll-margin-top: 88px;
+}
 
 /* ============================================
    Hero
    ============================================ */
 .hero{
+  position: relative;
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 96px var(--gut) 60px;
+  overflow: hidden;
+}
+.hero-canvas{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero > *:not(.hero-canvas){
+  position: relative;
+  z-index: 1;
 }
 .eyebrow{
   font-family: var(--mono);
@@ -259,13 +279,15 @@ h1, h2, h3{
   cursor: pointer;
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity .5s ease, transform .5s ease,
-              border-color .25s ease, box-shadow .25s ease;
+  transition: opacity .6s cubic-bezier(.16,.84,.44,1),
+              transform .6s cubic-bezier(.16,.84,.44,1),
+              border-color .25s ease, box-shadow .35s ease;
 }
 .tile.in-view{ opacity: 1; transform: translateY(0); }
 .tile:hover{
   border-color: var(--ink);
-  box-shadow: 0 10px 26px -14px rgba(0,0,0,0.25);
+  box-shadow: 0 18px 34px -18px rgba(0,0,0,0.28);
+  transform: translateY(-5px);
 }
 
 .tile-media{
@@ -409,7 +431,7 @@ h1, h2, h3{
   padding: 4vh 4vw;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .25s ease;
+  transition: opacity .3s ease;
 }
 .modal-overlay.open{
   opacity: 1;
@@ -425,8 +447,8 @@ h1, h2, h3{
   position: relative;
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  transform: translateY(16px) scale(0.98);
-  transition: transform .3s ease;
+  transform: translateY(22px) scale(0.97);
+  transition: transform .42s cubic-bezier(.16,.84,.44,1);
 }
 .modal-overlay.open .modal{ transform: translateY(0) scale(1); }
 
