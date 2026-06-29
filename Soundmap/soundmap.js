@@ -843,7 +843,7 @@ function filterSounds() {
         marker.shouldAutoPlay = false;
       });
 
-      item.onclick = () => {
+  item.onclick = () => {
         marker.shouldAutoPlay = true;
         hideMarkerGuide(true);
         map.flyTo([loc.lat, loc.lng], 16);
