@@ -3,145 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sophya Chan — Portfolio</title>
+<title>Sophya Chan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="grain" aria-hidden="true"></div>
-
-<header class="site-header">
-  <a href="#top" class="wordmark">SOPHYA<span class="dot">.</span></a>
-  <nav class="main-nav">
-    <a href="#soundmap">Sound Map</a>
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-left">
+    <span class="hdr-name">Sophya Chan<span class="blink">_</span></span>
+    <button class="filter-btn" id="filterBtn">Filter <span class="filter-arrow">↓</span></button>
+    <div class="filter-panel" id="filterPanel">
+      <button class="filter-tag active" data-filter="all">All</button>
+      <button class="filter-tag" data-filter="Poster">Poster</button>
+      <button class="filter-tag" data-filter="Flyer">Flyer</button>
+      <button class="filter-tag" data-filter="UI/UX">UI/UX</button>
+      <button class="filter-tag" data-filter="Illustration">Illustration</button>
+      <button class="filter-tag" data-filter="Interactive">Interactive</button>
+      <button class="filter-tag" data-filter="Collage">Collage</button>
+    </div>
+  </div>
+  <nav class="hdr-right">
+    <a href="#about-row">About</a>
+    <a href="mailto:hello@sophyachan.com">Contact</a>
   </nav>
 </header>
 
-<main id="top">
+<!-- TABLE -->
+<main>
+  <table class="project-table" id="projectTable">
+    <thead>
+      <tr class="col-labels">
+        <th class="col-n">n</th>
+        <th class="col-y">y</th>
+        <th class="col-title">title</th>
+        <th class="col-type">type</th>
+        <th class="col-context">context</th>
+        <th class="col-location">location</th>
+        <th class="col-format">format</th>
+        <th class="col-medium">medium</th>
+        <th class="col-status">s</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- rows injected by script.js -->
+    </tbody>
+  </table>
 
-  <section class="hero">
-    <div class="hero-cute" aria-hidden="true">
-      <svg class="cute-blob" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        <path class="blob-body" d="M60 8c20 0 27 14 33 26 6 12 19 16 19 33 0 22-23 39-52 39S6 89 6 67c0-17 12-21 18-33C30 22 40 8 60 8z"/>
-        <circle class="blob-eye" cx="46" cy="56" r="4.2"/>
-        <circle class="blob-eye" cx="74" cy="56" r="4.2"/>
-        <path class="blob-mouth" d="M48 70c5 6 19 6 24 0"/>
-        <circle class="blob-blush" cx="38" cy="66" r="4"/>
-        <circle class="blob-blush" cx="82" cy="66" r="4"/>
-      </svg>
-      <span class="cute-shape cute-star">
-        <svg viewBox="0 0 24 24"><path d="M12 0l3.5 8.2L24 9l-6.5 5.8L19.4 24 12 19l-7.4 5 2-9.2L0 9l8.5-.8z"/></svg>
-      </span>
-      <span class="cute-shape cute-dot"></span>
-      <span class="cute-shape cute-pencil">
-        <svg viewBox="0 0 24 24"><path d="M2 22l1.6-6.6L16.4 2.6a2 2 0 0 1 2.8 0l2.2 2.2a2 2 0 0 1 0 2.8L8.6 20.4z"/></svg>
-      </span>
-    </div>
-    <p class="eyebrow">Graphic &amp; UI/UX Design — Toronto</p>
-    <h1>Hi, I'm Sophya Chan.<br>I design things you'd<br>actually want to look twice at.</h1>
-    <p class="hero-sub">Posters, flyers, app interfaces, an interactive sound map, and the odd
-      glitched-out collage — tiled below in roughly the order I made them.</p>
-    <a href="#work" class="hero-cta">See the work ↓</a>
-  </section>
-
-  <section id="soundmap" class="featured-project">
-    <div class="featured-inner">
-      <p class="eyebrow">Featured Project</p>
-      <h2>Markham Sound Map</h2>
-      <p class="featured-desc">An interactive field-recording archive of the sounds around Markham —
-        click a red marker on the map to hear what that spot actually sounds like, filtered by
-        time of day and category. Built as an ongoing, contributable archive rather than a
-        one-off piece.</p>
-
-      <div class="browser-frame">
-        <div class="browser-bar">
-          <span class="browser-dot"></span>
-          <span class="browser-dot"></span>
-          <span class="browser-dot"></span>
-          <span class="browser-url">wingin0707-tech.github.io/GD2/Soundmap</span>
-        </div>
-        <iframe
-          class="browser-iframe"
-          src="https://wingin0707-tech.github.io/GD2/Soundmap/"
-          title="Markham Sound Map — live preview"
-          loading="lazy"
-          referrerpolicy="no-referrer">
-        </iframe>
-      </div>
-
-      <a href="https://wingin0707-tech.github.io/GD2/Soundmap/" target="_blank" rel="noopener" class="featured-cta">
-        Open the full sound map ↗
-      </a>
-    </div>
-  </section>
-
-  <section id="work" class="work-section">
-    <div class="section-head">
-      <h2>Selected Work</h2>
-      <p>Seven projects, four colours of paint on my desk that never came off.</p>
-    </div>
-
-    <div class="grid" id="grid"><!-- tiles injected by script.js --></div>
-  </section>
-
-  <section id="about" class="about-section">
-    <div class="section-head">
-      <h2>About</h2>
-    </div>
+  <!-- ABOUT ROW -->
+  <div class="about-row" id="about-row">
+    <div class="about-label">About</div>
     <div class="about-body">
-      <p>I'm a graphic and UI/UX designer who likes work that sits right on the line between
-        organized and chaotic — dense type, layered collage, the occasional deliberate glitch.
-        Most of what's here came out of OCAD U studio briefs and a few of my own side projects,
-        made solo and alongside some genuinely great collaborators.</p>
-      <ul class="skills">
-        <li>Adobe Illustrator</li>
-        <li>Adobe InDesign</li>
-        <li>Adobe Photoshop</li>
-        <li>Figma</li>
-        <li>After Effects</li>
-        <li>Editorial &amp; Poster Design</li>
-        <li>App / UI Design</li>
-        <li>Motion &amp; AR</li>
-      </ul>
+      <p>Graphic and UI/UX designer based in Toronto. Work that sits right on the line between organized and chaotic — dense type, layered collage, the occasional deliberate glitch. Studying at OCAD U.</p>
+      <div class="about-skills">
+        <span>Adobe Illustrator</span>
+        <span>InDesign</span>
+        <span>Photoshop</span>
+        <span>After Effects</span>
+        <span>Figma</span>
+        <span>Editorial Design</span>
+        <span>UI/UX</span>
+        <span>Motion &amp; AR</span>
+      </div>
     </div>
-  </section>
-
-  <section id="contact" class="contact-section">
-    <div class="section-head">
-      <h2>Let's talk</h2>
-    </div>
-    <p class="contact-line">Open to internships, freelance, and collaborations.</p>
-    <a href="mailto:hello@sophyachan.com" class="contact-email">wingin0707@gmail.com</a>
-    <div class="socials">
-      <a href="#">Instagram</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Behance</a>
-    </div>
-  </section>
-
+    <span class="about-cute">( ˶ˆᗜˆ˵ )</span>
+  </div>
 </main>
 
-<footer class="site-footer">
-  <span>© 2026 Sophya Chan</span>
-  <a href="#top">Back to top ↑</a>
-</footer>
-
-<!-- Modal / lightbox -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
-    <div class="modal-media" id="modalMedia"></div>
-    <div class="modal-info">
-      <p class="modal-tag" id="modalTag"></p>
-      <h3 id="modalTitle"></h3>
-      <p class="modal-meta" id="modalMeta"></p>
-      <p class="modal-desc" id="modalDesc"></p>
+<!-- PROJECT DETAIL PANEL -->
+<div class="panel-overlay" id="panelOverlay">
+  <div class="panel" id="panel">
+    <div class="panel-hdr">
+      <span class="panel-num" id="panelNum"></span>
+      <span class="panel-title-text" id="panelTitleText"></span>
+      <button class="panel-close" id="panelClose" aria-label="Close">✕</button>
+    </div>
+    <div class="panel-scroll">
+      <div class="panel-images" id="panelImages"></div>
+      <div class="panel-meta">
+        <table class="meta-table" id="metaTable"></table>
+        <p class="panel-desc" id="panelDesc"></p>
+      </div>
     </div>
   </div>
 </div>
