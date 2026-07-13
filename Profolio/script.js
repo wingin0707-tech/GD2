@@ -14,10 +14,8 @@ const PROJECTS = [
     medium: "Digital, AR",
     status: "C",           // C = Completed, L = Live, Cn = Concept
     filterKey: "Poster",
-    images: [
-      "assets/verses-bound.jpg",
-      "assets/verses-bound-alt.jpg",
-      "assets/verses-bound-motion.jpg"
+ images: [
+      "assets/Free_Citylight_Mockup_3.jpg" // <-- Added here
     ],
     imageLayout: "multi",
     desc: "Poster and AR companion for the Graphic Design 1 exhibition and poetry event at Ada Slaight Gallery, 3–9 February 2026. Built from layered scans and dot-screen halftone textures, with a motion/AR version that animates the collage in place. Co-designed with Zoe Chan, Elijah Da Silva, Felicia Hwang, and Blair Mckenzie.",
