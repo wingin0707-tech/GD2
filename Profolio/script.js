@@ -15,7 +15,8 @@ const PROJECTS = [
     status: "C",         
     filterKey: "Poster",
  images: [
-      "Free_Citylight_Mockup_3.png" // <-- Added here
+      "Free_Citylight_Mockup_3.png",
+      "Project 3 Group Poster Template.pdf"  // <-- Added here
     ],
     imageLayout: "multi",
     desc: "Poster and AR companion for the Graphic Design 1 exhibition and poetry event at Ada Slaight Gallery, 3–9 February 2026. Built from layered scans and dot-screen halftone textures, with a motion/AR version that animates the collage in place. Co-designed with Zoe Chan, Elijah Da Silva, Felicia Hwang, and Blair Mckenzie.",
@@ -60,7 +61,7 @@ const PROJECTS = [
     medium: "Digital print",
     status: "C",
     filterKey: "Flyer",
-    images: ["assets/100m-flyer.jpg"],
+    images: ["100M:Flyer..pdf"],
     imageLayout: "single",
     desc: "Flyer for the 100M Studio student speaker series and social. The repeated wordmark and stamped icons run as a loose grid behind a plain info block — the type itself is the texture.",
     meta: [
