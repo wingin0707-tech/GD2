@@ -287,26 +287,63 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex: 1;
 }
 
-/* images */
+/* ============================================================
+   PANEL IMAGES — consistent layout + pop animation
+   ============================================================ */
 .panel-images {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
   border-bottom: 1px solid var(--line);
 }
 .panel-images img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-height: 260px;
+  object-fit: cover;
+  background: var(--bg);
 }
-/* if multiple images, layout as a grid */
-.panel-images.multi {
-  display: grid;
+
+/* layout variants */
+.panel-images.single { grid-template-columns: 1fr; }
+.panel-images.single img { min-height: 380px; }
+
+.panel-images.duo {
   grid-template-columns: 1fr 1fr;
 }
-.panel-images.multi img:first-child {
-  grid-column: 1 / -1;
+.panel-images.duo img { min-height: 380px; }
+
+.panel-images.multi { grid-template-columns: 1fr 1fr; }
+.panel-images.multi img:first-child { grid-column: 1 / -1; }
+
+.panel-images.trio { grid-template-columns: repeat(3, 1fr); }
+.panel-images.trio img:first-child { grid-column: span 2; }
+
+/* pop-in on open + gentle hover lift */
+.panel-images img {
+  opacity: 0;
+  transform: scale(0.96) translateY(6px);
+  transition: transform .35s cubic-bezier(.2,.7,.3,1.15),
+              opacity .3s ease,
+              filter .25s ease;
+  transition-delay: calc(var(--img-i, 0) * 60ms);
 }
-.panel-images.trio {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.panel-overlay.open .panel-images img {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+.panel-images img:hover {
+  transform: scale(1.015);
+  filter: brightness(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-images img {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* special: soundmap shows iframe */
@@ -397,7 +434,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .col-location, .col-format { display: none; }
 }
 @media (max-width: 660px) {
@@ -421,4 +458,108 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 a:focus-visible, button:focus-visible {
   outline: 1px solid var(--ink);
   outline-offset: 2px;
+}
+
+/* ============================================================
+   CURSOR-FOLLOWING PREVIEW
+   ============================================================ */
+.cursor-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 400;
+  width: 260px;
+  height: 175px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s ease;
+  will-change: transform;
+}
+
+.cursor-preview.show {
+  opacity: 1;
+}
+
+.cursor-preview-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--hover);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+  transform: scale(0.9);
+  transition: transform .35s cubic-bezier(.16,.84,.44,1);
+}
+
+.cursor-preview.show .cursor-preview-inner {
+  transform: scale(1);
+}
+
+.cursor-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 660px) {
+  .cursor-preview { display: none; } /* hover-driven, skip on touch */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-preview,
+  .cursor-preview-inner {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   PANEL IMAGES — click affordance
+   ============================================================ */
+.panel-images img {
+  cursor: zoom-in;
+}
+.panel-images img:active {
+  transform: scale(0.985);
+}
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(0,0,0,0);
+  opacity: 0;
+  pointer-events: none;
+  transition: background .3s ease, opacity .3s ease;
+}
+.lightbox.open {
+  background: rgba(0,0,0,0.82);
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform .32s cubic-bezier(.2,.7,.3,1.15), opacity .28s ease;
+  cursor: zoom-out;
+}
+.lightbox.open img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row-preview { transition: none; }
+  .lightbox, .lightbox img { transition: none; }
 }

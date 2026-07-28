@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sophya Chan — Graphic and UI/UX design portfolio. Toronto-based, studying at OCAD U.">
 <title>Sophya Chan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,84 +14,97 @@
 
 <!-- HEADER -->
 <header class="hdr">
-  <div class="hdr-left">
-    <span class="hdr-name">Sophya Chan<span class="blink">_</span></span>
-    <button class="filter-btn" id="filterBtn">Filter <span class="filter-arrow">↓</span></button>
-    <div class="filter-panel" id="filterPanel">
-      <button class="filter-tag active" data-filter="all">All</button>
-      <button class="filter-tag" data-filter="Poster">Poster</button>
-      <button class="filter-tag" data-filter="Flyer">Flyer</button>
-      <button class="filter-tag" data-filter="UI/UX">UI/UX</button>
-      <button class="filter-tag" data-filter="Illustration">Illustration</button>
-      <button class="filter-tag" data-filter="Interactive">Interactive</button>
-      <button class="filter-tag" data-filter="Collage">Collage</button>
-    </div>
-  </div>
-  <nav class="hdr-right">
-    <a href="#about-row">About</a>
-    <a href="mailto:hello@sophyachan.com">Contact</a>
-  </nav>
+<div class="hdr-left">
+<span class="hdr-name">Sophya Chan<span class="blink">_</span></span>
+<button class="filter-btn" id="filterBtn">Filter <span class="filter-arrow">↓</span></button>
+<div class="filter-panel" id="filterPanel">
+<button class="filter-tag active" data-filter="all">All</button>
+<button class="filter-tag" data-filter="Poster">Poster</button>
+<button class="filter-tag" data-filter="Flyer">Flyer</button>
+<button class="filter-tag" data-filter="UI/UX">UI/UX</button>
+<button class="filter-tag" data-filter="Illustration">Illustration</button>
+<button class="filter-tag" data-filter="Interactive">Interactive</button>
+<button class="filter-tag" data-filter="Collage">Collage</button>
+</div>
+</div>
+<nav class="hdr-right">
+<a href="#about-row">About</a>
+<a href="mailto:hello@sophyachan.com">Contact</a>
+</nav>
 </header>
 
 <!-- TABLE -->
 <main>
-  <table class="project-table" id="projectTable">
-    <thead>
-      <tr class="col-labels">
-        <th class="col-n">n</th>
-        <th class="col-y">y</th>
-        <th class="col-title">title</th>
-        <th class="col-type">type</th>
-        <th class="col-context">context</th>
-        <th class="col-location">location</th>
-        <th class="col-format">format</th>
-        <th class="col-medium">medium</th>
-        <th class="col-status">s</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody">
-      <!-- rows injected by script.js -->
-    </tbody>
-  </table>
+<table class="project-table" id="projectTable">
+<thead>
+<tr class="col-labels">
+<th class="col-n">n</th>
+<th class="col-y">y</th>
+<th class="col-title">title</th>
+<th class="col-type">type</th>
+<th class="col-context">context</th>
+<th class="col-location">location</th>
+<th class="col-format">format</th>
+<th class="col-medium">medium</th>
+<th class="col-status">s</th>
+</tr>
+</thead>
+<tbody id="tableBody">
+<!-- rows injected by script.js -->
+</tbody>
+</table>
 
-  <!-- ABOUT ROW -->
-  <div class="about-row" id="about-row">
-    <div class="about-label">About</div>
-    <div class="about-body">
-      <p>Graphic and UI/UX designer based in Toronto. Work that sits right on the line between organized and chaotic — dense type, layered collage, the occasional deliberate glitch. Studying at OCAD U.</p>
-      <div class="about-skills">
-        <span>Adobe Illustrator</span>
-        <span>InDesign</span>
-        <span>Photoshop</span>
-        <span>After Effects</span>
-        <span>Figma</span>
-        <span>Editorial Design</span>
-        <span>UI/UX</span>
-        <span>Motion &amp; AR</span>
-      </div>
-    </div>
-    <span class="about-cute">( ˶ˆᗜˆ˵ )</span>
-  </div>
+<!-- ABOUT ROW -->
+<div class="about-row" id="about-row">
+<div class="about-label">About</div>
+<div class="about-body">
+<p>Graphic and UI/UX designer based in Toronto. Work that sits right on the line between organized and chaotic — dense type, layered collage, the occasional deliberate glitch. Studying at OCAD U.</p>
+<div class="about-skills">
+<span>Adobe Illustrator</span>
+<span>InDesign</span>
+<span>Photoshop</span>
+<span>After Effects</span>
+<span>Figma</span>
+<span>Editorial Design</span>
+<span>UI/UX</span>
+<span>Motion &amp; AR</span>
+</div>
+</div>
+<span class="about-cute">( ˶ˆᗜˆ˵ )</span>
+</div>
 </main>
 
 <!-- PROJECT DETAIL PANEL -->
 <div class="panel-overlay" id="panelOverlay">
-  <div class="panel" id="panel">
-    <div class="panel-hdr">
-      <span class="panel-num" id="panelNum"></span>
-      <span class="panel-title-text" id="panelTitleText"></span>
-      <button class="panel-close" id="panelClose" aria-label="Close">✕</button>
-    </div>
-    <div class="panel-scroll">
-      <div class="panel-images" id="panelImages"></div>
-      <div class="panel-meta">
-        <table class="meta-table" id="metaTable"></table>
-        <p class="panel-desc" id="panelDesc"></p>
-      </div>
-    </div>
+<div class="panel" id="panel">
+<div class="panel-hdr">
+<span class="panel-num" id="panelNum"></span>
+<span class="panel-title-text" id="panelTitleText"></span>
+<button class="panel-close" id="panelClose" aria-label="Close">✕</button>
+</div>
+<div class="panel-scroll">
+<div class="panel-images" id="panelImages"></div>
+<div class="panel-meta">
+<table class="meta-table" id="metaTable"></table>
+<p class="panel-desc" id="panelDesc"></p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CURSOR-FOLLOWING PREVIEW -->
+<div class="cursor-preview" id="cursorPreview">
+  <div class="cursor-preview-inner">
+    <img id="cursorPreviewImg" src="" alt="">
   </div>
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <img id="lightboxImg" src="" alt="">
+</div>
+
 <script src="script.js"></script>
+<script src="preview.js"></script>
 </body>
 </html>
