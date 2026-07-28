@@ -105,7 +105,7 @@ const PROJECTS = [
     filterKey: "Interactive",
     images: ["Screenshot 2026-07-28 at 6.35.24 PM.png"],
     imageLayout: "iframe",
-    iframeUrl: "https://wingin0707-tech.github.io/GD2/Soundmap/",
+    iframeUrl: "https://wingin0707-tech.github.io/SO/Soundmap/",
     desc: "An interactive field-recording archive mapping the sounds of Markham. Click a red marker to hear what that spot sounds like. Built as a living, contributable archive.",
     meta: [
       ["URL",     "wingin0707-tech.github.io/GD2/Soundmap"],
