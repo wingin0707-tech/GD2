@@ -60,7 +60,7 @@ const PROJECTS = [
     medium: "2-colour print",
     status: "C",
     filterKey: "Illustration",
-    images: ["Outdoor Arch Sign Mockup.png", "Iced Coffee Cup.png", "Pouch Packaging Mockup.png"],
+    images: ["Outdoor Arch Sign Mockup.png", "Iced Coffee Cup.png", "Pouch Packaging Mockup.png","Round Sticker on Finger Mockup.png","Foil Poster Mockup (2).png"],
     imageLayout: "trio",
     desc: "Brand identity and sticker design for SŌKA, a matcha pop-up created for the grand opening of Nekonail. Designed the branding in collaboration with the SŌKA team and hosted the launch event. Two-colour bowl illustration printed as a sheet of 20 — sage green and cream keep it quiet enough to work at sticker scale without losing the linework. Follow along: @soka.matcha",    meta: [
       ["Colours",  "2 — Sage / Cream"],
@@ -92,6 +92,7 @@ const PROJECTS = [
   },
 
   {
+   
     n: "05",
     year: "2026",
     title: "Markham Sound Map",
@@ -102,7 +103,7 @@ const PROJECTS = [
     medium: "HTML, CSS, JS",
     status: "L",
     filterKey: "Interactive",
-    images: [],
+    images: ["Screenshot 2026-07-28 at 6.35.24 PM.png"],
     imageLayout: "iframe",
     iframeUrl: "https://wingin0707-tech.github.io/GD2/Soundmap/",
     desc: "An interactive field-recording archive mapping the sounds of Markham. Click a red marker to hear what that spot sounds like. Built as a living, contributable archive.",
@@ -114,7 +115,6 @@ const PROJECTS = [
   }
 ];
 
-// ============================================================
 // Build table rows
 // ============================================================
 const tbody = document.getElementById("tableBody");
@@ -243,6 +243,26 @@ function openPanel(p) {
       img.style.setProperty("--img-i", idx); // staggers the pop-in animation
       panelImgs.appendChild(img);
     });
+
+    // "trio" always puts the 1st image at 2 columns wide + 1 image at
+    // 1 column wide per row after that. If the image count doesn't
+    // divide evenly, the last row comes up short and leaves an empty
+    // gap. This stretches the trailing image(s) to close that gap,
+    // whatever the total image count ends up being.
+    if (p.imageLayout === "trio") {
+      const n = p.images.length;
+      const lastImg = panelImgs.lastElementChild;
+      if (n === 1 && lastImg) {
+        lastImg.style.gridColumn = "1 / -1";
+      } else if (n >= 3) {
+        const remainder = (n - 2) % 3; // images left over in the final row
+        if (remainder === 1 && lastImg) {
+          lastImg.style.gridColumn = "1 / -1"; // lone leftover: fill the row
+        } else if (remainder === 2 && lastImg) {
+          lastImg.style.gridColumn = "span 2"; // two leftover: widen the last one
+        }
+      }
+    }
   }
 
   // meta table
